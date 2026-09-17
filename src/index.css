@@ -1,0 +1,59 @@
+@import './styles/animations.css';
+
+.glow-box {
+	box-shadow:
+		0 2px 24px 0 rgba(124, 58, 237, 0.10),
+		0 4px 48px 0 rgba(56, 189, 248, 0.08);
+	border: 2px solid #7c3aed;
+	transition: box-shadow 0.3s;
+}
+
+.glow-box:hover,
+.glow-box:focus-within {
+	box-shadow:
+		0 0 0 4px rgba(124, 58, 237, 0.25),
+		0 2px 32px 0 rgba(124, 58, 237, 0.18),
+		0 4px 64px 0 rgba(56, 189, 248, 0.12);
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes popup-fade {
+	0% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	10% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	90% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+}
+
+.animate-popup {
+	animation: popup-fade 2s ease-in-out;
+}
+/* Import custom animations */
+
+@keyframes gradient-move {
+	0%, 100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
+.animate-gradient {
+	background-size: 200% 200%;
+	animation: gradient-move 6s ease-in-out infinite;
+}
+
