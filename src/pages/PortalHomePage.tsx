@@ -1,46 +1,24 @@
-import { ArrowRight, Award, BookOpen, CheckCircle2, LockKeyhole, RefreshCw, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
+﻿import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowUpRight, Award, BookOpen, BrainCircuit, Check, CheckCircle2, Clock3, Compass, Pencil, ShieldCheck, Sparkles, Wand2 } from 'lucide-react';
 import { useProgress } from '../state/useProgress';
-
-const foundations = [
-  { id: 'fundamentals', title: 'AI Fundamentals', description: 'Build a clear mental model of how AI systems learn, predict, and generate.', xp: 100 },
-  { id: 'tools', title: 'Practical AI Tools', description: 'Practice prompting, checking sources, and turning AI into a thoughtful study partner.', xp: 100 },
-  { id: 'ethics', title: 'Ethical AI Use', description: 'Learn how to use AI honestly, safely, and with your own judgment in the loop.', xp: 100 },
-];
-
+import { learningModules } from '../data/learningModules';
+const icons = [BrainCircuit, Compass, ShieldCheck, Wand2];
+const badgeNames = ['Pattern Finder', 'Prompt Builder', 'Responsible Thinker', 'Creative Explorer'];
 export default function PortalHomePage() {
-  const { displayName, completedModules, xp } = useProgress();
-  const completion = Math.round((completedModules.length / foundations.length) * 100);
-
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="border-b border-gray-200 bg-white shadow-sm">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div><h1 className="text-2xl font-bold text-gray-900">AI Learning Dashboard</h1><p className="mt-1 text-sm text-gray-600">Welcome back, {displayName}. Build practical AI confidence.</p></div>
-          <div className="hidden items-center gap-3 sm:flex"><button className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"><RefreshCw size={16} /> Refresh</button><button className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"><User size={16} /> Profile</button></div>
-        </div>
-      </header>
-      <main className="p-6">
-        <div className="mx-auto max-w-7xl">
-          <section className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center"><div><p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Your learning path</p><h2 className="mt-2 text-3xl font-bold text-gray-900">Understand AI. Use it well.</h2><p className="mt-2 max-w-2xl text-gray-600">Explore the foundations, practice useful techniques, and learn how to make responsible decisions with AI.</p><Link to="/learn" className="mt-5 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Start learning <ArrowRight size={16} /></Link></div><div className="flex h-28 w-28 shrink-0 flex-col items-center justify-center rounded-full border-8 border-blue-100 text-center"><span className="text-2xl font-bold text-blue-700">{completion}%</span><span className="text-xs text-gray-500">complete</span></div></div>
-          </section>
-          <div className="mb-6 grid gap-4 sm:grid-cols-3"><div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"><p className="text-sm text-gray-500">Current XP</p><p className="mt-2 text-3xl font-bold text-gray-900">{xp}</p></div><div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"><p className="text-sm text-gray-500">Modules completed</p><p className="mt-2 text-3xl font-bold text-gray-900">{completedModules.length} <span className="text-base font-normal text-gray-500">of {foundations.length}</span></p></div><div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"><p className="text-sm text-gray-500">Badges earned</p><p className="mt-2 flex items-center gap-2 text-3xl font-bold text-gray-900"><Award className="text-amber-500" size={25} /> {completedModules.length}</p></div></div>
-          <h2 className="mb-4 text-xl font-bold text-gray-900">Learning modules</h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          {foundations.map((module, index) => {
-            const complete = completedModules.includes(module.id);
-            return <Link to="/learn" key={module.id} className="group rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-md">
-              <div className="flex items-center justify-between"><span className="text-sm font-medium text-gray-500">Module 0{index + 1}</span>{complete ? <CheckCircle2 className="text-green-500" size={19} /> : <LockKeyhole className="text-gray-400" size={18} />}</div>
-              <BookOpen className="mt-8 text-blue-600" size={24} />
-              <h3 className="mt-4 text-xl font-bold text-gray-900">{module.title}</h3>
-              <p className="mt-2 min-h-14 text-sm leading-6 text-gray-600">{module.description}</p>
-              <p className="mt-5 text-sm font-semibold text-blue-600">{complete ? 'Completed' : `Earn ${module.xp} XP`}</p>
-            </Link>;
-          })}
-        </div>
-        </div>
-      </main>
-      </div>
-  );
+  const { displayName, gradeLevel, completedModules, earnedBadges, moduleScores, xp, hasOnboarded, updateDisplayName } = useProgress();
+  const { pathname } = useLocation();
+  const [name, setName] = useState(displayName);
+  const [saved, setSaved] = useState(false);
+  const complete = learningModules.filter(module => completedModules.includes(module.id));
+  const next = learningModules.find(module => !completedModules.includes(module.id));
+  const percent = Math.round(complete.length / learningModules.length * 100);
+  return <div className="signal-landing studio-dashboard"><div className="landing-width">
+    <div className="dashboard-greeting"><div><p className="studio-eyebrow">YOUR SPACE TO GROW{gradeLevel ? ` / GRADE ${gradeLevel}` : ''}</p><h1>{pathname === '/progress' ? 'Look how far you’ve come.' : `Keep your curiosity going, ${displayName}.`}</h1></div><Link to="/playground" className="studio-text-button">Visit the Playground <ArrowUpRight size={17} /></Link></div>
+    <section className="dashboard-hero"><div><p className="studio-eyebrow">{next ? 'YOUR NEXT CHAPTER' : 'ALL FOUR CHAPTERS COMPLETE'}</p><h2>{next ? next.title : 'Look at that. A whole new skill set.'}</h2><p>{next ? next.description : 'Your learning doesn’t stop here. Revisit a lesson, improve a quiz score, or put an idea to work in the Playground.'}</p><Link className="landing-primary" to={next ? `/learn?module=${next.id}` : '/playground'}>{next ? (complete.length ? 'Continue learning' : 'Start exploring') : 'Keep experimenting'}<ArrowUpRight size={18} /></Link></div><div className="dashboard-ring"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="68" /><circle cx="80" cy="80" r="68" pathLength="100" strokeDasharray={`${percent} 100`} /></svg><div><strong>{percent}%</strong><span>of your path complete</span></div></div></section>
+    <div className="dashboard-stats"><article><Sparkles size={22} /><div><strong>{xp}<small> / 750</small></strong><span>Experience points</span></div></article><article><BookOpen size={22} /><div><strong>{complete.length}<small> / 4</small></strong><span>Modules completed</span></div></article><article><Award size={22} /><div><strong>{learningModules.filter(module => earnedBadges.includes(module.badgeId)).length}<small> / 4</small></strong><span>Skills collected</span></div></article></div>
+    <section className="dashboard-badges" aria-labelledby="badge-heading"><div className="dashboard-section-title"><div><p className="studio-eyebrow">YOUR SKILL COLLECTION</p><h2 id="badge-heading">Earned through understanding.</h2></div><span>Pass a chapter quiz to unlock its badge.</span></div><div className="dashboard-badge-grid">{learningModules.map((module, index) => { const earned = earnedBadges.includes(module.badgeId); const Icon = icons[index]; return <Link key={module.id} to={`/learn?module=${module.id}`} className={earned ? 'earned' : ''}><div className="dashboard-badge"><Icon size={35} /><span>0{index + 1}</span></div><h3>{badgeNames[index]}</h3><p>{earned ? <><Check size={13} /> Earned</> : `${module.xp} XP to discover`}</p></Link>; })}</div></section>
+    <section className="dashboard-modules"><div className="dashboard-section-title"><div><p className="studio-eyebrow">YOUR LEARNING PATH</p><h2>Pick up a new perspective.</h2></div></div>{learningModules.map((module, index) => { const Icon = icons[index]; const done = completedModules.includes(module.id); return <Link key={module.id} to={`/learn?module=${module.id}`}><span className="dashboard-module-icon"><Icon size={22} /></span><div><h3>{module.title}</h3><p>{module.outcome}</p></div><span className="dashboard-module-meta"><span><Clock3 size={13} />{module.minutes} min</span>{moduleScores[module.id] !== undefined ? <span>Best score: {moduleScores[module.id]}%</span> : <span>{module.xp} XP</span>}</span><span className={`dashboard-module-state ${done ? 'done' : ''}`}>{done ? <CheckCircle2 size={20} /> : <ArrowUpRight size={20} />}<span className="sr-only">{done ? 'Completed' : 'Explore module'}</span></span></Link>; })}</section>
+    <div className="dashboard-bottom"><section><Compass size={25} /><h2>A good habit for your next assignment.</h2><p>Check the source. Protect personal details. Keep the reasoning yours.</p><Link className="studio-text-button" to="/field-guide">Open your Field Guide <ArrowUpRight size={16} /></Link></section><section><Pencil size={23} /><h2>Make this space yours.</h2>{hasOnboarded ? <details><summary>Update your display name</summary><form onSubmit={event => { event.preventDefault(); if (!name.trim()) return; updateDisplayName(name); setSaved(true); }}><label htmlFor="profile-name">Name or nickname</label><input id="profile-name" value={name} required maxLength={40} onChange={event => { setName(event.target.value); setSaved(false); }} /><button className="studio-dark-button" type="submit">Save name</button><span role="status">{saved ? 'Name updated.' : ''}</span></form></details> : <><p>You’re exploring as a guest. Set up a fresh local profile with your name and grade.</p><Link className="studio-text-button" to="/signup">Create a profile <ArrowUpRight size={16} /></Link></>}<p className="dashboard-storage">Progress saves in this browser on this device.</p></section></div>
+  </div></div>;
 }
