@@ -280,10 +280,11 @@
 @keyframes studio-arrive{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes studio-marquee{to{transform:translateX(-50%)}}
 @keyframes studio-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@media(min-width:1000px) and (min-height:800px){
+@media(min-width:1000px) and (min-height:600px) and (prefers-reduced-motion:no-preference){
 .studio-chapter{position:sticky;top:calc(103px + var(--card-index)*20px);margin-bottom:75px}
 .studio-card-stack:has(:focus-visible) .studio-chapter{position:relative;top:auto}
 }
+html[data-motion='paused'] .studio-chapter{position:relative;top:auto;margin-bottom:28px}
 @media(max-width:1050px){
 .studio-header .landing-header-inner{gap:20px}.studio-header .landing-nav{gap:15px}.studio-header .landing-header-actions{gap:9px}
 .studio-hero-grid{gap:30px}.studio-hero h1{font-size:64px}.studio-hero-bottom{gap:40px}

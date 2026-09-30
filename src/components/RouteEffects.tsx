@@ -1,10 +1,10 @@
 ﻿import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-const titles: Record<string, string> = { '/': 'Explore AI', '/about': 'Our Story', '/playground': 'Playground', '/resources': 'Resource Library', '/field-guide': 'Student Field Guide', '/signup': 'Create a Profile', '/portal': 'My Learning', '/learn': 'Learning Studio', '/progress': 'Your Progress' };
+const titles: Record<string, string> = { '/': 'Home', '/curriculum': 'Our Curriculum', '/about': 'About Signal Lab', '/contact': 'Contact Signal Lab', '/playground': 'Playground', '/resources': 'Resource Library', '/field-guide': 'Student Field Guide', '/signup': 'Create a Profile', '/portal': 'My Learning', '/learn': 'Learning Studio', '/progress': 'Your Progress' };
 export default function RouteEffects() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    document.title = `${titles[pathname] ?? 'Explore AI'} | Signal Lab`;
+    document.title = `${titles[pathname] ?? 'Home'} | Signal Lab`;
     const frame = requestAnimationFrame(() => {
       if (hash) {
         const target = document.getElementById(hash.slice(1));

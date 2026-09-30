@@ -1,11 +1,13 @@
-﻿import { useState, type CSSProperties } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, Award, BrainCircuit, Check, Clock3, Compass, Radio, ShieldCheck, Sparkles, Trophy, Wand2 } from 'lucide-react';
+﻿import type { CSSProperties } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Award, BrainCircuit, Check, Clock3, Compass, ShieldCheck, Sparkles, Trophy, Wand2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
-import { NeuralField } from '../components/NeuralField';
+import EverydayAI from '../components/EverydayAI';
+import DailyChallenge from '../components/DailyChallenge';
 import { NetworkSteps, PromptPreview, EthicsPreview } from '../components/StudioExperiments';
 import Reveal from '../components/Reveal';
-import { useSiteMotion } from '../state/useSiteMotion';
+import TestimonialsSection from '../components/TestimonialsSection';
+
 import { useProgress } from '../state/useProgress';
 import { learningModules } from '../data/learningModules';
 import { learningResources } from '../data/resources';
@@ -23,9 +25,9 @@ const faqs = [
 ];
 
 export default function LandingPage() {
-  const { paused } = useSiteMotion();
+
   const { hasOnboarded } = useProgress();
-  const [signals, setSignals] = useState(0);
+
   return <div className="signal-landing studio-home">
     <PublicSiteHeader />
     <main id="main-content" tabIndex={-1}>
@@ -37,11 +39,7 @@ export default function LandingPage() {
             <div className="studio-hero-actions"><Link className="landing-primary" to={hasOnboarded ? '/portal' : '/signup'}>{hasOnboarded ? 'Continue your journey' : 'Find your starting point'}<ArrowUpRight size={19} /></Link><a href="#curriculum" className="studio-text-button">Take a look around <ArrowDown size={17} /></a></div>
             <div className="studio-reassurance"><span>GRADES 9–12</span>No experience needed. Just curiosity.</div>
           </div>
-          <div className="studio-observatory-wrap"><div className="studio-specimen-label"><span>YOUR FIRST SPARK</span><span>EXPERIMENT 001 ↘</span></div>
-            <div className="studio-observatory"><NeuralField paused={paused} reducedMotion={paused} signalCount={signals} /><div className="observatory-label"><Radio size={15} /><span>THE CONNECTION ENGINE</span></div><span className="observatory-tag tag-input">A small input.</span><span className="observatory-tag tag-output">A new possibility.</span>
-              <div className="observatory-copy"><h2>Curiosity makes connections.</h2><p>Move across the network. Send a signal.<br />See an idea light up.</p><button type="button" className="studio-signal-button" onClick={() => setSignals(value => value + 1)}><Sparkles size={17} /> Send a signal <ArrowUpRight size={16} /></button><span className="signal-count" role="status">{signals ? `${signals} signal${signals === 1 ? '' : 's'} sent. Keep exploring.` : 'Go on. Try something.'}</span></div>
-            </div><p className="studio-specimen-note">An interactive illustration, not a trained AI model.<span aria-hidden="true">↳ MADE TO EXPLORE</span></p>
-          </div>
+          <EverydayAI />
         </div>
         <div className="landing-width studio-hero-bottom"><p>Understand.<br /><em>Experiment. Question.</em></p><div><strong>04</strong><span>learning modules</span></div><div><strong>750</strong><span>XP to discover</span></div><div><strong>100%</strong><span>your own pace</span></div><a href="#curriculum" aria-label="Scroll to the curriculum"><ArrowDown size={24} /></a></div>
       </section>
@@ -57,13 +55,18 @@ export default function LandingPage() {
         <Reveal><Link className="studio-creative-strip" to="/learn?module=creativity"><span className="creative-spark"><Wand2 size={26} /></span><div><span className="studio-eyebrow">04 / THE CREATIVE CHAPTER</span><h3>Make something only you could imagine.</h3><p>Bring your own voice to design, storytelling, and creative AI.</p></div><span className="creative-strip-action">Explore Creative AI <ArrowUpRight size={20} /></span></Link></Reveal>
       </section>
 
+      <DailyChallenge />
+
       <section className="studio-playground-pitch"><div className="landing-width"><Reveal className="playground-pitch-grid"><div className="playground-art" aria-hidden="true"><span className="mini-window window-back"><span>01 / CHANGE THE INPUT</span><BrainCircuit size={62} /></span><span className="mini-window window-middle"><span>02 / ASK A BETTER QUESTION</span><i /><i /><i /><span className="mini-cursor">↗</span></span><span className="mini-window window-front"><Check size={24} /><strong>Oh. Now I get it.</strong><span>THAT’S THE FEELING.</span></span></div><div><p className="studio-eyebrow">02 — LESS WATCHING. MORE DOING.</p><h2>Go ahead.<br /><em>Pull a few levers.</em></h2><p>A tiny classifier. A prompt you can build. A choice worth thinking through. The Playground is your space to find out what happens when you change something.</p><Link className="landing-primary" to="/playground">Step into the Playground <ArrowUpRight size={19} /></Link><span className="studio-small-note">No downloads. No API keys. Just you and an idea.</span></div></Reveal></div></section>
 
       <section className="studio-progress-pitch landing-width"><Reveal className="studio-progress-grid"><div><p className="studio-eyebrow">03 — YOUR EFFORT, MADE VISIBLE</p><h2>Little wins.<br /><em>Real understanding.</em></h2><p>Build your collection of skills, one chapter at a time. Earn XP, unlock badges, and see how far your curiosity has taken you.</p><Link to="/progress" className="studio-text-button">See your progress <ArrowRight size={17} /></Link></div><div className="studio-achievement-preview"><div className="achievement-preview-top"><span>YOUR NEXT ACHIEVEMENT</span><Sparkles size={18} /></div><div className="studio-badge-orbit"><span className="badge-satellite"><Check size={17} /></span><div className="studio-big-badge"><BrainCircuit size={46} /><span>PATTERN FINDER</span><small>01</small></div><span className="badge-satellite satellite-two"><Sparkles size={18} /></span></div><h3>Start with a spark.</h3><p>Complete AI Fundamentals to earn your first badge.</p><div className="achievement-preview-bottom"><span><Award size={17} /> A skill worth keeping</span><strong>+150 XP</strong></div></div></Reveal></section>
 
       <section className="studio-about-strip"><div className="landing-width"><Compass size={36} /><p>Built for the generation<br /><em>that gets to shape what comes next.</em></p><Link to="/about">The idea behind Signal <ArrowUpRight size={19} /></Link></div></section>
+      <TestimonialsSection />
       <section className="studio-faq landing-width"><Reveal className="studio-faq-grid"><div><p className="studio-eyebrow">A FEW THINGS YOU MIGHT BE WONDERING</p><h2>Good questions.<br /><em>Start here.</em></h2></div><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></Reveal></section>
       <section className="studio-final-cta landing-width"><span className="studio-eyebrow">YOUR NEXT CHAPTER STARTS WITH A QUESTION.</span><h2>What will you<br /><em>figure out next?</em></h2><Link className="landing-primary" to={hasOnboarded ? '/portal' : '/signup'}>Let’s find out <ArrowUpRight size={20} /></Link><div className="cta-doodle doodle-one" aria-hidden="true"><BrainCircuit /></div><div className="cta-doodle doodle-two" aria-hidden="true"><ShieldCheck /></div><div className="cta-doodle doodle-three" aria-hidden="true"><Trophy /></div></section>
     </main><PublicSiteFooter />
   </div>;
 }
+
+
