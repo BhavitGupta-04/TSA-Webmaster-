@@ -12,6 +12,7 @@ import AboutPage from './pages/AboutPage';
 import FieldGuidePage from './pages/FieldGuidePage';
 import CurriculumPage from './pages/CurriculumPage';
 import ContactPage from './pages/ContactPage';
+import SourcesPage from './pages/SourcesPage';
 import { ProgressProvider } from './state/ProgressContext';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/playground" element={<PlaygroundPage />} /><Route path="/resources" element={<ResourcesPage />} /><Route path="/about" element={<AboutPage />} />
           <Route path="/field-guide" element={<FieldGuidePage />} />
+          <Route path="/sources" element={<SourcesPage />} />
           <Route path="/portal" element={<PortalShell><PortalHomePage /></PortalShell>} />
           <Route path="/learn" element={<PortalShell><LearningHubPage /></PortalShell>} />
           <Route path="/progress" element={<PortalShell><PortalHomePage /></PortalShell>} />
