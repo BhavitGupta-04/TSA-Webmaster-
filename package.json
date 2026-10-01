@@ -10,6 +10,7 @@
     "test:api": "python backend/manage.py test learning_api",
     "build": "vite build",
     "lint": "eslint .",
+    "check:credits": "node scripts/check-credits.cjs",
     "preview": "vite preview"
   },
   "dependencies": {

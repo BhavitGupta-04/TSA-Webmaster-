@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowUpRight, ChevronDown, Clock3, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronDown, Clock3, MessageSquareText, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { learningModules } from '../data/learningModules';
-import ImagePlaceholder from '../components/ImagePlaceholder';
+import SitePhoto from '../components/SitePhoto';
 import Reveal from '../components/Reveal';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
 
-const imageBriefs = [
-  'Students testing how a model recognizes patterns',
-  'A student drafting a helpful study prompt',
-  'A team discussing fairness and AI',
-  'Students using AI to build a creative project',
+const chapterPhotos = [
+  { id: 'robotic-arm', caption: 'A machine that sorts has to learn what it is looking at first.' },
+  { id: 'study-notes', caption: 'Writing the question down is half the work.' },
+  { id: 'workshop-discussion', caption: 'Some questions need a room, not an algorithm.' },
+  { id: 'creative-tablet', caption: 'The tool suggests. You decide.' },
 ];
 
 export default function CurriculumPage() {
@@ -60,7 +60,7 @@ export default function CurriculumPage() {
                     </div>
                     <Link className="curriculum-module-link" to={`/learn?module=${module.id}`}>Explore this chapter <ArrowRight size={17} /></Link>
                   </div>
-                  <div className="curriculum-module-image"><ImagePlaceholder label={imageBriefs[index]} variant={index % 2 === 0 ? 'classroom' : 'project'} /><span className="curriculum-xp"><Sparkles size={14} /> {module.xp} XP</span></div>
+                  <div className="curriculum-module-image"><SitePhoto id={chapterPhotos[index].id} caption={chapterPhotos[index].caption} /><span className="curriculum-xp"><Sparkles size={14} /> {module.xp} XP</span></div>
                 </article>
               </Reveal>
             ))}
@@ -68,6 +68,8 @@ export default function CurriculumPage() {
         </section>
 
         <section className="curriculum-finale"><div className="landing-width curriculum-finale-inner"><p className="studio-eyebrow">THE POINT ISN’T TO USE AI FOR EVERYTHING.</p><h2>It’s knowing when, why,<br /><em>and what to question.</em></h2><Link className="landing-primary" to="/playground">Try an experiment <ArrowUpRight size={18} /></Link></div></section>
+
+        <section className="landing-width curriculum-ask"><MessageSquareText size={24} /><div><h2>Stuck on a word before you even start?</h2><p>Ask Signal is in the bottom corner of every page. It can explain a term, point you at the right chapter, or help you shape a question before you take it to a real AI tool.</p></div></section>
       </main>
       <PublicSiteFooter />
     </div>

@@ -1,22 +1,51 @@
 ﻿import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowUpRight, Award, BookOpen, BrainCircuit, Check, CheckCircle2, Clock3, Compass, Pencil, ShieldCheck, Sparkles, Wand2 } from 'lucide-react';
+import { ArrowUpRight, Award, BookOpen, BrainCircuit, Check, CheckCircle2, Clock3, Compass, Flame, Pencil, ShieldCheck, Sparkles, Trophy, Wand2 } from 'lucide-react';
 import { useProgress } from '../state/useProgress';
 import { learningModules } from '../data/learningModules';
+import { rankFor } from '../lib/levels';
+import Certificate from '../components/Certificate';
 const icons = [BrainCircuit, Compass, ShieldCheck, Wand2];
 const badgeNames = ['Pattern Finder', 'Prompt Builder', 'Responsible Thinker', 'Creative Explorer'];
 export default function PortalHomePage() {
-  const { displayName, gradeLevel, completedModules, earnedBadges, moduleScores, xp, hasOnboarded, updateDisplayName } = useProgress();
+  const { displayName, gradeLevel, completedModules, earnedBadges, moduleScores, xp, streak, hasOnboarded, updateDisplayName } = useProgress();
   const { pathname } = useLocation();
   const [name, setName] = useState(displayName);
   const [saved, setSaved] = useState(false);
+  const [certificateOpen, setCertificateOpen] = useState(false);
   const complete = learningModules.filter(module => completedModules.includes(module.id));
   const next = learningModules.find(module => !completedModules.includes(module.id));
   const percent = Math.round(complete.length / learningModules.length * 100);
+  const { rank, next: nextRank, percentToNext, xpToNext, position, total } = rankFor(xp);
+  const allDone = complete.length === learningModules.length;
   return <div className="signal-landing studio-dashboard"><div className="landing-width">
+    {certificateOpen && <Certificate onClose={() => setCertificateOpen(false)} />}
     <div className="dashboard-greeting"><div><p className="studio-eyebrow">YOUR SPACE TO GROW{gradeLevel ? ` / GRADE ${gradeLevel}` : ''}</p><h1>{pathname === '/progress' ? 'Look how far you’ve come.' : `Keep your curiosity going, ${displayName}.`}</h1></div><Link to="/playground" className="studio-text-button">Visit the Playground <ArrowUpRight size={17} /></Link></div>
     <section className="dashboard-hero"><div><p className="studio-eyebrow">{next ? 'YOUR NEXT CHAPTER' : 'ALL FOUR CHAPTERS COMPLETE'}</p><h2>{next ? next.title : 'Look at that. A whole new skill set.'}</h2><p>{next ? next.description : 'Your learning doesn’t stop here. Revisit a lesson, improve a quiz score, or put an idea to work in the Playground.'}</p><Link className="landing-primary" to={next ? `/learn?module=${next.id}` : '/playground'}>{next ? (complete.length ? 'Continue learning' : 'Start exploring') : 'Keep experimenting'}<ArrowUpRight size={18} /></Link></div><div className="dashboard-ring"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="68" /><circle cx="80" cy="80" r="68" pathLength="100" strokeDasharray={`${percent} 100`} /></svg><div><strong>{percent}%</strong><span>of your path complete</span></div></div></section>
+    <section className="dashboard-rank" aria-labelledby="rank-heading">
+      <div className="dashboard-rank-main">
+        <p className="studio-eyebrow">RANK {position} OF {total}</p>
+        <h2 id="rank-heading">{rank.title}</h2>
+        <p className="dashboard-rank-note">{rank.note}</p>
+        <div className="dashboard-rank-track">
+          <div className="dashboard-rank-bar"><span style={{ width: `${percentToNext}%` }} /></div>
+          <span>{nextRank ? `${xpToNext} XP to ${nextRank.title}` : 'Top rank reached'}</span>
+        </div>
+      </div>
+      <div className="dashboard-streak">
+        <Flame size={25} />
+        <strong>{streak}</strong>
+        <span>day{streak === 1 ? '' : 's'} in a row</span>
+      </div>
+    </section>
+
     <div className="dashboard-stats"><article><Sparkles size={22} /><div><strong>{xp}<small> / 750</small></strong><span>Experience points</span></div></article><article><BookOpen size={22} /><div><strong>{complete.length}<small> / 4</small></strong><span>Modules completed</span></div></article><article><Award size={22} /><div><strong>{learningModules.filter(module => earnedBadges.includes(module.badgeId)).length}<small> / 4</small></strong><span>Skills collected</span></div></article></div>
+
+    {allDone && <section className="dashboard-certificate">
+      <Trophy size={30} />
+      <div><h2>All four chapters, finished.</h2><p>There is a certificate with your name on it. Print it, save it as a PDF, or just look at it for a second — you earned it.</p></div>
+      <button type="button" className="landing-primary" onClick={() => setCertificateOpen(true)}>View your certificate <ArrowUpRight size={17} /></button>
+    </section>}
     <section className="dashboard-badges" aria-labelledby="badge-heading"><div className="dashboard-section-title"><div><p className="studio-eyebrow">YOUR SKILL COLLECTION</p><h2 id="badge-heading">Earned through understanding.</h2></div><span>Pass a chapter quiz to unlock its badge.</span></div><div className="dashboard-badge-grid">{learningModules.map((module, index) => { const earned = earnedBadges.includes(module.badgeId); const Icon = icons[index]; return <Link key={module.id} to={`/learn?module=${module.id}`} className={earned ? 'earned' : ''}><div className="dashboard-badge"><Icon size={35} /><span>0{index + 1}</span></div><h3>{badgeNames[index]}</h3><p>{earned ? <><Check size={13} /> Earned</> : `${module.xp} XP to discover`}</p></Link>; })}</div></section>
     <section className="dashboard-modules"><div className="dashboard-section-title"><div><p className="studio-eyebrow">YOUR LEARNING PATH</p><h2>Pick up a new perspective.</h2></div></div>{learningModules.map((module, index) => { const Icon = icons[index]; const done = completedModules.includes(module.id); return <Link key={module.id} to={`/learn?module=${module.id}`}><span className="dashboard-module-icon"><Icon size={22} /></span><div><h3>{module.title}</h3><p>{module.outcome}</p></div><span className="dashboard-module-meta"><span><Clock3 size={13} />{module.minutes} min</span>{moduleScores[module.id] !== undefined ? <span>Best score: {moduleScores[module.id]}%</span> : <span>{module.xp} XP</span>}</span><span className={`dashboard-module-state ${done ? 'done' : ''}`}>{done ? <CheckCircle2 size={20} /> : <ArrowUpRight size={20} />}<span className="sr-only">{done ? 'Completed' : 'Explore module'}</span></span></Link>; })}</section>
     <div className="dashboard-bottom"><section><Compass size={25} /><h2>A good habit for your next assignment.</h2><p>Check the source. Protect personal details. Keep the reasoning yours.</p><Link className="studio-text-button" to="/field-guide">Open your Field Guide <ArrowUpRight size={16} /></Link></section><section><Pencil size={23} /><h2>Make this space yours.</h2>{hasOnboarded ? <details><summary>Update your display name</summary><form onSubmit={event => { event.preventDefault(); if (!name.trim()) return; updateDisplayName(name); setSaved(true); }}><label htmlFor="profile-name">Name or nickname</label><input id="profile-name" value={name} required maxLength={40} onChange={event => { setName(event.target.value); setSaved(false); }} /><button className="studio-dark-button" type="submit">Save name</button><span role="status">{saved ? 'Name updated.' : ''}</span></form></details> : <><p>You’re exploring as a guest. Set up a fresh local profile with your name and grade.</p><Link className="studio-text-button" to="/signup">Create a profile <ArrowUpRight size={16} /></Link></>}<p className="dashboard-storage">Progress saves in this browser on this device.</p></section></div>

@@ -7,6 +7,8 @@ import './styles/landing.css';
 import './styles/studio.css';
 import './styles/homepage-bold.css';
 import './styles/reference-inspired.css';
+import './styles/features.css';
+import './styles/dark.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

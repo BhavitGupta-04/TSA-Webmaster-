@@ -1,7 +1,9 @@
-﻿import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import PortalShell from './components/PortalShell';
 import SiteMotionProvider from './components/SiteMotionProvider';
 import RouteEffects from './components/RouteEffects';
+import AskSignal from './components/AskSignal';
+import CartDrawer from './components/CartDrawer';
 import PlaygroundPage from './pages/PlaygroundPage';
 import ResourcesPage from './pages/ResourcesPage';
 import LearningHubPage from './pages/LearningHubPage';
@@ -13,27 +15,39 @@ import FieldGuidePage from './pages/FieldGuidePage';
 import CurriculumPage from './pages/CurriculumPage';
 import ContactPage from './pages/ContactPage';
 import SourcesPage from './pages/SourcesPage';
+import ReadingListPage from './pages/ReadingListPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { ProgressProvider } from './state/ProgressContext';
+import { CartProvider } from './state/CartProvider';
+import { ThemeProvider } from './state/ThemeProvider';
 
 function App() {
   return (
-    <SiteMotionProvider><ProgressProvider>
+    <ThemeProvider><SiteMotionProvider><ProgressProvider><CartProvider>
       <Router><RouteEffects />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/curriculum" element={<CurriculumPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/playground" element={<PlaygroundPage />} /><Route path="/resources" element={<ResourcesPage />} /><Route path="/about" element={<AboutPage />} />
+          <Route path="/playground" element={<PlaygroundPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/field-guide" element={<FieldGuidePage />} />
           <Route path="/sources" element={<SourcesPage />} />
+          <Route path="/reading-list" element={<ReadingListPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/order-confirmed" element={<OrderConfirmedPage />} />
           <Route path="/portal" element={<PortalShell><PortalHomePage /></PortalShell>} />
           <Route path="/learn" element={<PortalShell><LearningHubPage /></PortalShell>} />
           <Route path="/progress" element={<PortalShell><PortalHomePage /></PortalShell>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <CartDrawer />
+        <AskSignal />
       </Router>
-    </ProgressProvider></SiteMotionProvider>
+    </CartProvider></ProgressProvider></SiteMotionProvider></ThemeProvider>
   );
 }
 

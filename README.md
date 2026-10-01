@@ -38,21 +38,52 @@ Open the URL Vite prints, normally `http://localhost:5173`. Vite proxies `/api` 
 ## Pages
 
 - `/`: Home, interactive AI examples, curriculum preview, challenge, and progress overview.
-- `/curriculum`: the four-chapter course map with learning outcomes and photo placeholders.
+- `/curriculum`: the four-chapter course map with learning outcomes.
 - `/playground`: interactive model and prompt experiments.
-- `/about`: project story, principles, and photo placeholders for team/classroom images.
+- `/about`: project story and principles.
 - `/resources` and `/field-guide`: further reading and a responsible-use checklist.
+- `/reading-list`, `/checkout`, `/order-confirmed`: the book shop (see **Shop** below).
+- `/sources`: every photograph, icon, typeface, and book credited, generated from the code.
 - `/signup`, `/portal`, `/learn`, and `/progress`: local learner setup and learning workspace.
 
 Public-page typography uses Poppins with the Butler Regular/Bold web font used by the reference site. Butler is loaded from the same CDN font URLs as the reference.
+
+## Two features that are deliberately not connected
+
+Both are built out as far as they can go without a live service behind them. Each has
+one file that is the only place to change when connecting it.
+
+**Ask Signal** — the chat panel in the corner of every page. `src/lib/aiClient.ts` holds
+the adapter. It currently answers from a hand-written guide to the site; set `MODE` to
+`'live'` and point `VITE_ASSISTANT_ENDPOINT` at a backend route that holds the API key.
+The file documents the request and response shape the route must speak. The key must
+stay on the server — anything in this bundle is public.
+
+**The shop** — `/reading-list`, the cart, and `/checkout`. The cart, promo codes, tax
+and shipping arithmetic, and card validation (including the Luhn checksum) are all real
+and all run in the browser. `src/lib/checkout.ts` is where a processor would attach, and
+explains why the raw card number should be replaced by a hosted field rather than sent
+from here. No card is charged and no order is transmitted; orders are written to
+`localStorage` only.
+
+## Images
+
+Eight photographs, all from Pexels, in `public/photos/`. `src/data/photos.ts` is the
+single source of truth: the `/sources` page is generated from it, and every photo on
+the site carries its photographer's name in the corner. The people in these photos are
+not connected to this project, and no caption suggests they are.
 
 ## Verify
 
 ```powershell
 npm run lint
 npm run build
+npm run check:credits
 npm run test:api
 ```
+
+`check:credits` compares the icons and photographs the site actually uses against what
+`/sources` claims, and fails if the two have drifted apart. Run it before submitting.
 
 The backend API endpoints are `GET /api/v1/health/` and `GET /api/v1/challenge/?offset=0`. Challenge content is stored in local SQLite and can be managed at `/admin/` after creating a Django superuser. The API returns public content only; it does not accept learner profiles, notes, scores, or progress.
 

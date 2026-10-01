@@ -1,14 +1,14 @@
 import { useState, type FormEvent } from 'react';
 import { ArrowLeft, ArrowUpRight, BookOpen, Bug, Lightbulb, MessageCircle, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ImagePlaceholder from '../components/ImagePlaceholder';
+import SitePhoto from '../components/SitePhoto';
 import Reveal from '../components/Reveal';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
 
 const contactTopics = [
-  { icon: MessageCircle, title: 'Share feedback', text: 'Tell us what felt clear, confusing, or surprisingly fun.' },
-  { icon: Bug, title: 'Report a problem', text: 'Point out a broken link, quiz, or activity so we can investigate.' },
-  { icon: Lightbulb, title: 'Suggest a lesson', text: 'Recommend an AI question, experiment, or classroom scenario.' },
+  { icon: MessageCircle, title: 'Share feedback', text: 'What was clear, what lost you, what you did not expect to enjoy.' },
+  { icon: Bug, title: 'Report a problem', text: 'A dead link, a quiz that will not submit, a page that looks wrong on your phone.' },
+  { icon: Lightbulb, title: 'Suggest a lesson', text: 'An AI question we skipped, or something that came up in class and stuck with you.' },
 ];
 
 export default function ContactPage() {
@@ -34,10 +34,10 @@ export default function ContactPage() {
             <div>
               <p className="studio-eyebrow">CONTACT / START A CONVERSATION</p>
               <h1>Good ideas start<br /><em>with a message.</em></h1>
-              <p>Found a snag? Have a question or a lesson idea? Send the project team a note through the public repository.</p>
+              <p>Something broken, something missing, or something you wish we had explained better — we would rather hear it than not.</p>
               <a className="landing-primary" href="https://github.com/BhavitGupta-04/TSA-Webmaster-/issues" target="_blank" rel="noreferrer">Visit the project page <ArrowUpRight size={17} /></a>
             </div>
-            <ImagePlaceholder label="Signal Lab team working through student feedback" variant="project" />
+            <SitePhoto id="writing-feedback" caption="Every note gets read by a person." priority />
           </div>
         </section>
 

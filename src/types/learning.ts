@@ -15,6 +15,10 @@ export interface LearningProgress {
   moduleScores: Record<string, number>;
   flashcardsByModule: Record<string, Flashcard[]>;
   notesByModule: Record<string, string>;
+  /** Consecutive days with a visit. Counted in the browser, like everything else. */
+  streak: number;
+  /** YYYY-MM-DD of the last visit, used to work the streak out. */
+  lastVisit: string | null;
 }
 
 export interface ProgressActions {

@@ -1,4 +1,4 @@
-import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Check, CheckCircle2, ChevronRight, Clock3, Compass, Copy, ExternalLink, Eye, Fingerprint, FlaskConical, GraduationCap, HeartHandshake, Layers3, LayoutDashboard, Lightbulb, Menu, MessageSquareText, Pause, Pencil, Play, Radio, RotateCcw, Search, ShieldAlert, ShieldCheck, Sparkles, Target, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
+import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, FlaskConical, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Moon, Pause, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, Send, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Sun, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
 
 export const iconLibrary = {
   name: 'Lucide',
@@ -46,7 +46,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'Pause', slug: 'pause', icon: Pause },
   { name: 'Pencil', slug: 'pencil', icon: Pencil },
   { name: 'Play', slug: 'play', icon: Play },
-  { name: 'Radio', slug: 'radio', icon: Radio },
   { name: 'RotateCcw', slug: 'rotate-ccw', icon: RotateCcw },
   { name: 'Search', slug: 'search', icon: Search },
   { name: 'ShieldAlert', slug: 'shield-alert', icon: ShieldAlert },
@@ -56,6 +55,27 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'Trophy', slug: 'trophy', icon: Trophy },
   { name: 'Users', slug: 'users', icon: Users },
   { name: 'Wand2', slug: 'wand-sparkles', icon: Wand2 },
+  { name: 'Bug', slug: 'bug', icon: Bug },
+  { name: 'ChevronDown', slug: 'chevron-down', icon: ChevronDown },
+  { name: 'CreditCard', slug: 'credit-card', icon: CreditCard },
+  { name: 'Flame', slug: 'flame', icon: Flame },
+  { name: 'Headphones', slug: 'headphones', icon: Headphones },
+  { name: 'Info', slug: 'info', icon: Info },
+  { name: 'Loader', slug: 'loader', icon: Loader },
+  { name: 'Lock', slug: 'lock', icon: Lock },
+  { name: 'MessageCircle', slug: 'message-circle', icon: MessageCircle },
+  { name: 'Minus', slug: 'minus', icon: Minus },
+  { name: 'Moon', slug: 'moon', icon: Moon },
+  { name: 'Plus', slug: 'plus', icon: Plus },
+  { name: 'Printer', slug: 'printer', icon: Printer },
+  { name: 'Quote', slug: 'quote', icon: Quote },
+  { name: 'RefreshCw', slug: 'refresh-cw', icon: RefreshCw },
+  { name: 'ScanFace', slug: 'scan-face', icon: ScanFace },
+  { name: 'Send', slug: 'send', icon: Send },
+  { name: 'ShoppingBag', slug: 'shopping-bag', icon: ShoppingBag },
+  { name: 'Sun', slug: 'sun', icon: Sun },
+  { name: 'Tag', slug: 'tag', icon: Tag },
+  { name: 'Trash2', slug: 'trash-2', icon: Trash2 },
   { name: 'X', slug: 'x', icon: X },
 ];
 
@@ -65,11 +85,12 @@ export const fontCredits = [
 ];
 
 export const originalWork = [
-  { title: 'Neural-network stage diagram', detail: 'SVG drawn by our own code, placing lines and circles from coordinate arrays. Not a traced or generated image.' },
-  { title: 'Fruit classifier scatter plot', detail: 'SVG axes, gridlines, data points, and marker drawn by our own code from an array of six invented examples.' },
-  { title: 'Progress ring', detail: 'Two SVG circles using strokeDasharray to show the percent of the learning path completed.' },
-  { title: 'Animated background field', detail: 'A motion component written by our team. No stock footage or generated video.' },
-  { title: 'Colors, layout, and type scale', detail: 'Original design decisions. No purchased or generated template.' },
+  { title: 'Neural-network stage diagram', detail: 'An SVG our code draws at runtime, placing lines and circles from coordinate arrays.' },
+  { title: 'Fruit classifier scatter plot', detail: 'SVG axes, gridlines, data points, and marker drawn from an array of six example fruits we made up.' },
+  { title: 'Progress ring', detail: 'Two SVG circles using strokeDasharray to show how much of the learning path is done.' },
+  { title: 'Animated background field', detail: 'A motion component we wrote.' },
+  { title: 'Book covers in the Reading List', detail: 'Typographic covers laid out in CSS. No publisher artwork is reproduced.' },
+  { title: 'Colors, layout, and type scale', detail: 'Our own design decisions, built from scratch rather than from a template.' },
   { title: 'All written copy, lessons, and quiz questions', detail: 'Written by our team for this competition entry.' },
 ];
 

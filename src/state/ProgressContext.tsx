@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState, type ReactNode } from 'react';
 import type { Flashcard, LearningProgress, ProgressActions } from '../types/learning';
 import { ProgressContext } from './progress-context';
+import { nextStreak } from '../lib/levels';
 
 const STORAGE_KEY_PREFIX = 'ai-learning-portal-progress-';
 const CURRENT_LEARNER_KEY = 'ai-learning-portal-current-learner';
@@ -21,6 +22,8 @@ function createFreshProgress(learnerId: string, displayName = 'Student', hasOnbo
     moduleScores: {},
     flashcardsByModule: {},
     notesByModule: {},
+    streak: 0,
+    lastVisit: null,
   };
 }
 
@@ -85,6 +88,8 @@ function readProgress(learnerId: string): LearningProgress {
               )
             )
           : {},
+      streak: typeof parsed.streak === 'number' && parsed.streak >= 0 ? parsed.streak : 0,
+      lastVisit: typeof parsed.lastVisit === 'string' ? parsed.lastVisit : null,
     };
   } catch {
     return createFreshProgress(learnerId, 'Student', false);
@@ -116,6 +121,16 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(CURRENT_LEARNER_KEY, learnerId);
     window.localStorage.setItem(`${STORAGE_KEY_PREFIX}${learnerId}`, JSON.stringify(progress));
   }, [learnerId, progress]);
+
+  // Count today's visit once. `changed` is false when today is already counted,
+  // which keeps this from looping against the save effect above.
+  useEffect(() => {
+    setProgress((current) => {
+      const result = nextStreak(current.lastVisit, current.streak);
+      if (!result.changed) return current;
+      return { ...current, streak: result.streak, lastVisit: result.lastVisit };
+    });
+  }, [learnerId]);
 
   const value: LearningProgress & ProgressActions = {
     ...progress,
