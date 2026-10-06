@@ -39,7 +39,7 @@ jobs:
           mkdir -p release
           cp -R backend dist .python_packages startup.sh requirements.txt release/
 
-      - name: Deploy to Azure App Service
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ vars.AZURE_WEBAPP_NAME }}
