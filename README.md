@@ -88,3 +88,38 @@ npm run test:api
 The backend API endpoints are `GET /api/v1/health/` and `GET /api/v1/challenge/?offset=0`. Challenge content is stored in local SQLite and can be managed at `/admin/` after creating a Django superuser. The API returns public content only; it does not accept learner profiles, notes, scores, or progress.
 
 For deployment, set `DJANGO_DEBUG=false`, provide a unique `DJANGO_SECRET_KEY`, and set `DJANGO_ALLOWED_HOSTS` to the backend hostnames. The development-only secret is rejected when debug mode is disabled.
+
+## Deploy both parts to one Azure App Service
+
+The included `.github/workflows/azure-webapps-python.yml` workflow builds the
+Vite site, tests and packages Django, and deploys the frontend and API together
+to one **Linux App Service**. If Azure created a Python deployment workflow
+with the same filename, replace its contents with the workflow in this
+repository; don't leave two Azure deploy workflows enabled. The frontend's
+client-side routes, API, and Django admin share one origin. App Service serves
+the SPA files at the site root and Django's admin assets under `/static/`.
+
+1. Create a Linux Web App using the **Python 3.11** runtime. In its
+   **Configuration → General settings**, set the startup command to
+   `bash startup.sh`.
+2. Add these App Service application settings:
+   - `DJANGO_DEBUG`: `false`
+   - `DJANGO_SECRET_KEY`: a unique, private random value
+   - `DJANGO_ALLOWED_HOSTS`: your app host, such as `your-app.azurewebsites.net`
+   - `SQLITE_PATH`: `/home/data/db.sqlite3`
+   - `DJANGO_STATIC_ROOT`: `/home/data/staticfiles`
+   - `WEBSITES_ENABLE_APP_SERVICE_STORAGE`: `true`
+   - `SCM_DO_BUILD_DURING_DEPLOYMENT`: `false` (the workflow packages Python dependencies itself)
+3. In the GitHub repository, add the app's name as the
+   `AZURE_WEBAPP_NAME` repository variable and its publish profile XML as the
+   `AZURE_WEBAPP_PUBLISH_PROFILE` repository secret.
+4. Run **Actions → Deploy to Azure App Service → Run workflow**, or push to
+   `main`.
+
+The startup script applies database migrations and collects Django admin
+assets before starting Gunicorn. SQLite and collected admin assets are kept
+under `/home`, which is persistent App Service storage when
+`WEBSITES_ENABLE_APP_SERVICE_STORAGE` is enabled (the Linux App Service
+default). SQLite is suitable for a single app instance; do not scale this app
+out to multiple instances, since they would not share one SQLite database.
+Back up `/home/data/db.sqlite3` before deployments or other maintenance.
