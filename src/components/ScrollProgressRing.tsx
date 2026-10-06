@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSiteMotion } from '../state/useSiteMotion';
+import { useSiteMotion } from '../state/site-motion';
 
 export default function ScrollProgressRing() {
   const [progress, setProgress] = useState(0);

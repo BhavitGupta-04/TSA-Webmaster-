@@ -1,6 +1,5 @@
 ﻿import { useState, type CSSProperties } from 'react';
 import { ArrowUpRight, Headphones, MessageSquareText, Plus, ScanFace } from 'lucide-react';
-import './everyday-ai.css';
 
 const examples = [
   { id: 'music', label: 'YOUR NEXT FAVORITE SONG', title: 'That playlist gets you.', icon: Headphones, skill: 'Finding patterns', explanation: 'Music recommendations can use patterns in what you listen to, skip, and save to suggest songs you might enjoy.', takeaway: 'It predicts what you might like. It doesn’t know your taste perfectly.' },

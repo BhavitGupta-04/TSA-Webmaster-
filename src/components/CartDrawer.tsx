@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Minus, Plus, ShoppingBag, Tag, Trash2, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { bookById, formatPrice } from '../data/books';
-import { useCart } from '../state/useCart';
+import { useCart } from '../state/cart-context';
 import BookCover from './BookCover';
 
 export default function CartDrawer() {

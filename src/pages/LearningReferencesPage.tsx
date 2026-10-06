@@ -2,7 +2,6 @@ import { ArrowLeft, ExternalLink, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { lessonReferences } from '../data/lessonReferences';
 import { lessons } from '../data/portalCurriculum';
-import '../styles/lesson-focus.css';
 
 export default function LearningReferencesPage() {
   return <div className="academy-page lesson-references-page">

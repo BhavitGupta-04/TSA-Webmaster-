@@ -1,7 +1,7 @@
 import { Activity, ArrowUpRight, Menu, ShoppingBag, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { useCart } from '../state/useCart';
+import { useCart } from '../state/cart-context';
 import ScrollProgressRing from './ScrollProgressRing';
 
 export function PublicSiteHeader() {

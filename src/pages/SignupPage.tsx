@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, BrainCircuit, GraduationCap, ShieldCheck } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useProgress } from '../state/useProgress';
+import { useProgress } from '../state/progress-context';
 
 export default function SignupPage() {
   const [displayName, setDisplayName] = useState('');

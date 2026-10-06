@@ -1,7 +1,7 @@
 import { Award, Printer, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { lessons } from '../data/portalCurriculum';
-import { useProgress } from '../state/useProgress';
+import { useProgress } from '../state/progress-context';
 
 /**
  * Shown once every module is complete. Printing uses the browser's own dialog —

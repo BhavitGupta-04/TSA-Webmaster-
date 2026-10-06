@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { SiteMotionContext } from '../state/useSiteMotion';
+import { SiteMotionContext } from '../state/site-motion';
+
 export default function SiteMotionProvider({ children }: { children: ReactNode }) {
   const [systemReduced, setSystemReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(() => {

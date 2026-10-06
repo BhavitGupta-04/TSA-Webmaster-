@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import type { Flashcard, LearningProgress, ProgressActions } from '../types/learning';
 import { ProgressContext } from './progress-context';
 import { nextStreak } from '../lib/levels';
@@ -197,4 +197,3 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;
 }
-

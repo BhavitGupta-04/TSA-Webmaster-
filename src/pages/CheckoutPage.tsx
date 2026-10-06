@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
 import BookCover from '../components/BookCover';
 import { bookById, formatPrice } from '../data/books';
-import { useCart } from '../state/useCart';
+import { useCart } from '../state/cart-context';
 import {
   authorizePayment,
   detectBrand,

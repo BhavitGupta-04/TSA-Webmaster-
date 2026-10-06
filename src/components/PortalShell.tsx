@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Award, BookOpen, BrainCircuit, ArrowUpRight, LayoutDashboard, Menu, X, Sparkles, Play } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
-import { useProgress } from '../state/useProgress';
-import '../styles/academy.css';
+import { useProgress } from '../state/progress-context';
+import '../styles/portal.css';
 
 const navigation = [
   { label: 'My space', href: '/portal', icon: LayoutDashboard },

@@ -1,5 +1,5 @@
 ﻿import { useEffect, useRef, type ReactNode } from 'react';
-import { useSiteMotion } from '../state/useSiteMotion';
+import { useSiteMotion } from '../state/site-motion';
 export default function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { paused } = useSiteMotion();

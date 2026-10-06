@@ -8,7 +8,7 @@ import { NetworkSteps, PromptPreview, EthicsPreview } from '../components/Studio
 import Reveal from '../components/Reveal';
 import TestimonialsSection from '../components/TestimonialsSection';
 
-import { useProgress } from '../state/useProgress';
+import { useProgress } from '../state/progress-context';
 import { learningModules } from '../data/learningModules';
 import { learningResources } from '../data/resources';
 
@@ -68,5 +68,3 @@ export default function LandingPage() {
     </main><PublicSiteFooter />
   </div>;
 }
-
-

@@ -1,6 +1,6 @@
 import type { Lesson } from '../data/portalCurriculum';
 import { readWorkbook, workbookKey, type Workbook } from '../lib/portalWorkbook';
-import { useProgress } from './useProgress';
+import { useProgress } from './progress-context';
 
 export function useLessonWorkbook(lesson: Lesson) {
   const progress = useProgress();

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, ChevronRight, Clock3, Lightbulb, Target } from 'lucide-react';
 import { lessons, units, type Lesson } from '../data/portalCurriculum';
 import { lessonGuides } from '../data/lessonGuides';
-import { useProgress } from '../state/useProgress';
+import { useProgress } from '../state/progress-context';
 import { useLessonWorkbook } from '../state/useLessonWorkbook';
 import { prerequisitesReady, projectReady, stepDone } from '../lib/portalWorkbook';
 import PortalPractice from '../components/PortalPractice';
@@ -11,7 +11,6 @@ import LessonVideo from '../components/LessonVideo';
 import LessonCaseStudy from '../components/LessonCaseStudy';
 import LessonReferences from '../components/LessonReferences';
 import LessonStudyTools from '../components/LessonStudyTools';
-import '../styles/lesson-focus.css';
 
 function LessonSession({ lesson }: { lesson: Lesson }) {
   const { work, update } = useLessonWorkbook(lesson);

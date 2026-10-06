@@ -7,7 +7,7 @@ import SitePhoto from '../components/SitePhoto';
 import BookCover from '../components/BookCover';
 import { bookCatalog, bookLevels, formatPrice, type BookLevel } from '../data/books';
 import { learningModules } from '../data/learningModules';
-import { useCart } from '../state/useCart';
+import { useCart } from '../state/cart-context';
 
 const moduleTitle = Object.fromEntries(learningModules.map((module) => [module.id, module.title]));
 

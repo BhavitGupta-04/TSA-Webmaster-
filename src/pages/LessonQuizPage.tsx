@@ -4,7 +4,6 @@ import { ArrowLeft, ArrowRight, Check, CheckCircle2, Clock3, Lightbulb, RotateCc
 import { lessons, lessonXP, type Lesson } from '../data/portalCurriculum';
 import { useLessonWorkbook } from '../state/useLessonWorkbook';
 import { prerequisitesReady, quizScore, stepDone } from '../lib/portalWorkbook';
-import '../styles/lesson-focus.css';
 
 function QuizSession({ lesson }: { lesson: Lesson }) {
   const { work, update, progress } = useLessonWorkbook(lesson);

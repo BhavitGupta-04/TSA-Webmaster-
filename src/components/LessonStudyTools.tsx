@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, ExternalLink, Layers3, Pencil, RotateCcw } from 'lucide-react';
 import type { Lesson } from '../data/portalCurriculum';
 import { downloadWorkbook, type Workbook } from '../lib/portalWorkbook';
-import { useProgress } from '../state/useProgress';
+import { useProgress } from '../state/progress-context';
 
 export default function LessonStudyTools({ lesson, work, update }: { lesson: Lesson; work: Workbook; update: (patch: Partial<Workbook>) => void }) {
   const { notesByModule, flashcardsByModule, addFlashcard } = useProgress();

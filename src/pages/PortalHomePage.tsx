@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Award, BookOpen, BrainCircuit, Check, CheckCircle2, Clock3, Compass, Flame, Layers3, Lightbulb, Pencil, Search, ShieldCheck, Sparkles, Trophy, Wand2 } from 'lucide-react';
-import { useProgress } from '../state/useProgress';
+import { useProgress } from '../state/progress-context';
 import { lessons, lessonMinutes, lessonXP, units } from '../data/portalCurriculum';
 import { readWorkbook, stepDone, workbookKey } from '../lib/portalWorkbook';
 import Certificate from '../components/Certificate';
