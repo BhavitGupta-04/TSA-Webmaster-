@@ -4,7 +4,7 @@ const titles: Record<string, string> = { '/': 'Home', '/curriculum': 'Our Curric
 export default function RouteEffects() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    document.title = `${titles[pathname] ?? 'Home'} | Signal Lab`;
+    document.title = `${titles[pathname] ?? (pathname.startsWith('/learn/') && pathname.endsWith('/quiz') ? 'Lesson Quiz' : 'Home')} | Signal Lab`;
     const frame = requestAnimationFrame(() => {
       if (hash) {
         const target = document.getElementById(hash.slice(1));

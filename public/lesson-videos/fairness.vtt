@@ -1,0 +1,220 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.007
+Hi, and welcome.
+
+00:00:01.007 --> 00:00:04.845
+A school club tries a speech-to-text tool for meeting notes.
+
+00:00:04.845 --> 00:00:13.340
+It works well for one speaker in a quiet room, then struggles when several students speak with different accents and background noise.
+
+00:00:13.340 --> 00:00:23.157
+As you watch, keep one question in mind: Fairness takes listening, checking different experiences, and giving people a practical way to challenge a result.
+
+00:00:23.157 --> 00:00:25.989
+You do not need to memorize a list of terms.
+
+00:00:25.989 --> 00:00:33.288
+Try to notice what the people in the story know, what they still need to check, and what choice they can make next.
+
+00:00:33.838 --> 00:00:38.441
+Imagine a team captain who only listens to the loudest people in a meeting.
+
+00:00:38.441 --> 00:00:44.088
+The plan might look successful on paper while some members barely get a chance to be heard.
+
+00:00:44.088 --> 00:00:47.525
+This comparison is a way to think, not a perfect match.
+
+00:00:47.525 --> 00:00:54.215
+Real AI systems can work in different ways, so it helps to ask what this particular tool was designed to do.
+
+00:00:54.215 --> 00:00:57.713
+Compare group results using rates instead of raw counts.
+
+00:00:57.713 --> 00:01:01.150
+What detail in the story makes that goal easier to see?
+
+00:01:01.700 --> 00:01:06.268
+The club adds a quieter microphone and allows students to correct the notes.
+
+00:01:06.268 --> 00:01:12.099
+One change helps, but students still need another way to participate if the transcript is wrong.
+
+00:01:12.099 --> 00:01:13.301
+Pause for a moment.
+
+00:01:13.301 --> 00:01:16.728
+What changed between the first situation and the second?
+
+00:01:16.728 --> 00:01:20.514
+If the result changed too, that is a clue worth investigating.
+
+00:01:20.514 --> 00:01:22.558
+It is not proof of the cause yet.
+
+00:01:22.558 --> 00:01:27.908
+Think of one more example that could help separate a genuine pattern from a coincidence.
+
+00:01:28.458 --> 00:01:33.560
+A tool's overall score can hide whose words were understood and whose were missed.
+
+00:01:33.560 --> 00:01:39.035
+Looking at separate experiences can reveal a problem that an average keeps out of view.
+
+00:01:39.035 --> 00:01:42.394
+A useful explanation connects a detail to a decision.
+
+00:01:42.394 --> 00:01:48.305
+Try finishing this sentence in your own words: I would pay attention to this detail because...
+
+00:01:48.305 --> 00:01:51.291
+Identify representation and accessibility gaps.
+
+00:01:51.291 --> 00:01:55.024
+You can use a different example from the one in the lesson.
+
+00:01:55.024 --> 00:01:59.130
+The goal is to explain the reasoning, not to repeat a definition.
+
+00:01:59.680 --> 00:02:05.683
+Ask who is missing from the test, invite feedback from different students, and compare the errors.
+
+00:02:05.683 --> 00:02:10.707
+Decide what the school will do when the system gets someone's contribution wrong.
+
+00:02:10.707 --> 00:02:14.934
+Before looking at any result, say what you expect to happen and why.
+
+00:02:14.934 --> 00:02:18.426
+Then compare your prediction with what actually happens.
+
+00:02:18.426 --> 00:02:24.184
+If they do not match, keep the surprising result; it may be the most useful part of the test.
+
+00:02:24.734 --> 00:02:29.228
+If a new microphone improves the average, what else would you want to know?
+
+00:02:29.228 --> 00:02:35.041
+Consider whether every student can access it and whether corrections actually change the record.
+
+00:02:35.041 --> 00:02:38.816
+It is tempting to judge a tool by its most impressive example.
+
+00:02:38.816 --> 00:02:45.407
+A more careful check also asks who was not represented, what information is missing, and what could go wrong.
+
+00:02:45.407 --> 00:02:47.984
+Propose a safeguard and an appeal process.
+
+00:02:47.984 --> 00:02:52.358
+A person should be able to question a result and choose what to do next.
+
+00:02:52.908 --> 00:02:55.921
+Suppose two groups each contribute twenty clips.
+
+00:02:55.921 --> 00:03:00.001
+The tool gets nineteen from one group and twelve from the other.
+
+00:03:00.001 --> 00:03:04.898
+Before deployment, investigate why the experiences differ and who can appeal.
+
+00:03:04.898 --> 00:03:06.906
+Work through it in three moves.
+
+00:03:06.906 --> 00:03:09.731
+First, say what job the tool is meant to do.
+
+00:03:09.731 --> 00:03:15.067
+Next, point to the evidence you have, rather than a guess about how the tool thinks.
+
+00:03:15.067 --> 00:03:18.080
+Finally, decide what still needs a human check.
+
+00:03:18.080 --> 00:03:22.788
+There may be more than one reasonable answer if you explain your evidence.
+
+00:03:23.338 --> 00:03:28.623
+Now open the practice activity, Audit a fictional speech tool, when you are ready.
+
+00:03:28.623 --> 00:03:32.747
+In the fairness activity, follow the people behind each number.
+
+00:03:32.747 --> 00:03:38.096
+Look for both the measured result and the real opportunity someone gains or loses.
+
+00:03:38.096 --> 00:03:40.739
+Take a first try before asking for help.
+
+00:03:40.739 --> 00:03:44.863
+If feedback changes your mind, name the detail that changed it.
+
+00:03:44.863 --> 00:03:48.730
+If you keep your answer, explain what evidence supports it.
+
+00:03:49.280 --> 00:03:53.541
+Your lesson project is called Write a student-first deployment decision.
+
+00:03:53.541 --> 00:03:58.454
+For your project, name the students who may have the hardest time using your idea.
+
+00:03:58.454 --> 00:04:03.603
+Describe a safeguard those students can use, not just a promise that the tool is fair.
+
+00:04:03.603 --> 00:04:08.101
+Before you finish, imagine someone else using your idea for the first time.
+
+00:04:08.101 --> 00:04:09.877
+What would they need to know?
+
+00:04:09.877 --> 00:04:13.073
+What could they do if the tool did not work for them?
+
+00:04:13.073 --> 00:04:16.328
+Those questions can make a promising idea more useful.
+
+00:04:16.878 --> 00:04:21.961
+Pick one word from today's lesson and explain it using the story you just heard.
+
+00:04:21.961 --> 00:04:24.693
+Avoid copying the wording from the screen.
+
+00:04:24.693 --> 00:04:28.188
+You might begin, In this situation, this word means...
+
+00:04:28.188 --> 00:04:32.000
+If your explanation is hard to follow, add a small example.
+
+00:04:32.000 --> 00:04:37.782
+Clear language is a good way to notice what you understand and what you want to ask about.
+
+00:04:38.332 --> 00:04:46.826
+Here is one idea to take with you: Fairness takes listening, checking different experiences, and giving people a practical way to challenge a result.
+
+00:04:46.826 --> 00:04:51.558
+Think of a different class or school situation where the same question could help.
+
+00:04:51.558 --> 00:04:55.833
+You can write down one thing you would check and one person you could ask.
+
+00:04:55.833 --> 00:05:00.508
+That is enough for a useful next step; you do not have to solve every part today.
+
+00:05:01.058 --> 00:05:03.478
+Thanks for thinking this through with me.
+
+00:05:03.478 --> 00:05:09.382
+Finish the activity and project on the lesson page, then try the separate quiz when you feel ready.
+
+00:05:09.382 --> 00:05:15.226
+If a question feels difficult, return to the example and explain your reasoning in your own words.
+
+00:05:15.226 --> 00:05:22.015
+Fairness takes listening, checking different experiences, and giving people a practical way to challenge a result.
+
+00:05:22.015 --> 00:05:24.317
+The goal is not to trust every answer.
+
+00:05:24.317 --> 00:05:28.154
+It is to know what to check and how to make a thoughtful choice.

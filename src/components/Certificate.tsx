@@ -1,6 +1,6 @@
 import { Award, Printer, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { learningModules } from '../data/learningModules';
+import { lessons } from '../data/portalCurriculum';
 import { useProgress } from '../state/useProgress';
 
 /**
@@ -22,7 +22,7 @@ export default function Certificate({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   const average = Math.round(
-    learningModules.reduce((sum, module) => sum + (moduleScores[module.id] ?? 0), 0) / learningModules.length
+    lessons.reduce((sum, lesson) => sum + (moduleScores[lesson.id] ?? 0), 0) / lessons.length
   );
   const issued = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -41,12 +41,12 @@ export default function Certificate({ onClose }: { onClose: () => void }) {
           <p className="certificate-presented">This certifies that</p>
           <p className="certificate-name">{displayName}</p>
           <p className="certificate-body">
-            has completed all four chapters of the Signal Lab learning path{gradeLevel ? ` as a grade ${gradeLevel} student` : ''} —
+            has completed all eight lessons across four units of the Signal Lab learning path{gradeLevel ? ` as a grade ${gradeLevel} student` : ''} —
             covering how machine learning works, how to use AI tools deliberately, the ethics of automated decisions, and creative
             work with a human at the centre.
           </p>
           <dl className="certificate-stats">
-            <div><dt>Modules</dt><dd>4 of 4</dd></div>
+            <div><dt>Lessons</dt><dd>{lessons.length} of {lessons.length}</dd></div>
             <div><dt>Experience</dt><dd>{xp} XP</dd></div>
             <div><dt>Average quiz score</dt><dd>{average}%</dd></div>
             <div><dt>Issued</dt><dd>{issued}</dd></div>

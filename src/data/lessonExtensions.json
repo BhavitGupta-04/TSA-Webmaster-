@@ -1,0 +1,162 @@
+{
+  "patterns": [
+    {
+      "title": "Your phone is not reading your mind",
+      "story": "Imagine your music app suggests a song you end up loving. It may have found patterns in songs you played, skipped, or saved, and in what other listeners did. That can be useful without the app knowing why a song matters to you. Maybe it reminds you of a friend. Maybe you only played it because your sibling borrowed your phone. A recorded action is a clue, not a complete explanation of a person.",
+      "question": "The app keeps recommending workout music after your friend uses your account. What is one likely reason, and what does the app not know?",
+      "reasoning": "Your listening history now includes your friend's choices. A system using that history may treat them as evidence of your preferences. It does not automatically know who was listening or why. A correction such as removing those plays can improve the input, but it is not a guarantee of perfect recommendations."
+    },
+    {
+      "title": "Build a tiny training set on paper",
+      "story": "Draw six imaginary objects: three cans and three bottles. Give every object two visible features, such as its shape and material. Write the correct category beside each one. You have made a tiny labeled dataset. Now add a metal water bottle. A rule that says metal always means can fails on this example. This is why examples need variety. More copies of the same easy example would not have exposed that problem.",
+      "question": "Choose one new object that would challenge your first sorting rule. Explain what makes it useful rather than just adding another easy example.",
+      "reasoning": "A reusable metal bottle is helpful because it separates material from category. A crushed can might test whether shape matters too much. Neither example makes a complete dataset. They help you notice assumptions and plan a wider test. Keep the new test examples separate from the ones used to develop your approach."
+    },
+    {
+      "title": "Explain it to a younger student",
+      "story": "Try this plain-language explanation: a model is a system adjusted using examples so it can make predictions on new inputs. Training is the adjusting part. Using the model is the predicting part. Neither word means the system has human experiences. If you forget the vocabulary, describe what goes in and what comes out. For a photo sorter, a picture goes in and a category comes out. For a writing tool, text goes in and generated text comes out.",
+      "question": "Describe a school-related AI tool using only input, example, and output. Where would a person need to check its work?",
+      "reasoning": "A practice-question tool takes a passage as input and produces questions as output. A person checks whether the questions are actually supported by the passage. Different AI systems are trained differently, so this simple description is a starting point, not a claim that every system learns in exactly the same way."
+    }
+  ],
+  "test-detective": [
+    {
+      "title": "A score needs a story",
+      "story": "Two fictional homework filters each get nine out of ten decisions right. The first hides a real assignment. The second lets an extra reminder through. The scores match, but the consequences do not. Before choosing a tool, ask what happened in the wrong cases and who had to deal with it. A percentage is a summary. It cannot tell the whole story of whether a tool is helpful.",
+      "question": "Which mistake would matter more for a tool that alerts you to an upcoming deadline? Explain your choice and a way a person could catch it.",
+      "reasoning": "Missing a real deadline could be more costly than an extra reminder. A student might still check the class calendar instead of relying only on alerts. Other settings can have different priorities. Explain the consequence rather than assuming one type of mistake is always worse."
+    },
+    {
+      "title": "Try the same test on a new day",
+      "story": "Suppose a recycling camera works well beside a sunny window. On a cloudy afternoon, it struggles. The objects did not change, but the lighting did. Real use includes conditions that a small demo may miss. Write a test list before you run the tool: bright and dim light, clean and crushed objects, familiar and unusual shapes. Then keep a record of the failures. A disappointing result can be useful evidence.",
+      "question": "Your study helper answers five short science questions correctly. What two additional tests would make its evaluation more useful?",
+      "reasoning": "Try new questions on the same subject and questions with longer or less direct wording. Include a question the supplied material cannot answer. Look for whether the helper admits missing information. A handful of successes does not establish performance on every subject or student."
+    },
+    {
+      "title": "Make a decision, not just a chart",
+      "story": "Imagine a club has tested a tool and found several mistakes. The next step does not have to be launch or abandon. The club could narrow the task, require a person to review outputs, or run another small test. Write down what would count as good enough for the specific purpose before seeing the results. Otherwise it is tempting to move the target until the tool looks successful.",
+      "question": "A tool labels eight of ten recycling photos correctly. Write a careful result statement and one sensible next step.",
+      "reasoning": "Say that eight of these ten photos were labeled correctly in this trial. Name the conditions and the two errors. Next, test new examples that resemble the failures and compare a revised version. Avoid turning a small trial into a promise of eighty percent accuracy everywhere."
+    }
+  ],
+  "prompt-builder": [
+    {
+      "title": "Turn a request into a study conversation",
+      "story": "A vague request such as help with biology leaves many choices to the tool. A more useful request names the topic, your current understanding, and the kind of help you want. For example: I can name the parts of a cell, but I mix up their jobs. Ask me one question at a time, wait for my answer, and give a hint before an explanation. The goal is a conversation in which you do the thinking.",
+      "question": "Write a request for a subject you find difficult. Include one thing you already know and one thing you want to practice.",
+      "reasoning": "A strong request might say: I can solve one-step equations, but I get confused when there are brackets. Give me one practice problem, wait for my attempt, and point out the first step I should reconsider. The prompt guides the interaction; it cannot guarantee the answer is correct."
+    },
+    {
+      "title": "Repair a response that misses the point",
+      "story": "Suppose you ask for an explanation and receive a long paragraph full of unfamiliar words. You do not need to accept it or restart everything. Point to the specific problem: explain the second sentence using a school cafeteria example, define the new term, and keep the explanation to four sentences. Then compare the simpler version with your class materials. A shorter explanation can still be wrong or leave out something important.",
+      "question": "An AI helper gives you the final answer even though you wanted practice. Write a follow-up that restores your role as the learner.",
+      "reasoning": "Ask it to set a similar question without the answer, wait for your attempt, and offer a small hint only if requested. Try solving it before looking at feedback. Check the method against your teacher's example. A fluent explanation is not a substitute for that check."
+    },
+    {
+      "title": "Close the tool and try again",
+      "story": "Reading a clear explanation can make a topic feel familiar. Familiarity is not the same as being able to use it. After a study conversation, close the tool and solve a fresh problem or explain the idea aloud. If you get stuck, identify the exact missing step. That gives your next study session a purpose. Keep a short record of the questions you still have for your teacher.",
+      "question": "How would you check whether an AI-assisted history study session actually helped you learn?",
+      "reasoning": "Without the tool, explain a cause-and-effect connection in your own words and support it with evidence from class material. Then compare your explanation with the source. A new example is a stronger check than repeating a sentence you just read. Follow your teacher's rules about whether AI help is allowed."
+    }
+  ],
+  "fact-checker": [
+    {
+      "title": "Separate a claim from its confident wording",
+      "story": "Picture a chatbot saying that your school opened in 1984 and won a national award in 1992. Those are two different claims. A friendly tone and a detailed date do not establish either one. Write the claims separately, then identify where each could be checked. Your school's own history page might address the opening date. The organization that awarded the prize might have a record of the award.",
+      "question": "A generated paragraph says a club has fifty members and meets every Thursday. What should you check before publishing it?",
+      "reasoning": "Check the current membership figure with the club and the meeting schedule with an up-to-date official notice or organizer. Each claim can be wrong independently. A source supporting the meeting day does not also prove the membership count."
+    },
+    {
+      "title": "Open the source instead of trusting the link",
+      "story": "An answer can contain a real link that does not support what it says. Open the page, find the relevant passage, and compare it with the exact claim. Check when the information was published and what group or situation it describes. A study of one group does not automatically describe every student. If the link fails, look for the original source rather than treating the broken link as evidence.",
+      "question": "A tool links a school lunch survey to support a claim about every teenager in the country. What is missing?",
+      "reasoning": "You need to know who was surveyed, how the sample was chosen, and what question was asked. A survey at one school may describe that school's respondents without representing the whole country. Narrow the claim to what the evidence supports or find stronger evidence."
+    },
+    {
+      "title": "Use uncertainty honestly",
+      "story": "Sometimes you cannot verify a claim before a deadline. The responsible response is not to invent a citation or turn a guess into a fact. You can remove the claim, mark it as unverified in your notes, or ask a teacher or librarian for help finding a source. When sources disagree, check whether they use different dates, definitions, or measurements. Disagreement is a reason to investigate, not to choose whichever answer sounds best.",
+      "question": "Write one sentence you could use in your research notes when you have not verified a generated statistic.",
+      "reasoning": "For example: This number was suggested by an AI tool, but I have not found the original evidence, so I will not use it as a fact yet. Acknowledging uncertainty is part of careful research. Once verified, cite the actual source according to your assignment's instructions."
+    }
+  ],
+  "fairness": [
+    {
+      "title": "Responsible AI starts with the people affected",
+      "story": "A school is considering an automatic captioning tool for presentations. It seems convenient, but convenience is not the only question. Students have different voices, accents, microphones, and learning needs. If captions repeatedly miss one student's words, that student may be misunderstood. Responsible AI means noticing benefits and possible harms, testing with the people affected, and giving them a way to report mistakes.",
+      "question": "Who should help evaluate the captioning tool, and what should they be asked to check?",
+      "reasoning": "Include students with varied speaking styles and students who rely on captions, along with teachers. Ask whether important words are captured accurately and whether mistakes change meaning. Participation should be voluntary, with appropriate permission and privacy protections. Do not collect personal recordings simply because they might be useful."
+    },
+    {
+      "title": "Equal treatment can still leave someone out",
+      "story": "A club says its AI application process is fair because everyone must submit a recorded video. But some applicants have unreliable internet, no quiet recording space, or a disability that makes the format difficult. Giving everyone the same instruction does not remove those barriers. Ask whether the requirement is necessary for the real purpose. A written or in-person alternative may let students demonstrate the same skill.",
+      "question": "A tool works well for most applicants but blocks a small group from participating. Is the overall success rate enough to approve it?",
+      "reasoning": "No. Look at the barrier, its consequences, and available alternatives. A high average can hide a serious problem for a smaller group. Fairness involves judgments about the purpose and the people affected, not just selecting one number that looks good."
+    },
+    {
+      "title": "Build an appeal into the plan",
+      "story": "Suppose a tool incorrectly marks a student submission as incomplete. The student needs a clear next step. Who can review the original work? How can the mistake be corrected? Will the student be penalized while waiting? A responsible plan answers those questions before the tool is used. Human review must be meaningful: a reviewer needs enough information and authority to change a wrong result.",
+      "question": "Design a simple appeal process for a club tool that sorts applications into categories.",
+      "reasoning": "Tell applicants that a tool assists with sorting, provide a contact for correction requests, and let an adult reviewer inspect the original application and change the category. Avoid making high-stakes decisions automatically. Record recurring problems so the process itself can improve rather than only fixing one case."
+    }
+  ],
+  "privacy": [
+    {
+      "title": "Pause before you paste",
+      "story": "You want help summarizing a group-project discussion. The chat includes names, phone numbers, private disagreements, and a classmate's personal news. The tool does not need all of that to explain how to organize a project. Write a short fictional example instead, or summarize the task without identifying details. Removing a name may not be enough if other details still point to the person.",
+      "question": "Rewrite this request safely: Here is our whole class chat, with phone numbers. Tell me who is being difficult.",
+      "reasoning": "A safer request asks for general teamwork strategies using a made-up situation: Three students disagree about dividing a presentation. Suggest a respectful way to assign tasks. Do not upload the chat or ask a tool to label classmates. Ask a teacher for help with a real conflict."
+    },
+    {
+      "title": "Be honest about the help you used",
+      "story": "Different assignments can have different AI rules, even in the same school. A teacher may allow brainstorming while requiring the final paragraph to be written independently. Read the instructions before starting. If the rules are unclear, ask. Keep a brief record of the tool's role and your own decisions. Disclosure does not make a prohibited use acceptable; permission and honest reporting are separate responsibilities.",
+      "question": "Write an honest disclosure for an assignment where the teacher allowed AI-generated practice questions but no AI-written submission.",
+      "reasoning": "For example: I used an AI tool to suggest practice questions, checked them against my notes, and wrote this response myself. Only use that statement if it describes what actually happened. Follow the teacher's required format, and never claim independent work when you submitted generated writing."
+    },
+    {
+      "title": "Know when a person is the right next step",
+      "story": "An AI tool may sound calm and confident even when it lacks the context to help. If an answer affects someone's safety, a serious conflict, or an important school decision, bring in an appropriate trusted adult. In everyday schoolwork, a teacher or librarian can explain requirements and sources. Responsible use includes deciding not to use AI when it would add risk without helping you learn.",
+      "question": "A friend asks an AI chatbot to decide whether a private screenshot proves another student cheated. What should happen instead?",
+      "reasoning": "Do not circulate the screenshot or treat a chatbot's judgment as proof. Bring the concern privately to an appropriate teacher or school staff member who can follow the school's process. Context, privacy, and a fair opportunity to respond matter. A generated opinion is not an investigation."
+    }
+  ],
+  "creative-brief": [
+    {
+      "title": "Give your design one clear job",
+      "story": "Your club needs a poster for a book swap. Before choosing colors or generating images, decide what a student should know and do after seeing it. The poster needs a date, place, participation instructions, and a clear invitation. A beautiful image with missing details fails the task. A creative brief records the audience, purpose, required information, and limits so you can judge ideas consistently.",
+      "question": "Write the single most important action for a poster inviting students to an after-school study group.",
+      "reasoning": "For example: Come to the library on Tuesday at three with one topic you want to practice. The exact details depend on the real event and must be verified. A clear action gives the design a purpose; decoration should support that purpose."
+    },
+    {
+      "title": "Compare options using reasons",
+      "story": "Imagine two poster drafts. One has dramatic tiny lettering over a busy picture. The other has a simple heading and a readable time and place. Ask someone to look at each for five seconds and tell you what the event is. This small test can reveal a communication problem. It is more useful than deciding only by which version looks more impressive on your own screen.",
+      "question": "Name two checks you would use before choosing an AI-assisted poster design.",
+      "reasoning": "Check whether the key information can be read at the intended size and whether the viewer understands the action. Also inspect generated text for errors and provide a text version for digital sharing. A few people's feedback is useful, but it does not prove the design works for everyone."
+    },
+    {
+      "title": "Keep a record of your creative decisions",
+      "story": "AI might suggest layouts or alternate wording, but you remain responsible for what you publish. Save the brief, record which suggestions you changed, and verify factual details with the organizer. Avoid depicting real classmates without permission. Do not assume a generated image is automatically suitable for every use. Check the tool's terms and the assignment requirements, and credit assistance as required.",
+      "question": "How can you explain your own contribution to an AI-assisted design project?",
+      "reasoning": "Describe the purpose you chose, the alternatives you compared, the revisions you made, and the evidence behind the final choice. For example, you might say you increased the type size after a readability check and rewrote the heading to make the action clearer. Keep that explanation truthful and specific."
+    }
+  ],
+  "capstone": [
+    {
+      "title": "Start with a small problem you can describe",
+      "story": "Your final project does not need to solve education. Choose one small difficulty, such as finding practice questions for a teacher-approved paragraph. Describe who has the problem, when it happens, and what a helpful result would look like. Then compare an AI idea with a simpler option such as a teacher-written question bank. The best design may use very little AI or none at all.",
+      "question": "Write a one-sentence problem statement without mentioning a technology or product.",
+      "reasoning": "For example: Students need a way to practice identifying the main idea in a short passage and check their reasoning. That describes a need without assuming the solution. You can now compare possible approaches against the same goal."
+    },
+    {
+      "title": "Give your helper a clear boundary",
+      "story": "A practice helper could suggest questions from a provided passage and let a teacher review them. It should not claim to know every course requirement or automatically decide a student's grade. List what it can do, what it cannot do, and who checks its work. Make those boundaries visible to the learner. A useful prototype has a narrow promise that can be tested.",
+      "question": "Name one task your proposed helper should refuse or hand over to a person.",
+      "reasoning": "It could decline to invent an answer when the provided passage does not contain the needed information. It could direct grading questions to the teacher. Explain what happens next so a boundary does not leave the learner stranded. Clear limits are part of the design, not an admission that the project failed."
+    },
+    {
+      "title": "Present evidence without overselling it",
+      "story": "A strong project presentation shows a result and its limits. Display one successful example, one failure, and a revision you made because of that failure. Say how many cases you tested and how you selected them. Mark untested ideas as future plans. Explain how you protected privacy and who would review important outputs. This gives an audience a reason to trust your judgment even when the prototype is imperfect.",
+      "question": "Your revised helper works on four new passages but has not been used in a class. What can you honestly claim?",
+      "reasoning": "You can report what happened on those four passages under the conditions you tested. You cannot claim it improves everyone's grades or is ready for unsupervised use. Propose a limited teacher-reviewed trial with clear feedback and stopping conditions. Responsible AI connects the benefit, the evidence, and the people who remain accountable."
+    }
+  ]
+}

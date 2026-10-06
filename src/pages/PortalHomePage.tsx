@@ -1,53 +1,54 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowUpRight, Award, BookOpen, BrainCircuit, Check, CheckCircle2, Clock3, Compass, Flame, Pencil, ShieldCheck, Sparkles, Trophy, Wand2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Award, BookOpen, BrainCircuit, Check, CheckCircle2, Clock3, Compass, Flame, Layers3, Lightbulb, Pencil, Search, ShieldCheck, Sparkles, Trophy, Wand2 } from 'lucide-react';
 import { useProgress } from '../state/useProgress';
-import { learningModules } from '../data/learningModules';
-import { rankFor } from '../lib/levels';
+import { lessons, lessonMinutes, lessonXP, units } from '../data/portalCurriculum';
+import { readWorkbook, stepDone, workbookKey } from '../lib/portalWorkbook';
 import Certificate from '../components/Certificate';
+
 const icons = [BrainCircuit, Compass, ShieldCheck, Wand2];
-const badgeNames = ['Pattern Finder', 'Prompt Builder', 'Responsible Thinker', 'Creative Explorer'];
 export default function PortalHomePage() {
-  const { displayName, gradeLevel, completedModules, earnedBadges, moduleScores, xp, streak, hasOnboarded, updateDisplayName } = useProgress();
+  const { displayName, gradeLevel, completedModules, notesByModule, moduleScores, xp, streak, updateDisplayName } = useProgress();
   const { pathname } = useLocation();
+  const [query, setQuery] = useState('');
+  const [level, setLevel] = useState('All levels');
   const [name, setName] = useState(displayName);
   const [saved, setSaved] = useState(false);
-  const [certificateOpen, setCertificateOpen] = useState(false);
-  const complete = learningModules.filter(module => completedModules.includes(module.id));
-  const next = learningModules.find(module => !completedModules.includes(module.id));
-  const percent = Math.round(complete.length / learningModules.length * 100);
-  const { rank, next: nextRank, percentToNext, xpToNext, position, total } = rankFor(xp);
-  const allDone = complete.length === learningModules.length;
-  return <div className="signal-landing studio-dashboard"><div className="landing-width">
-    {certificateOpen && <Certificate onClose={() => setCertificateOpen(false)} />}
-    <div className="dashboard-greeting"><div><p className="studio-eyebrow">YOUR SPACE TO GROW{gradeLevel ? ` / GRADE ${gradeLevel}` : ''}</p><h1>{pathname === '/progress' ? 'Look how far you’ve come.' : `Keep your curiosity going, ${displayName}.`}</h1></div><Link to="/playground" className="studio-text-button">Visit the Playground <ArrowUpRight size={17} /></Link></div>
-    <section className="dashboard-hero"><div><p className="studio-eyebrow">{next ? 'YOUR NEXT CHAPTER' : 'ALL FOUR CHAPTERS COMPLETE'}</p><h2>{next ? next.title : 'Look at that. A whole new skill set.'}</h2><p>{next ? next.description : 'Your learning doesn’t stop here. Revisit a lesson, improve a quiz score, or put an idea to work in the Playground.'}</p><Link className="landing-primary" to={next ? `/learn?module=${next.id}` : '/playground'}>{next ? (complete.length ? 'Continue learning' : 'Start exploring') : 'Keep experimenting'}<ArrowUpRight size={18} /></Link></div><div className="dashboard-ring"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="68" /><circle cx="80" cy="80" r="68" pathLength="100" strokeDasharray={`${percent} 100`} /></svg><div><strong>{percent}%</strong><span>of your path complete</span></div></div></section>
-    <section className="dashboard-rank" aria-labelledby="rank-heading">
-      <div className="dashboard-rank-main">
-        <p className="studio-eyebrow">RANK {position} OF {total}</p>
-        <h2 id="rank-heading">{rank.title}</h2>
-        <p className="dashboard-rank-note">{rank.note}</p>
-        <div className="dashboard-rank-track">
-          <div className="dashboard-rank-bar"><span style={{ width: `${percentToNext}%` }} /></div>
-          <span>{nextRank ? `${xpToNext} XP to ${nextRank.title}` : 'Top rank reached'}</span>
-        </div>
-      </div>
-      <div className="dashboard-streak">
-        <Flame size={25} />
-        <strong>{streak}</strong>
-        <span>day{streak === 1 ? '' : 's'} in a row</span>
-      </div>
+  const [certificate, setCertificate] = useState(false);
+  const progressView = pathname === '/progress';
+  const complete = lessons.filter(lesson => completedModules.includes(lesson.id));
+  const inProgress = lessons.filter(lesson => !completedModules.includes(lesson.id) && notesByModule[workbookKey(lesson.id)])
+    .sort((a, b) => readWorkbook(notesByModule[workbookKey(b.id)]).updatedAt - readWorkbook(notesByModule[workbookKey(a.id)]).updatedAt)[0];
+  const next = inProgress ?? lessons.find(lesson => !completedModules.includes(lesson.id));
+  const percent = Math.round(complete.length / lessons.length * 100);
+  const visible = lessons.filter(lesson => (level === 'All levels' || lesson.tags[0] === level) && [lesson.title, lesson.subtitle, ...lesson.tags, ...lesson.terms.flat()].join(' ').toLowerCase().includes(query.trim().toLowerCase()));
+  const badgeCount = units.filter(unit => lessons.filter(lesson => lesson.unit === unit.id).every(lesson => completedModules.includes(lesson.id))).length;
+  const recentProjects = lessons.filter(lesson => readWorkbook(notesByModule[workbookKey(lesson.id)]).project.some(text => text.trim()));
+  return <div className="academy-page academy-dashboard">
+    {certificate && <Certificate onClose={() => setCertificate(false)} />}
+    <header className="academy-greeting"><div><p className="academy-kicker">YOUR LEARNING SPACE / GRADES 9-12{gradeLevel ? ' / GRADE ' + gradeLevel : ''}</p><h1>{progressView ? 'Look at what you can do.' : 'Hey ' + displayName + ', let\u2019s figure AI out.'}</h1><p>{progressView ? 'Your skills, projects, and next steps, all in one place.' : 'Small discoveries. Real practice. A little more confidence every time.'}</p></div><span className="academy-streak"><Flame size={21} /><b>{streak}</b> day visit streak</span></header>
+    <div className="academy-dashboard-top">
+      <section className="academy-resume"><div className="academy-resume-copy"><span className="academy-kicker">{next ? inProgress ? 'PICK UP WHERE YOU LEFT OFF' : 'YOUR NEXT DISCOVERY' : 'YOUR PATH IS COMPLETE'}</span><h2>{next ? next.title : 'Eight lessons. A whole new way to think.'}</h2><p>{next ? next.subtitle : 'You have practiced, tested, questioned, and created. Keep your projects as evidence of what you can do.'}</p><div className="academy-tags"><span><Clock3 size={14} />{next ? 'About ' + lessonMinutes + ' minutes' : '8 lessons completed'}</span><span><Pencil size={14} />{next ? 'One project to make yours' : 'Your own learning portfolio'}</span></div><Link className="academy-button academy-button-light" to={next ? '/learn?lesson=' + next.id : '/learn?lesson=capstone'}>{next ? inProgress ? 'Continue my lesson' : 'Start this lesson' : 'Revisit my capstone'}<ArrowRight size={17} /></Link></div><div className="academy-progress-art"><svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="59" /><circle cx="70" cy="70" r="59" pathLength="100" strokeDasharray={percent + ' 100'} /></svg><div><strong>{complete.length}<small> / 8</small></strong><span>lessons complete</span></div><span className="academy-progress-caption">One step at a time.</span></div></section>
+      <aside className="academy-how"><div className="academy-sticker"><Lightbulb size={27} /></div><p className="academy-kicker">THIS IS YOUR LAB</p><h2>Learn it. Try it.<br /> Make it yours.</h2><ol><li><span>01</span>Explore three bite-sized ideas.</li><li><span>02</span>Try a hands-on experiment.</li><li><span>03</span>Create, reflect, and check your skills.</li></ol><p>About {lessonMinutes} minutes per lesson. No countdown. Take the time you need.</p></aside>
+    </div>
+    <section className="academy-stats" aria-label="Learning statistics"><article><BookOpen size={21} /><div><strong>{complete.length}<small> / 8</small></strong><span>Lessons completed</span></div></article><article><Sparkles size={21} /><div><strong>{xp}</strong><span>Total XP / {lessonXP} per new lesson</span></div></article><article><Award size={21} /><div><strong>{badgeCount}<small> / 4</small></strong><span>Skill badges</span></div></article><article><Pencil size={21} /><div><strong>{recentProjects.length}</strong><span>Projects started</span></div></article></section>
+    {complete.length === lessons.length && <section className="academy-celebration"><Trophy size={29} /><div><h2>You earned a moment to celebrate.</h2><p>All eight lessons are complete. Your certificate is ready.</p></div><button className="academy-button" type="button" onClick={() => setCertificate(true)}>View certificate <ArrowUpRight size={16} /></button></section>}
+    <section aria-labelledby="course-heading" className="academy-roadmap"><div className="academy-section-heading"><div><p className="academy-kicker">{progressView ? 'YOUR SKILL ROADMAP' : 'THE FULL COURSE / ABOUT 3 HOURS 20 MINUTES'}</p><h2 id="course-heading">{progressView ? 'See the work behind your progress.' : 'Eight lessons. Four useful superpowers.'}</h2><p>Start with the basics or jump to a topic. Every lesson includes practice, a project, and feedback.</p></div></div><div className="academy-filters"><label className="academy-search"><Search size={19} /><span className="sr-only">Search the curriculum</span><input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Search topics, skills, or vocabulary..." /></label><label><span className="sr-only">Filter by level</span><select value={level} onChange={e => setLevel(e.target.value)}>{['All levels', 'Beginner', 'Core', 'Challenge'].map(item => <option key={item}>{item}</option>)}</select></label><span role="status">{visible.length} lessons</span></div>
+      <div className="academy-units">{units.map((unit, i) => {
+        const unitLessons = visible.filter(lesson => lesson.unit === unit.id);
+        if (!unitLessons.length) return null;
+        const Icon = icons[i];
+        const earned = lessons.filter(lesson => lesson.unit === unit.id).every(lesson => completedModules.includes(lesson.id));
+        return <section className="academy-unit" key={unit.id}><header><div className="academy-unit-icon"><Icon size={25} /></div><div><p className="academy-kicker">UNIT {unit.number}</p><h3>{unit.title}</h3><p>{unit.description}</p></div><span className={'academy-badge-label ' + (earned ? 'is-earned' : '')}><Award size={16} />{earned ? unit.badge + ' earned' : 'Earn: ' + unit.badge}</span></header><div className="academy-lesson-grid">{unitLessons.map(lesson => {
+          const work = readWorkbook(notesByModule[workbookKey(lesson.id)]);
+          const done = completedModules.includes(lesson.id);
+          const steps = Array.from({ length: 6 }, (_, index) => index).filter(index => stepDone(lesson, work, index)).length;
+          return <Link key={lesson.id} className="academy-lesson-card" to={'/learn?lesson=' + lesson.id}><div className="academy-card-top"><span className="academy-lesson-number">{String(lessons.indexOf(lesson) + 1).padStart(2, '0')}</span><span className="academy-level">{lesson.tags[0]}</span>{done && <CheckCircle2 size={20} />}</div><h4>{lesson.title}</h4><p>{lesson.subtitle}</p><div className="academy-tags"><span><Clock3 size={13} />25 min</span><span>{lesson.tags[1]}</span><span>{lessonXP} XP</span></div><div className="academy-card-progress"><progress max={6} value={done ? 6 : steps} aria-label={lesson.title + ' progress'} /><span>{done ? 'Completed' : steps ? steps + '/6 checkpoints' : 'Ready when you are'}</span></div>{moduleScores[lesson.id] !== undefined && <small>Best mastery score: {moduleScores[lesson.id]}%</small>}<span className="academy-card-action">{done ? 'Revisit lesson' : notesByModule[workbookKey(lesson.id)] ? 'Continue learning' : 'Let\u2019s explore'}<ArrowRight size={17} /></span></Link>;
+        })}</div></section>;
+      })}</div>
+      {visible.length === 0 && <div className="academy-empty"><Search size={25} /><h3>No matching lessons yet.</h3><p>Try data, privacy, or design or show all levels.</p><button className="academy-secondary" type="button" onClick={() => { setQuery(''); setLevel('All levels'); }}>Clear filters</button></div>}
     </section>
-
-    <div className="dashboard-stats"><article><Sparkles size={22} /><div><strong>{xp}<small> / 750</small></strong><span>Experience points</span></div></article><article><BookOpen size={22} /><div><strong>{complete.length}<small> / 4</small></strong><span>Modules completed</span></div></article><article><Award size={22} /><div><strong>{learningModules.filter(module => earnedBadges.includes(module.badgeId)).length}<small> / 4</small></strong><span>Skills collected</span></div></article></div>
-
-    {allDone && <section className="dashboard-certificate">
-      <Trophy size={30} />
-      <div><h2>All four chapters, finished.</h2><p>There is a certificate with your name on it. Print it, save it as a PDF, or just look at it for a second — you earned it.</p></div>
-      <button type="button" className="landing-primary" onClick={() => setCertificateOpen(true)}>View your certificate <ArrowUpRight size={17} /></button>
-    </section>}
-    <section className="dashboard-badges" aria-labelledby="badge-heading"><div className="dashboard-section-title"><div><p className="studio-eyebrow">YOUR SKILL COLLECTION</p><h2 id="badge-heading">Earned through understanding.</h2></div><span>Pass a chapter quiz to unlock its badge.</span></div><div className="dashboard-badge-grid">{learningModules.map((module, index) => { const earned = earnedBadges.includes(module.badgeId); const Icon = icons[index]; return <Link key={module.id} to={`/learn?module=${module.id}`} className={earned ? 'earned' : ''}><div className="dashboard-badge"><Icon size={35} /><span>0{index + 1}</span></div><h3>{badgeNames[index]}</h3><p>{earned ? <><Check size={13} /> Earned</> : `${module.xp} XP to discover`}</p></Link>; })}</div></section>
-    <section className="dashboard-modules"><div className="dashboard-section-title"><div><p className="studio-eyebrow">YOUR LEARNING PATH</p><h2>Pick up a new perspective.</h2></div></div>{learningModules.map((module, index) => { const Icon = icons[index]; const done = completedModules.includes(module.id); return <Link key={module.id} to={`/learn?module=${module.id}`}><span className="dashboard-module-icon"><Icon size={22} /></span><div><h3>{module.title}</h3><p>{module.outcome}</p></div><span className="dashboard-module-meta"><span><Clock3 size={13} />{module.minutes} min</span>{moduleScores[module.id] !== undefined ? <span>Best score: {moduleScores[module.id]}%</span> : <span>{module.xp} XP</span>}</span><span className={`dashboard-module-state ${done ? 'done' : ''}`}>{done ? <CheckCircle2 size={20} /> : <ArrowUpRight size={20} />}<span className="sr-only">{done ? 'Completed' : 'Explore module'}</span></span></Link>; })}</section>
-    <div className="dashboard-bottom"><section><Compass size={25} /><h2>A good habit for your next assignment.</h2><p>Check the source. Protect personal details. Keep the reasoning yours.</p><Link className="studio-text-button" to="/field-guide">Open your Field Guide <ArrowUpRight size={16} /></Link></section><section><Pencil size={23} /><h2>Make this space yours.</h2>{hasOnboarded ? <details><summary>Update your display name</summary><form onSubmit={event => { event.preventDefault(); if (!name.trim()) return; updateDisplayName(name); setSaved(true); }}><label htmlFor="profile-name">Name or nickname</label><input id="profile-name" value={name} required maxLength={40} onChange={event => { setName(event.target.value); setSaved(false); }} /><button className="studio-dark-button" type="submit">Save name</button><span role="status">{saved ? 'Name updated.' : ''}</span></form></details> : <><p>You’re exploring as a guest. Set up a fresh local profile with your name and grade.</p><Link className="studio-text-button" to="/signup">Create a profile <ArrowUpRight size={16} /></Link></>}<p className="dashboard-storage">Progress saves in this browser on this device.</p></section></div>
-  </div></div>;
+    <div className="academy-dashboard-bottom"><section className="academy-portfolio"><span className="academy-kicker">YOUR THINKING IS THE POINT</span><h2>Your project shelf</h2><p>A collection of ideas you can explain, not just answers you clicked.</p>{recentProjects.length ? <ul>{recentProjects.map(lesson => <li key={lesson.id}><Pencil size={17} /><div><Link to={'/learn?lesson=' + lesson.id}>{lesson.project.title}<ArrowRight size={14} /></Link><span>{completedModules.includes(lesson.id) ? 'Lesson complete' : 'Draft saved'} / {lesson.title}</span></div></li>)}</ul> : <div className="academy-shelf-empty"><Layers3 size={31} /><p>Your first project goes here. Start a lesson and your draft will appear automatically.</p></div>}</section><section className="academy-study-plan"><span className="academy-kicker">A LITTLE STRUCTURE HELPS</span><h2>Make room for learning.</h2><p>Try two lessons a week. That is one unit, two small projects, and a new skill to use in class.</p><ul><li><Check size={15} />Week 1: understand the machine</li><li><Check size={15} />Week 2: build your study toolkit</li><li><Check size={15} />Week 3: think about people</li><li><Check size={15} />Week 4: create and share a proposal</li></ul><details className="academy-details"><summary>Personalize your display name</summary><form onSubmit={e => { e.preventDefault(); if (name.trim()) { updateDisplayName(name); setSaved(true); } }}><label className="academy-field">Name or nickname<input value={name} required maxLength={40} onChange={e => { setName(e.target.value); setSaved(false); }} /></label><button className="academy-button" type="submit">Save name</button><p role="status">{saved ? 'Name saved.' : ''}</p></form></details></section></div>
+    <footer className="academy-storage"><ShieldCheck size={18} /><p>Progress, projects, and notes save in this browser on this device. Earlier XP and notes are kept; the expanded lessons have their own completion steps. Download workbooks from a lesson to keep a copy.</p></footer>
+  </div>;
 }

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import PortalShell from './components/PortalShell';
 import SiteMotionProvider from './components/SiteMotionProvider';
@@ -6,7 +7,9 @@ import AskSignal from './components/AskSignal';
 import CartDrawer from './components/CartDrawer';
 import PlaygroundPage from './pages/PlaygroundPage';
 import ResourcesPage from './pages/ResourcesPage';
-import LearningHubPage from './pages/LearningHubPage';
+const LearningHubPage = lazy(() => import('./pages/LearningHubPage'));
+const LessonQuizPage = lazy(() => import('./pages/LessonQuizPage'));
+const LearningReferencesPage = lazy(() => import('./pages/LearningReferencesPage'));
 import LandingPage from './pages/LandingPage';
 import PortalHomePage from './pages/PortalHomePage';
 import SignupPage from './pages/SignupPage';
@@ -20,11 +23,10 @@ import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { ProgressProvider } from './state/ProgressContext';
 import { CartProvider } from './state/CartProvider';
-import { ThemeProvider } from './state/ThemeProvider';
 
 function App() {
   return (
-    <ThemeProvider><SiteMotionProvider><ProgressProvider><CartProvider>
+    <SiteMotionProvider><ProgressProvider><CartProvider>
       <Router><RouteEffects />
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -40,14 +42,16 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order-confirmed" element={<OrderConfirmedPage />} />
           <Route path="/portal" element={<PortalShell><PortalHomePage /></PortalShell>} />
-          <Route path="/learn" element={<PortalShell><LearningHubPage /></PortalShell>} />
+          <Route path="/learn" element={<PortalShell><Suspense fallback={<div className="academy-page" role="status">Loading your lesson...</div>}><LearningHubPage /></Suspense></PortalShell>} />
+          <Route path="/learn/references" element={<PortalShell><Suspense fallback={<div className="academy-page" role="status">Loading video references...</div>}><LearningReferencesPage /></Suspense></PortalShell>} />
+          <Route path="/learn/:lessonId/quiz" element={<PortalShell><Suspense fallback={<div className="academy-page" role="status">Loading your quiz...</div>}><LessonQuizPage /></Suspense></PortalShell>} />
           <Route path="/progress" element={<PortalShell><PortalHomePage /></PortalShell>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <CartDrawer />
         <AskSignal />
       </Router>
-    </CartProvider></ProgressProvider></SiteMotionProvider></ThemeProvider>
+    </CartProvider></ProgressProvider></SiteMotionProvider>
   );
 }
 

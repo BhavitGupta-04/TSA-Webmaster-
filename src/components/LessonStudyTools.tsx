@@ -1,0 +1,20 @@
+import { useState } from 'react';
+import { ArrowLeft, ArrowRight, BookOpen, ExternalLink, Layers3, Pencil, RotateCcw } from 'lucide-react';
+import type { Lesson } from '../data/portalCurriculum';
+import { downloadWorkbook, type Workbook } from '../lib/portalWorkbook';
+import { useProgress } from '../state/useProgress';
+
+export default function LessonStudyTools({ lesson, work, update }: { lesson: Lesson; work: Workbook; update: (patch: Partial<Workbook>) => void }) {
+  const { notesByModule, flashcardsByModule, addFlashcard } = useProgress();
+  const [tab, setTab] = useState('notes');
+  const [index, setIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [front, setFront] = useState('');
+  const [back, setBack] = useState('');
+  const [saved, setSaved] = useState(false);
+  const cards = [...lesson.terms.map(([front, back]) => ({ front, back })), ...(flashcardsByModule[lesson.unit] ?? []), ...(flashcardsByModule[lesson.id] ?? [])];
+  const card = cards[Math.min(index, cards.length - 1)];
+  return <details className="lesson-study-tools"><summary><BookOpen size={17} />Study tools <span>Notes, vocabulary, and references</span></summary><div className="lesson-tools-body"><nav aria-label="Study tools"><button type="button" aria-pressed={tab === 'notes'} onClick={() => setTab('notes')}><Pencil size={15} />Notebook</button><button type="button" aria-pressed={tab === 'cards'} onClick={() => setTab('cards')}><Layers3 size={15} />Vocabulary</button></nav>
+    {tab === 'notes' ? <><label className="academy-field">My notes<textarea rows={5} maxLength={15000} value={work.notes} onChange={event => update({ notes: event.target.value })} placeholder="Explain an idea in your own words, or save a question for your teacher." /></label>{notesByModule[lesson.unit] && <details className="academy-details"><summary>Notes from the earlier course</summary><p>{notesByModule[lesson.unit]}</p></details>}<p className="academy-small">Saved in this browser. Keep a copy with your project.</p><button type="button" className="academy-secondary" onClick={() => downloadWorkbook(lesson, work)}>Download my workbook <ArrowRight size={15} /></button><a className="lesson-source" href={lesson.source} target="_blank" rel="noopener noreferrer">{lesson.sourceName}<ExternalLink size={14} /><span className="sr-only">opens in a new tab</span></a></> : <><p className="academy-small">Explain it out loud before revealing the answer.</p><button className={'academy-flashcard ' + (flipped ? 'is-flipped' : '')} type="button" aria-expanded={flipped} onClick={() => setFlipped(!flipped)}><span>{flipped ? 'Explanation' : 'Explain this idea'}</span><strong>{flipped ? card.back : card.front}</strong><small><RotateCcw size={15} />Flip card</small></button><div className="academy-card-controls"><button type="button" className="academy-icon-button" aria-label="Previous card" onClick={() => { setIndex((index - 1 + cards.length) % cards.length); setFlipped(false); }}><ArrowLeft size={17} /></button><span aria-live="polite">{index + 1} of {cards.length}</span><button type="button" className="academy-icon-button" aria-label="Next card" onClick={() => { setIndex((index + 1) % cards.length); setFlipped(false); }}><ArrowRight size={17} /></button></div><details className="academy-details"><summary>Create a flashcard</summary><form onSubmit={event => { event.preventDefault(); if (!front.trim() || !back.trim()) return; addFlashcard(lesson.id, { id: crypto.randomUUID(), front: front.trim(), back: back.trim() }); setIndex(cards.length); setFlipped(false); setFront(''); setBack(''); setSaved(true); }}><label className="academy-field">Question<input required maxLength={300} value={front} onChange={event => setFront(event.target.value)} /></label><label className="academy-field">Explanation<textarea required maxLength={1500} value={back} onChange={event => setBack(event.target.value)} /></label><button className="academy-button" type="submit">Save flashcard</button><p role="status">{saved ? 'Flashcard saved.' : ''}</p></form></details></>}
+  </div></details>;
+}

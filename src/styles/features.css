@@ -683,7 +683,6 @@
    the motion toggle (prefers-reduced-motion still applies without it) and the
    wording on the learning link. */
 @media (max-width: 560px) {
-  .studio-header .studio-animation-toggle { display: none; }
   .studio-header .landing-signup-small { gap: 0; font-size: 0; padding-inline: 11px; }
   .studio-header .landing-signup-small svg { width: 16px; height: 16px; }
   .studio-header .landing-header-actions { gap: 7px; }

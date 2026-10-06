@@ -1,4 +1,4 @@
-import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, FlaskConical, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Moon, Pause, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, Send, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Sun, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
+import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, FlaskConical, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, Send, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
 
 export const iconLibrary = {
   name: 'Lucide',
@@ -43,7 +43,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'Lightbulb', slug: 'lightbulb', icon: Lightbulb },
   { name: 'Menu', slug: 'menu', icon: Menu },
   { name: 'MessageSquareText', slug: 'message-square-text', icon: MessageSquareText },
-  { name: 'Pause', slug: 'pause', icon: Pause },
   { name: 'Pencil', slug: 'pencil', icon: Pencil },
   { name: 'Play', slug: 'play', icon: Play },
   { name: 'RotateCcw', slug: 'rotate-ccw', icon: RotateCcw },
@@ -65,7 +64,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'Lock', slug: 'lock', icon: Lock },
   { name: 'MessageCircle', slug: 'message-circle', icon: MessageCircle },
   { name: 'Minus', slug: 'minus', icon: Minus },
-  { name: 'Moon', slug: 'moon', icon: Moon },
   { name: 'Plus', slug: 'plus', icon: Plus },
   { name: 'Printer', slug: 'printer', icon: Printer },
   { name: 'Quote', slug: 'quote', icon: Quote },
@@ -73,7 +71,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'ScanFace', slug: 'scan-face', icon: ScanFace },
   { name: 'Send', slug: 'send', icon: Send },
   { name: 'ShoppingBag', slug: 'shopping-bag', icon: ShoppingBag },
-  { name: 'Sun', slug: 'sun', icon: Sun },
   { name: 'Tag', slug: 'tag', icon: Tag },
   { name: 'Trash2', slug: 'trash-2', icon: Trash2 },
   { name: 'X', slug: 'x', icon: X },
