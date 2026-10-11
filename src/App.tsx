@@ -5,8 +5,6 @@ import SiteMotionProvider from './components/SiteMotionProvider';
 import RouteEffects from './components/RouteEffects';
 import AskSignal from './components/AskSignal';
 import CartDrawer from './components/CartDrawer';
-import PlaygroundPage from './pages/PlaygroundPage';
-import ResourcesPage from './pages/ResourcesPage';
 const LearningHubPage = lazy(() => import('./pages/LearningHubPage'));
 const LessonQuizPage = lazy(() => import('./pages/LessonQuizPage'));
 const LearningReferencesPage = lazy(() => import('./pages/LearningReferencesPage'));
@@ -33,8 +31,8 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/curriculum" element={<CurriculumPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/playground" element={<PlaygroundPage />} />
-          <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/playground" element={<Navigate to="/curriculum" replace />} />
+          <Route path="/resources" element={<Navigate to="/sources#references" replace />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/field-guide" element={<FieldGuidePage />} />
           <Route path="/sources" element={<SourcesPage />} />

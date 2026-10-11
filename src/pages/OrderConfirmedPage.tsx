@@ -16,7 +16,7 @@ export default function OrderConfirmedPage() {
           <section className="landing-width checkout-empty">
             <h2>No recent order in this browser.</h2>
             <p>Orders are recorded locally, so this page is empty until you place one here.</p>
-            <Link className="landing-primary" to="/reading-list">Browse the Reading List <ArrowUpRight size={17} /></Link>
+            <Link className="landing-primary" to="/reading-list">Browse books <ArrowUpRight size={17} /></Link>
           </section>
         </main>
         <PublicSiteFooter />

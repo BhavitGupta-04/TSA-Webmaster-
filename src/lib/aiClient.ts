@@ -49,8 +49,8 @@ const ENDPOINT = import.meta.env.VITE_ASSISTANT_ENDPOINT ?? '/api/v1/assistant/'
 export const SYSTEM_PROMPT = `You are the study guide for Signal Lab, an AI learning portal for students in grades 9-12.
 
 Explain ideas in plain language and keep answers short — a few sentences, unless asked for more.
-Point students to the part of the site that covers their question: the four chapters at /curriculum,
-the hands-on experiments at /playground, or the five-point checklist at /field-guide.
+Point students to the part of the site that covers their question: the four chapters at /curriculum
+or the five-point checklist at /field-guide.
 
 Help students think; do not do their homework. If someone asks you to write an essay or finish a
 worksheet, offer a plan, a hint, or practice questions instead, and remind them to follow their
@@ -70,9 +70,7 @@ export interface ChatMessage {
 
 export const OPENING_MESSAGE: Omit<ChatMessage, 'id'> = {
   role: 'assistant',
-  content:
-    "Hi. I'm the Signal Lab guide — I can point you to the right lesson, explain a term, or help you shape a question before you take it to a real AI tool.\n\nI'm not connected to an AI model yet, so I answer from a written guide to this site.",
-  suggestions: ['What is machine learning?', 'How do I write a good prompt?', 'Can I use AI for homework?', 'How do I earn XP?'],
+  content: 'Hi! Pick a topic below to get started.',
 };
 
 /**
@@ -90,7 +88,7 @@ const guideResponses: GuideRule[] = [
   {
     keywords: ['machine learning', 'what is ai', 'what is a model', 'how does ai work', 'neural net', 'how do models', 'how does a model'],
     reply:
-      'Machine learning is how a program picks up a pattern from examples instead of being handed a rule for every case.\n\nShow it a few thousand labelled photos of cans and bottles and it works out which features separate them. Nobody wrote "a can is cylindrical" — that came out of the examples. Which is also why a model trained on tidy photos can fall apart on messy ones.\n\nChapter 01 covers this, and the Playground has a tiny classifier you can push around.',
+      'Machine learning is how a program picks up a pattern from examples instead of being handed a rule for every case.\n\nShow it a few thousand labelled photos of cans and bottles and it works out which features separate them. Nobody wrote "a can is cylindrical" — that came out of the examples. Which is also why a model trained on tidy photos can fall apart on messy ones.\n\nChapter 01 covers this with a short lesson and an activity you can try.',
     suggestions: ['What is training vs inference?', 'Why does AI get things wrong?'],
     link: { label: 'Open Chapter 01', to: '/learn?module=fundamentals' },
   },
@@ -111,8 +109,8 @@ const guideResponses: GuideRule[] = [
     keywords: ['prompt'],
     reply:
       'A prompt works better when it carries four things: the task, enough context, the format you want, and a constraint that keeps you thinking.\n\nSo instead of "help with biology", try: "Quiz me on mitosis at a 10th-grade level. One question at a time, wait for my answer, then tell me what I missed."\n\nThe second one makes you do the recall. That is the whole difference.',
-    suggestions: ['Can I use AI for homework?'],
-    link: { label: 'Build one in the Playground', to: '/playground#prompt-builder' },
+    suggestions: ['Can I use AI for schoolwork?', 'How do I check an AI answer?'],
+    link: { label: 'Open Practical AI Tools', to: '/learn?module=tools' },
   },
   {
     keywords: ['homework', 'cheat', 'assignment', 'essay', 'plagiar', 'am i allowed', 'is it allowed', 'schoolwork', 'school work'],
@@ -148,15 +146,15 @@ const guideResponses: GuideRule[] = [
   {
     keywords: ['where do i start', 'where should i start', 'how do i start', 'getting started', 'where to begin', 'what should i do first'],
     reply:
-      'Chapter 01 if you want the ideas in order. The Playground if you would rather poke at something first and read after — plenty of people learn better that way.\n\nNo account needed either way.',
+      'Start with AI Fundamentals, then explore practical tools and ethical use. You can open any lesson without creating a profile.',
     suggestions: ['What is machine learning?'],
     link: { label: 'Start Chapter 01', to: '/learn?module=fundamentals' },
   },
   {
     keywords: ['book', 'reading list', 'shop', 'buy', 'cart', 'purchase'],
     reply:
-      'There are eight books on the Reading List, sorted by how much background they assume. If you want one place to start, Janelle Shane\'s "You Look Like a Thing and I Love You" is genuinely funny and explains more than it lets on.\n\nFair warning: the shop is a demonstration. The cart and checkout work, but no payment is taken and nothing ships. Borrow these from a library.',
-    link: { label: 'Open the Reading List', to: '/reading-list' },
+      'There are eight books on the Buy page, grouped by how much background they assume. If you want one place to start, Janelle Shane\'s "You Look Like a Thing and I Love You" is genuinely funny and explains more than it lets on.\n\nThe page is a shopping demonstration only: no payment is taken and nothing ships. Borrow these from a library.',
+    link: { label: 'Browse books', to: '/reading-list' },
   },
   {
     keywords: ['creative', 'art', 'image gen', 'design', 'poster', 'music', 'drawing'],

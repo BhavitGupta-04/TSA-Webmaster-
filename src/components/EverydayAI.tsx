@@ -10,7 +10,6 @@ const examples = [
 export default function EverydayAI() {
   const [active, setActive] = useState<string | null>('music');
   return <section className="everyday-ai" aria-labelledby="everyday-title">
-    <div className="studio-specimen-label"><span>ALREADY PART OF YOUR DAY</span><span>03 EVERYDAY CONNECTIONS ↘</span></div>
     <div className="everyday-heading"><h2 id="everyday-title">You’ve met AI.<br /><em>Maybe without noticing.</em></h2><p>Pick a card. Find the AI behind the familiar.</p></div>
     <div className="everyday-stack">{examples.map(({ id, label, title, icon: Icon, skill, explanation, takeaway }, index) => {
       const expanded = active === id;

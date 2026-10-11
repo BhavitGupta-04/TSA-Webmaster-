@@ -50,7 +50,7 @@ export default function CartDrawer() {
             <ShoppingBag size={34} strokeWidth={1.3} />
             <p>Your cart is empty.</p>
             <Link className="landing-primary" to="/reading-list" onClick={closeCart}>
-              Browse the Reading List <ArrowRight size={17} />
+              Browse books <ArrowRight size={17} />
             </Link>
           </div>
         ) : (

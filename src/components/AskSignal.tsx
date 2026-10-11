@@ -1,9 +1,15 @@
-import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react';
-import { ArrowUpRight, MessageSquareText, RotateCcw, Send, Sparkles, X } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, MessageSquareText, RotateCcw, Sparkles, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { askSignal, MODE, OPENING_MESSAGE, type ChatMessage } from '../lib/aiClient';
 
 const HISTORY_KEY = 'signal-lab-chat-history';
+const questionGroups = [
+  { title: 'Understand AI', questions: ['What is machine learning?', 'Why can AI get things wrong?'] },
+  { title: 'Study with AI', questions: ['How do I write a good prompt?', 'Can AI help me with schoolwork?'] },
+  { title: 'Check & use responsibly', questions: ['How do I check an AI answer?', 'What is AI bias?', 'What should I keep private?'] },
+  { title: 'Track your learning', questions: ['How do I earn XP and badges?'] },
+];
 
 function newId() {
   return `msg-${Date.now()}-${Math.random().toString(16).slice(2, 7)}`;
@@ -31,12 +37,10 @@ function readHistory(): ChatMessage[] {
 export default function AskSignal() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(readHistory);
-  const [draft, setDraft] = useState('');
   const [thinking, setThinking] = useState(false);
+  const hasConversation = messages.some((message) => message.role === 'user');
   const { pathname } = useLocation();
 
-  const panelRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const threadRef = useRef<HTMLDivElement>(null);
 
@@ -50,10 +54,6 @@ export default function AskSignal() {
     if (!open) return;
     threadRef.current?.scrollTo({ top: threadRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, thinking, open]);
-
-  useEffect(() => {
-    if (open) inputRef.current?.focus();
-  }, [open]);
 
   // Close on route change so the panel does not follow you around the site.
   useEffect(() => {
@@ -79,7 +79,6 @@ export default function AskSignal() {
 
       const asked: ChatMessage = { id: newId(), role: 'user', content: trimmed };
       setMessages((current) => [...current, asked]);
-      setDraft('');
       setThinking(true);
 
       const history = messages;
@@ -94,13 +93,6 @@ export default function AskSignal() {
     [messages, thinking]
   );
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    void send(draft);
-  }
-
-  const unreadDot = !open && messages.length <= 1;
-
   return (
     <>
       <button
@@ -113,12 +105,10 @@ export default function AskSignal() {
       >
         {open ? <X size={20} /> : <MessageSquareText size={20} />}
         <span>{open ? 'Close' : 'Ask Signal'}</span>
-        {unreadDot && <span className="ask-launcher-dot" aria-hidden="true" />}
       </button>
 
       <div
         id="ask-signal-panel"
-        ref={panelRef}
         className={`ask-panel ${open ? 'is-open' : ''}`}
         role="dialog"
         aria-label="Ask Signal, the study guide"
@@ -131,14 +121,7 @@ export default function AskSignal() {
             <h2>Ask Signal</h2>
           </div>
           <div className="ask-header-actions">
-            <button
-              type="button"
-              className="ask-icon-button"
-              aria-label="Start a new conversation"
-              onClick={() => setMessages([{ ...OPENING_MESSAGE, id: newId() }])}
-            >
-              <RotateCcw size={16} />
-            </button>
+            {hasConversation && <button type="button" className="ask-icon-button" aria-label="Start a new conversation" onClick={() => setMessages([{ ...OPENING_MESSAGE, id: newId() }])}><RotateCcw size={16} /></button>}
             <button type="button" className="ask-icon-button" aria-label="Close Ask Signal" onClick={() => setOpen(false)}>
               <X size={18} />
             </button>
@@ -146,13 +129,28 @@ export default function AskSignal() {
         </header>
 
         <p className="ask-disclosure">
-          {MODE === 'guide'
-            ? 'Answers come from a written guide to this site, not a live AI model. Nothing you type leaves your device.'
-            : 'Connected to an AI model. Your messages are sent to our server to be answered.'}
+          {MODE === 'guide' ? 'A quick guide to the lessons. Choose a question to begin.' : 'Choose a question to ask the connected AI service.'}
         </p>
 
-        <div className="ask-thread" ref={threadRef} role="log" aria-live="polite" aria-label="Conversation">
-          {messages.map((message) => (
+        {!hasConversation ? (
+          <section className="ask-starter" aria-label="Choose a topic">
+            <p>{OPENING_MESSAGE.content}</p>
+            <div className="ask-question-groups">
+              {questionGroups.map((group) => (
+                <section className="ask-question-group" key={group.title} aria-label={group.title}>
+                  <h3>{group.title}</h3>
+                  {group.questions.map((question) => (
+                    <button key={question} type="button" disabled={thinking} onClick={() => void send(question)}>
+                      {question}
+                    </button>
+                  ))}
+                </section>
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div className="ask-thread" ref={threadRef} role="log" aria-live="polite" aria-label="Conversation">
+          {messages.filter((message) => message.role === 'user' || message.id !== messages[0]?.id).map((message) => (
             <div key={message.id} className={`ask-message ask-message--${message.role}`}>
               <div className="ask-bubble">
                 {message.content.split('\n\n').map((paragraph, index) => (
@@ -182,23 +180,8 @@ export default function AskSignal() {
               </div>
             </div>
           )}
-        </div>
-
-        <form className="ask-composer" onSubmit={handleSubmit}>
-          <label className="sr-only" htmlFor="ask-input">Ask a question about AI or this site</label>
-          <input
-            ref={inputRef}
-            id="ask-input"
-            value={draft}
-            onChange={(event) => setDraft(event.target.value)}
-            placeholder="Ask about a lesson, a term, or a prompt…"
-            maxLength={400}
-            autoComplete="off"
-          />
-          <button type="submit" aria-label="Send question" disabled={!draft.trim() || thinking}>
-            <Send size={17} />
-          </button>
-        </form>
+          </div>
+        )}
       </div>
     </>
   );

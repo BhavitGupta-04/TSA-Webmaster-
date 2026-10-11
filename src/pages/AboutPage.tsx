@@ -1,5 +1,4 @@
 import { ArrowUpRight, Compass, Fingerprint, HeartHandshake, Lightbulb, Sparkles, Users } from 'lucide-react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
 import Reveal from '../components/Reveal';
@@ -11,22 +10,7 @@ const principles = [
   { icon: HeartHandshake, title: 'Keep people in the picture.', text: 'Fairness, privacy, and honesty belong in every conversation about AI, from the very first lesson.' },
 ];
 
-const valueCards = [
-  { id: 'curiosity', icon: Lightbulb, title: 'Curiosity first', prompt: 'Start with a better question.', detail: 'We make room to explore how AI works, test our assumptions, and follow the questions that appear along the way.' },
-  { id: 'judgment', icon: Compass, title: 'Your judgment matters', prompt: 'The tool is not the thinker.', detail: 'Lessons emphasize checking claims, reflecting on choices, and keeping your own reasoning in the work.' },
-  { id: 'people', icon: HeartHandshake, title: 'People stay central', prompt: 'Technology has human effects.', detail: 'Fairness, privacy, accessibility, and academic honesty belong in the conversation from the start.' },
-];
-
-const teamCards = [
-  { name: 'Bhavit', role: 'LEARNING & RESEARCH', icon: Lightbulb, text: 'Helps turn big ideas about AI into clear lessons and examples students can understand.' },
-  { name: 'Tejash', role: 'DESIGN & EXPERIENCE', icon: Compass, text: 'Helps shape a learning experience that feels welcoming, organized, and easy to explore.' },
-  { name: 'Shubh', role: 'CONTENT & INTERACTIONS', icon: Sparkles, text: 'Contributes to the activities and interactive details that make the lessons engaging.' },
-  { name: 'Ishans', role: 'BUILD & TESTING', icon: HeartHandshake, text: 'Helps build and check the portal, with care for usability, accessibility, and student privacy.' },
-];
-
 export default function AboutPage() {
-  const [flippedValue, setFlippedValue] = useState<string | null>(null);
-
   return <div className="signal-landing studio-interior">
     <PublicSiteHeader />
     <main id="main-content" tabIndex={-1}>
@@ -54,7 +38,7 @@ export default function AboutPage() {
           <div>
             <p>Signal Lab is an AI learning portal we built for the TSA Webmaster competition. It is aimed at students in grades 9–12, mostly because that is who we are and nobody was explaining this to us in a way that stuck.</p>
             <p>Most of what you hear about AI is either a sales pitch or a warning. Neither one tells you how the thing actually works, so neither one helps you decide when to trust it. We wanted the version in between: short lessons, things you can poke at, and straight answers about where it breaks.</p>
-            <Link className="studio-text-button" to="/playground">See the idea in action <ArrowUpRight size={17} /></Link>
+            <Link className="studio-text-button" to="/learn?module=fundamentals">See the idea in action <ArrowUpRight size={17} /></Link>
           </div>
         </Reveal>
       </section>
@@ -66,78 +50,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="landing-width studio-about-team" aria-labelledby="about-team-heading">
-        <div className="about-team-orbit" aria-hidden="true"><span /><span /><span /><span /></div>
-        <Reveal>
-          <p className="studio-eyebrow"><Users size={15} /> STUDENT-LED / TSA WEBMASTER</p>
-          <h2 id="about-team-heading">Meet the team<br /><em>behind Signal Lab.</em></h2>
-          <p className="studio-about-team-intro">Four students, one shared goal: make AI easier to understand, question, and use thoughtfully.</p>
-        </Reveal>
-        <div className="about-team-grid">
-          {teamCards.map(({ name, role, icon: Icon, text }, index) => <Reveal key={name} className="about-team-reveal">
-            <article className={`about-team-card about-team-card--${index + 1}`}>
-              <span className="about-team-index">0{index + 1} / 04</span>
-              <span className="about-team-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
-              <Icon size={30} strokeWidth={1.6} aria-hidden="true" />
-              <p className="about-team-label">{role}</p>
-              <h3>{name}</h3>
-              <p>{text}</p>
-            </article>
-          </Reveal>)}
-        </div>
-      </section>
-
       <section id="principles" tabIndex={-1} className="studio-principles">
         <div className="landing-width">
           <p className="studio-eyebrow">WHAT WE BELIEVE</p>
           <h2>Curious by design.<br /><em>Thoughtful by choice.</em></h2>
-          <div className="studio-principles-grid">
+          <ol className="studio-principles-list">
             {principles.map(({ icon: Icon, title, text }, index) => <Reveal key={title}>
-              <article className={`studio-principles-card studio-principles-card--${index + 1}`}><span>0{index + 1}</span><Icon size={28} /><h3>{title}</h3><p>{text}</p></article>
+              <li><span className="studio-principle-index">0{index + 1}</span><Icon size={24} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></li>
             </Reveal>)}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-width about-value-section">
-        <Reveal>
-          <div className="about-value-heading">
-            <div><p className="studio-eyebrow">OUR VALUES / TURN TO EXPLORE</p><h2>How we want AI<br /><em>to feel in your hands.</em></h2></div>
-            <p>Choose a card to read more about what guides the project.</p>
-          </div>
-        </Reveal>
-        <div className="about-value-deck">
-          {valueCards.map(({ id, icon: Icon, title, prompt, detail }, index) => {
-            const isFlipped = flippedValue === id;
-            return <Reveal key={id} className="about-value-reveal">
-              <button type="button" className={`about-value-card about-value-card--${index + 1} ${isFlipped ? 'is-flipped' : ''}`} aria-pressed={isFlipped} aria-label={`${isFlipped ? 'Show front of' : 'Reveal'} ${title}`} onClick={() => setFlippedValue(isFlipped ? null : id)}>
-                <span className="about-value-inner">
-                  <span className="about-value-face about-value-front" aria-hidden={isFlipped}>
-                    <span className="about-value-index">0{index + 1} / SIGNAL PRINCIPLE</span>
-                    <Icon size={34} strokeWidth={1.4} />
-                    <strong>{title}</strong>
-                    <span className="about-value-prompt">{prompt}</span>
-                    <span className="about-value-turn">READ MORE <ArrowUpRight size={14} /></span>
-                  </span>
-                  <span className="about-value-face about-value-back" aria-hidden={!isFlipped}>
-                    <span className="about-value-index">WHY IT MATTERS</span>
-                    <strong>{title}</strong>
-                    <span>{detail}</span>
-                    <span className="about-value-turn">TURN BACK <ArrowUpRight size={14} /></span>
-                  </span>
-                </span>
-              </button>
-            </Reveal>;
-          })}
+          </ol>
         </div>
       </section>
 
       <section className="landing-width studio-about-method">
         <p className="studio-eyebrow">HOW WE TURN AN IDEA INTO A SKILL</p>
         <h2>A little structure.<br /><em>A lot of discovery.</em></h2>
-        <div>{[['Explore', 'Start with a clear idea and a familiar example.'], ['Experiment', 'Change an input. Compare the result. Ask why.'], ['Reflect', 'Explain what you learned in your own words.'], ['Build', 'Check your understanding and carry the skill into your next project.']].map(([title, text], index) => <Reveal key={title} className="about-method-reveal">
-          <article><span>0{index + 1}<ArrowUpRight size={19} /></span><h3>{title}</h3><p>{text}</p></article>
-        </Reveal>)}</div>
+        <ol className="studio-method-steps">{[['Explore', 'Start with a clear idea and a familiar example.'], ['Experiment', 'Change an input. Compare the result. Ask why.'], ['Reflect', 'Explain what you learned in your own words.'], ['Build', 'Check your understanding and carry the skill into your next project.']].map(([title, text], index) => <li key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
       </section>
 
       <section className="landing-width studio-privacy" id="privacy" tabIndex={-1}>
@@ -145,8 +73,8 @@ export default function AboutPage() {
         <div>
           <p className="studio-eyebrow">YOUR SPACE. YOUR PROGRESS.</p>
           <h2>Learn without an email or password.</h2>
-          <p>Your name, grade, notes, flashcards, and progress are saved in this browser on this device. They do not sync between devices, and clearing browser storage removes them. The Playground runs locally; its inputs are not sent to an AI service.</p>
-          <p>External resource links open other websites, which have their own privacy practices.</p>
+          <p>Your name, grade, notes, flashcards, and progress are saved in this browser on this device. They do not sync between devices, and clearing browser storage removes them. Learning activities run in your browser; they do not send your work to an AI service.</p>
+          <p>Reference links open other websites, which have their own privacy practices.</p>
         </div>
       </section>
 

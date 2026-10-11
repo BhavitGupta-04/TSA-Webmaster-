@@ -78,7 +78,7 @@ export default function CheckoutPage() {
       <PublicSiteHeader />
       <main id="main-content" tabIndex={-1}>
         <section className="landing-width checkout-top">
-          <Link className="studio-text-button" to="/reading-list"><ArrowLeft size={16} /> Back to the Reading List</Link>
+          <Link className="studio-text-button" to="/reading-list"><ArrowLeft size={16} /> Back to Buy</Link>
           <h1>Checkout</h1>
           <div className="checkout-demo-banner">
             <ShieldCheck size={19} />
@@ -94,7 +94,7 @@ export default function CheckoutPage() {
           <section className="landing-width checkout-empty">
             <h2>Your cart is empty.</h2>
             <p>Add a book and the checkout will have something to work with.</p>
-            <Link className="landing-primary" to="/reading-list">Browse the Reading List <ArrowRight size={17} /></Link>
+            <Link className="landing-primary" to="/reading-list">Browse books <ArrowRight size={17} /></Link>
           </section>
         ) : (
           <section className="landing-width checkout-layout">

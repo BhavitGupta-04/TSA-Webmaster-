@@ -1,4 +1,4 @@
-import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, FlaskConical, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, Send, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
+import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
 
 export const iconLibrary = {
   name: 'Lucide',
@@ -35,7 +35,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'ExternalLink', slug: 'external-link', icon: ExternalLink },
   { name: 'Eye', slug: 'eye', icon: Eye },
   { name: 'Fingerprint', slug: 'fingerprint', icon: Fingerprint },
-  { name: 'FlaskConical', slug: 'flask-conical', icon: FlaskConical },
   { name: 'GraduationCap', slug: 'graduation-cap', icon: GraduationCap },
   { name: 'HeartHandshake', slug: 'heart-handshake', icon: HeartHandshake },
   { name: 'Layers3', slug: 'layers', icon: Layers3 },
@@ -69,7 +68,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'Quote', slug: 'quote', icon: Quote },
   { name: 'RefreshCw', slug: 'refresh-cw', icon: RefreshCw },
   { name: 'ScanFace', slug: 'scan-face', icon: ScanFace },
-  { name: 'Send', slug: 'send', icon: Send },
   { name: 'ShoppingBag', slug: 'shopping-bag', icon: ShoppingBag },
   { name: 'Tag', slug: 'tag', icon: Tag },
   { name: 'Trash2', slug: 'trash-2', icon: Trash2 },
@@ -79,6 +77,7 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
 export const fontCredits = [
   { name: 'DM Sans', designer: 'Colophon Foundry (Anton Koovit, Vika Usmanova), commissioned by Google', license: 'SIL Open Font License 1.1', url: 'https://fonts.google.com/specimen/DM+Sans', usedFor: 'Body text' },
   { name: 'Space Grotesk', designer: 'Florian Karsten, based on Space Mono by Colophon Foundry', license: 'SIL Open Font License 1.1', url: 'https://fonts.google.com/specimen/Space+Grotesk', usedFor: 'Headings and figures' },
+  { name: 'Poppins', designer: 'Indian Type Foundry, Jonny Pinhorn, and Ninad Kale', license: 'SIL Open Font License 1.1', url: 'https://fonts.google.com/specimen/Poppins', usedFor: 'Portal and component text' },
 ];
 
 export const originalWork = [
@@ -93,8 +92,12 @@ export const originalWork = [
 
 export const softwareCredits = [
   { name: 'React', version: '18.3.1', license: 'MIT', url: 'https://react.dev' },
-  { name: 'React Router', version: '7.8.2', license: 'MIT', url: 'https://reactrouter.com' },
-  { name: 'Vite', version: '5.4.2', license: 'MIT', url: 'https://vite.dev' },
-  { name: 'Tailwind CSS', version: '3.4.1', license: 'MIT', url: 'https://tailwindcss.com' },
-  { name: 'TypeScript', version: '5.5.3', license: 'Apache-2.0', url: 'https://www.typescriptlang.org' },
+  { name: 'React Router', version: '7.18.4', license: 'MIT', url: 'https://reactrouter.com' },
+  { name: 'Vite', version: '5.4.8', license: 'MIT', url: 'https://vite.dev' },
+  { name: 'Bootstrap', version: '5.3.8', license: 'MIT', url: 'https://getbootstrap.com' },
+  { name: 'Tailwind CSS', version: '3.4.17', license: 'MIT', url: 'https://tailwindcss.com' },
+  { name: 'TypeScript', version: '5.6.3', license: 'Apache-2.0', url: 'https://www.typescriptlang.org' },
+  { name: 'Django', version: '5.2.x', license: 'BSD-3-Clause', url: 'https://www.djangoproject.com' },
+  { name: 'WhiteNoise', version: '6.9.x', license: 'MIT', url: 'https://whitenoise.readthedocs.io' },
+  { name: 'Gunicorn', version: '23.x', license: 'MIT', url: 'https://gunicorn.org' },
 ];

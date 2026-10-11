@@ -29,12 +29,12 @@ export default function ReadingListPage() {
         <section className="studio-page-hero shop-hero">
           <div className="landing-width shop-hero-layout">
             <div>
-              <p className="studio-eyebrow"><BookOpen size={17} /> THE READING LIST</p>
-              <h1>Eight books that<br /><em>made this click.</em></h1>
+              <p className="studio-eyebrow"><BookOpen size={17} /> BUY</p>
+              <h1>Books to explore<br /><em>AI a little further.</em></h1>
               <p>The lessons here take about an hour. These take longer, and go further. Every one of them is readable without a computer-science background — we checked.</p>
               <div className="shop-hero-actions">
                 <a className="landing-primary" href="#catalog">Browse the shelf <ArrowUpRight size={18} /></a>
-                <span>{bookCatalog.length} titles <i /> Paperback <i /> Ships nowhere, see below</span>
+                <span>{bookCatalog.length} titles <i /> Paperback <i /> Demo checkout only</span>
               </div>
             </div>
             <SitePhoto id="reading-shelf" shape="tall" caption="Still the best interface for a long idea." priority />
@@ -125,10 +125,10 @@ export default function ReadingListPage() {
         <section className="studio-inline-cta landing-width">
           <div>
             <p className="studio-eyebrow">PREFER SOMETHING FREE?</p>
-            <h2>The resource library costs nothing.</h2>
-            <p>Lessons and explainers from educational organizations, all open in your browser.</p>
+            <h2>Keep learning beyond the lessons.</h2>
+            <p>Explore the videos and educational sources behind this curriculum.</p>
           </div>
-          <Link className="landing-primary" to="/resources">Open the resource library <ArrowUpRight size={18} /></Link>
+          <Link className="landing-primary" to="/sources#references">View learning references <ArrowUpRight size={18} /></Link>
         </section>
       </main>
       <PublicSiteFooter />

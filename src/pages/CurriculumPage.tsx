@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { ArrowRight, ArrowUpRight, ChevronDown, Clock3, MessageSquareText, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MessageSquareText, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { learningModules } from '../data/learningModules';
+import { lessons, units } from '../data/portalCurriculum';
 import SitePhoto from '../components/SitePhoto';
 import Reveal from '../components/Reveal';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
@@ -14,8 +13,6 @@ const chapterPhotos = [
 ];
 
 export default function CurriculumPage() {
-  const [expandedModule, setExpandedModule] = useState<string | null>(null);
-
   return (
     <div className="signal-landing studio-interior curriculum-page">
       <PublicSiteHeader />
@@ -23,51 +20,51 @@ export default function CurriculumPage() {
         <section className="curriculum-hero">
           <div className="landing-width curriculum-hero-layout">
             <div>
-              <p className="studio-eyebrow"><span className="studio-status-dot" /> THE SIGNAL LEARNING PATH</p>
-              <h1>Four chapters.<br /><em>A whole new lens.</em></h1>
-              <p>Start with the basics, work with real tools, ask the harder questions, and finish by making something with your own point of view.</p>
-              <div className="curriculum-hero-actions"><Link className="landing-primary" to="/learn?module=fundamentals">Start chapter one <ArrowUpRight size={18} /></Link><span>4 modules <i /> 54 minutes <i /> 750 XP</span></div>
+              <h1>{lessons.length} lessons.<br /><em>Four learning paths.</em></h1>
+              <p>Explore AI foundations, practical study tools, responsible use, and creative projects through focused lessons with practice and quizzes.</p>
+              <div className="curriculum-hero-actions"><Link className="landing-primary" to={`/learn?lesson=${lessons[0].id}`}>Start the first lesson <ArrowUpRight size={18} /></Link><span>{lessons.length} lessons <i /> {units.length} paths <i /> Practice &amp; quizzes</span></div>
             </div>
             <nav className="curriculum-hero-art" aria-label="Choose a curriculum chapter">
               <span className="curriculum-orbit curriculum-orbit--outer" aria-hidden="true" />
               <span className="curriculum-orbit curriculum-orbit--inner" aria-hidden="true" />
               <div className="curriculum-orbit-core" aria-hidden="true">AI<br /><small>FIELD NOTES</small></div>
-              <Link className="orbit-label orbit-label--one" to="/learn?module=fundamentals">01 · FOUNDATIONS</Link>
-              <Link className="orbit-label orbit-label--two" to="/learn?module=tools">02 · TOOLKIT</Link>
-              <Link className="orbit-label orbit-label--three" to="/learn?module=ethics">03 · ETHICS</Link>
-              <Link className="orbit-label orbit-label--four" to="/learn?module=creativity">04 · CREATIVE AI</Link>
+              {units.map((unit, index) => {
+                const firstLesson = lessons.find(lesson => lesson.unit === unit.id);
+                return <Link key={unit.id} className={`orbit-label orbit-label--${['one', 'two', 'three', 'four'][index]}`} to={firstLesson ? `/learn?lesson=${firstLesson.id}` : '/learn'}>{unit.number} · {unit.title}</Link>;
+              })}
             </nav>
           </div>
         </section>
 
         <section className="landing-width curriculum-roadmap">
-          <Reveal><div className="curriculum-intro"><div><p className="studio-eyebrow">WHAT WE’RE GOING TO TEACH</p><h2>Learn the idea.<br /><em>Try it for yourself.</em></h2></div><p>Every chapter has a clear goal, real-life examples, a hands-on activity, practice cards, and a short unit quiz. Move at your pace and come back whenever you need a refresher.</p></div></Reveal>
+          <Reveal><div className="curriculum-intro"><div><p className="studio-eyebrow">THE FULL LEARNING PATH</p><h2>One skill at a time.<br /><em>Built to practice.</em></h2></div><p>Each lesson includes guided explanations, examples, interactive practice, a short project, and a separate quiz. Choose a lesson below and continue at your own pace.</p></div></Reveal>
           <div className="curriculum-module-list">
-            {learningModules.map((module, index) => (
-              <Reveal key={module.id} className={`curriculum-module curriculum-module--${index + 1}`}>
+            {units.map((unit, index) => {
+              const unitLessons = lessons.filter(lesson => lesson.unit === unit.id);
+              const photo = chapterPhotos[index];
+              return <Reveal key={unit.id} className={`curriculum-module curriculum-module--${index + 1}`}>
                 <div className="curriculum-module-marker"><span>0{index + 1}</span><i /></div>
                 <article className="curriculum-module-card">
                   <div className="curriculum-module-copy">
-                    <div className="curriculum-module-kicker"><span>CHAPTER 0{index + 1}</span><span><Clock3 size={14} /> {module.minutes} MIN</span></div>
-                    <h3>{module.title}</h3>
-                    <p>{module.description}</p>
-                    <div className="curriculum-outcome"><span>YOU’LL BE ABLE TO</span><p>{module.outcome}</p></div>
-                    <button className="curriculum-learn-more" type="button" aria-expanded={expandedModule === module.id} aria-controls={`curriculum-detail-${module.id}`} onClick={() => setExpandedModule(current => current === module.id ? null : module.id)}>{expandedModule === module.id ? 'Hide lesson details' : 'Learn more · see every lesson'}<ChevronDown size={16} /></button>
-                    <div className="curriculum-module-details" id={`curriculum-detail-${module.id}`} hidden={expandedModule !== module.id}>
-                      <h4>WHAT YOU’LL LEARN</h4>
-                      <ol>{module.concepts.map((concept, lessonIndex) => <li key={concept.title}><span>LESSON 0{lessonIndex + 1}</span><strong>{concept.title}</strong><p>{concept.body}</p><small><b>Real-world example</b> {concept.example}</small></li>)}</ol>
-                      <div className="curriculum-detail-practice"><span>PAUSE & THINK</span><p>{module.scenario.prompt}</p><span>TAKE IT FURTHER</span><p>{module.mission}</p></div>
-                    </div>
-                    <Link className="curriculum-module-link" to={`/learn?module=${module.id}`}>Explore this chapter <ArrowRight size={17} /></Link>
+                    <div className="curriculum-module-kicker"><span>{unit.number} / LEARNING PATH</span><span>{unitLessons.length} lessons</span></div>
+                    <h3>{unit.title}</h3>
+                    <p>{unit.description}</p>
+                    <ol className="curriculum-lesson-list">
+                      {unitLessons.map((lesson, lessonIndex) => <li key={lesson.id}>
+                        <span className="curriculum-lesson-number">{String(lessonIndex + 1).padStart(2, '0')}</span>
+                        <Link to={`/learn?lesson=${lesson.id}`}><strong>{lesson.title}</strong><span>{lesson.subtitle}</span></Link>
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </li>)}
+                    </ol>
                   </div>
-                  <div className="curriculum-module-image"><SitePhoto id={chapterPhotos[index].id} caption={chapterPhotos[index].caption} /><span className="curriculum-xp"><Sparkles size={14} /> {module.xp} XP</span></div>
+                  <div className="curriculum-module-image"><SitePhoto id={photo.id} caption={photo.caption} /><span className="curriculum-xp"><Sparkles size={14} /> {unit.badge}</span></div>
                 </article>
-              </Reveal>
-            ))}
+              </Reveal>;
+            })}
           </div>
         </section>
 
-        <section className="curriculum-finale"><div className="landing-width curriculum-finale-inner"><p className="studio-eyebrow">THE POINT ISN’T TO USE AI FOR EVERYTHING.</p><h2>It’s knowing when, why,<br /><em>and what to question.</em></h2><Link className="landing-primary" to="/playground">Try an experiment <ArrowUpRight size={18} /></Link></div></section>
+        <section className="curriculum-finale"><div className="landing-width curriculum-finale-inner"><p className="studio-eyebrow">THE POINT ISN’T TO USE AI FOR EVERYTHING.</p><h2>It’s knowing when, why,<br /><em>and what to question.</em></h2><Link className="landing-primary" to="/learn?module=tools">Explore practical tools <ArrowUpRight size={18} /></Link></div></section>
 
         <section className="landing-width curriculum-ask"><MessageSquareText size={24} /><div><h2>Stuck on a word before you even start?</h2><p>Ask Signal is in the bottom corner of every page. It can explain a term, point you at the right chapter, or help you shape a question before you take it to a real AI tool.</p></div></section>
       </main>
