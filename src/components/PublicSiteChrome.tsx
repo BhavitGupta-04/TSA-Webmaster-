@@ -2,7 +2,6 @@ import { ArrowUpRight, BrainCircuit, Menu, ShoppingBag, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCart } from '../state/cart-context';
-import ScrollProgressRing from './ScrollProgressRing';
 
 export function PublicSiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,8 +9,8 @@ export function PublicSiteHeader() {
   const { pathname } = useLocation();
   const menuButton = useRef<HTMLButtonElement>(null);
   useEffect(() => { setMenuOpen(false); }, [pathname]);
-  return <><header className="landing-header studio-header"><a className="studio-skip" href="#main-content">Skip to content</a><div className="landing-width landing-header-inner">
-    <Link className="landing-brand" to="/" aria-label="Nuvilo AI home"><span className="landing-brand-mark"><BrainCircuit size={21} /></span><span>Nuvilo<span className="landing-brand-period"> AI</span></span></Link>
+  return <header className="landing-header studio-header"><a className="studio-skip" href="#main-content">Skip to content</a><div className="landing-width landing-header-inner">
+    <Link className="landing-brand" to="/" aria-label="Nuvilo home"><span className="landing-brand-mark"><BrainCircuit size={21} /></span><span>Nuvilo</span></Link>
     <nav id="public-navigation" className={`landing-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation" onKeyDown={event => { if (event.key === 'Escape') { setMenuOpen(false); menuButton.current?.focus(); } }}>
       <NavLink to="/" end onClick={() => setMenuOpen(false)}>Home</NavLink><NavLink to="/curriculum" onClick={() => setMenuOpen(false)}>Curriculum</NavLink><NavLink to="/reading-list" onClick={() => setMenuOpen(false)}>Buy</NavLink><NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink><NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink><NavLink to="/sources" onClick={() => setMenuOpen(false)}>Sources &amp; credits</NavLink>
     </nav>
@@ -20,8 +19,8 @@ export function PublicSiteHeader() {
       <Link className="landing-signup-small" to="/portal">My learning <ArrowUpRight size={15} /></Link>
       <button ref={menuButton} type="button" className="landing-menu-toggle" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={menuOpen} aria-controls="public-navigation" onClick={() => setMenuOpen(value => !value)}>{menuOpen ? <X size={19} /> : <Menu size={19} />}</button>
     </div>
-  </div></header><ScrollProgressRing /></>;
+  </div></header>;
 }
 export function PublicSiteFooter() {
-  return <footer className="studio-footer"><div className="landing-width"><div className="studio-footer-grid"><div><Link className="landing-brand" to="/" aria-label="Nuvilo AI home"><span className="landing-brand-mark"><BrainCircuit size={21} /></span><span>Nuvilo<span className="landing-brand-period"> AI</span></span></Link><p>A little curiosity.<br />A whole new way to see AI.</p><span>Made for curious minds in grades 9–12.</span></div><nav aria-label="Learn links"><h2>FIND YOUR CURIOSITY</h2><Link to="/curriculum">Our curriculum</Link><Link to="/learn?module=fundamentals">AI Fundamentals</Link><Link to="/learn?module=tools">Practical AI Tools</Link><Link to="/learn?module=ethics">Ethical AI Use</Link><Link to="/learn?module=creativity">Creative AI</Link></nav><nav aria-label="Explore links"><h2>KEEP EXPLORING</h2><Link to="/field-guide">Student field guide</Link><Link to="/sources#references">Learning references</Link><Link to="/reading-list">Buy</Link><Link to="/progress">Your progress</Link></nav><nav aria-label="About links"><h2>BEHIND NUVILO AI</h2><Link to="/about">Our story</Link><Link to="/about#principles">What we believe</Link><Link to="/about#privacy">Your data & privacy</Link><Link to="/contact">Contact the project</Link><Link to="/sources">Sources & credits</Link><Link to="/signup">Create a local profile</Link></nav></div><div className="studio-footer-bottom"><span>Nuvilo AI / An AI learning portal</span><span>Stay curious. Keep the thinking yours.</span><Link className="studio-footer-credit" to="/sources">Photos via Pexels · Icons by Lucide (ISC) · Sources &amp; credits</Link><a href="#main-content">Back to the top ↑</a></div></div></footer>;
+  return <footer className="studio-footer"><div className="landing-width"><div className="studio-footer-grid"><div><Link className="landing-brand" to="/" aria-label="Nuvilo home"><span className="landing-brand-mark"><BrainCircuit size={21} /></span><span>Nuvilo</span></Link><p>A little curiosity.<br />A whole new way to see AI.</p><span>Made for curious minds in grades 9–12.</span></div><nav aria-label="Learn links"><h2>FIND YOUR CURIOSITY</h2><Link to="/curriculum">Our curriculum</Link><Link to="/learn?module=fundamentals">AI Fundamentals</Link><Link to="/learn?module=tools">Practical AI Tools</Link><Link to="/learn?module=ethics">Ethical AI Use</Link><Link to="/learn?module=creativity">Creative AI</Link></nav><nav aria-label="Explore links"><h2>KEEP EXPLORING</h2><Link to="/field-guide">Student field guide</Link><Link to="/sources#references">Learning references</Link><Link to="/reading-list">Buy</Link><Link to="/progress">Your progress</Link></nav><nav aria-label="About links"><h2>BEHIND NUVILO</h2><Link to="/about">Our story</Link><Link to="/about#principles">What we believe</Link><Link to="/about#privacy">Your data & privacy</Link><Link to="/contact">Contact the project</Link><Link to="/sources">Sources & credits</Link><Link to="/signup">Create a local profile</Link></nav></div><div className="studio-footer-bottom"><span>Nuvilo / An AI learning portal</span><span>Stay curious. Keep the thinking yours.</span><Link className="studio-footer-credit" to="/sources">Photos via Pexels · Icons by Lucide (ISC) · Sources &amp; credits</Link><a href="#main-content">Back to the top ↑</a></div></div></footer>;
 }

@@ -7,7 +7,7 @@ from .models import AIChallenge
 
 @require_GET
 def health(_request):
-    return JsonResponse({'status': 'ok', 'service': 'Nuvilo AI learning API', 'version': 1})
+    return JsonResponse({'status': 'ok', 'service': 'Nuvilo learning API', 'version': 1})
 
 
 @require_GET

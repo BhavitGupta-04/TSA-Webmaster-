@@ -16,7 +16,7 @@ export default function SourcesPage() {
       <Reveal>
         <p className="studio-eyebrow">01 / PHOTOGRAPHS</p>
         <h2>All {sitePhotos.length} photographs come from<br /><em>one free stock library.</em></h2>
-        <p className="studio-sources-lede">Each photographer's name sits in the corner of their photo wherever it appears, so the credit travels with the image. The full list is here.</p>
+        <p className="studio-sources-lede">Each photographer's name sits in the corner of their photo wherever it appears. The eight used as book covers on the Buy page are tinted and overprinted with the title, so their credits are collected here instead. The full list is below.</p>
         <dl className="studio-credit-facts">
           <div><dt>Library</dt><dd>{photoLibrary.source}</dd></div>
           <div><dt>License</dt><dd><a href={photoLibrary.licenseUrl} target="_blank" rel="noopener noreferrer">{photoLibrary.license}<ExternalLink size={13} /><span className="sr-only"> (opens in a new tab)</span></a> — {photoLibrary.licenseSummary}</dd></div>
@@ -69,7 +69,7 @@ export default function SourcesPage() {
       <Reveal>
         <p className="studio-eyebrow">04 / BOOKS</p>
         <h2>Real books,<br /><em>listed as references.</em></h2>
-        <p className="studio-sources-lede">The Buy page lists {bookCatalog.length} real published books. We checked each ISBN against Open Library; follow the ISBN link below to verify the listed edition. We reproduce no cover artwork and no text from inside the books. The covers on the Buy page are typography we set ourselves. We are not affiliated with these authors or publishers, and checkout is a demonstration: no payment is collected and nothing ships.</p>
+        <p className="studio-sources-lede">The Buy page lists {bookCatalog.length} real published books. We checked each ISBN against Open Library; follow the ISBN link below to verify the listed edition. We reproduce no publisher cover artwork and no text from inside the books. The covers on the Buy page are our own: a credited Pexels photograph chosen for the subject, tinted and set with the title in type. We are not affiliated with these authors or publishers, and checkout is a demonstration: no payment is collected and nothing ships.</p>
       </Reveal>
       <ol className="studio-original-list">{bookCatalog.map((book, index) => <li key={book.id}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{book.title}</h3><p>{book.author}. <em>{book.title}</em>. {book.publisher}, {book.year}. ISBN {book.isbn}. <a href={`https://openlibrary.org/isbn/${book.isbn}`} target="_blank" rel="noopener noreferrer">Verify this edition in Open Library<ExternalLink size={13} /><span className="sr-only"> (opens in a new tab)</span></a></p></div></li>)}</ol>
     </section>

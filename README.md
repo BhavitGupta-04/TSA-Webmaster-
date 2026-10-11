@@ -1,6 +1,6 @@
-# Nuvilo AI
+# Nuvilo
 
-Nuvilo AI is an interactive AI learning portal for grades 9–12. The React/Vite frontend contains the public website and learning studio. A Django API serves public, rotating field challenges. Learner names, grades, notes, flashcards, and progress remain in browser `localStorage`; they are not sent to Django.
+Nuvilo is an interactive AI learning portal for grades 9–12. The React/Vite frontend contains the public website and learning studio. A Django API serves public, rotating field challenges. Learner names, grades, notes, flashcards, and progress remain in browser `localStorage`; they are not sent to Django.
 
 ## Requirements
 
@@ -53,7 +53,7 @@ Public-page typography uses Poppins with the Butler Regular/Bold web font used b
 Both are built out as far as they can go without a live service behind them. Each has
 one file that is the only place to change when connecting it.
 
-**Ask Signal** — the chat panel in the corner of every page. `src/lib/aiClient.ts` holds
+**Ask Nuvilo AI** — the chat panel in the corner of every page. `src/lib/aiClient.ts` holds
 the adapter. It currently answers from a hand-written guide to the site; set `MODE` to
 `'live'` and point `VITE_ASSISTANT_ENDPOINT` at a backend route that holds the API key.
 The file documents the request and response shape the route must speak. The key must

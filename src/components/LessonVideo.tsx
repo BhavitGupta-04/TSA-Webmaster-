@@ -18,9 +18,9 @@ export default function LessonVideo({ lessonId }: { lessonId: string }) {
         Your browser cannot play this video. Read the complete transcript below.
       </video>
       <span className="lesson-video-brand" aria-hidden="true">NUVILO AI / THE LEARNING LAB</span>
-      <span className="lesson-video-credit" aria-hidden="true">Nuvilo AI lesson · AI voice narration · English captions</span>
+      <span className="lesson-video-credit" aria-hidden="true">Nuvilo lesson · AI voice narration · English captions</span>
     </div>
     {error && <p role="status">The video could not load. The full transcript below covers the same explanation.</p>}
-    <details className="lesson-transcript"><summary>Read the transcript / jump to a chapter</summary><p>Original Nuvilo AI illustrations with conversational AI narration. Watching is optional; use the transcript or captions whenever you prefer.</p>{video.chapters.map(chapter => <div key={chapter.title}><button type="button" onClick={() => { if (player.current) player.current.currentTime = chapter.start; }} aria-label={'Seek to ' + chapter.title + ' at ' + time(chapter.start)}><span>{time(chapter.start)}</span>{chapter.title}</button><p>{chapter.narration}</p></div>)}</details>
+    <details className="lesson-transcript"><summary>Read the transcript / jump to a chapter</summary><p>Original Nuvilo illustrations with conversational AI narration. Watching is optional; use the transcript or captions whenever you prefer.</p>{video.chapters.map(chapter => <div key={chapter.title}><button type="button" onClick={() => { if (player.current) player.current.currentTime = chapter.start; }} aria-label={'Seek to ' + chapter.title + ' at ' + time(chapter.start)}><span>{time(chapter.start)}</span>{chapter.title}</button><p>{chapter.narration}</p></div>)}</details>
   </section>;
 }

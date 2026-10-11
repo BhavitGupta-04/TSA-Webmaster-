@@ -64,10 +64,6 @@
   box-shadow: 0 4px 0 #c95150;
 }
 
-.landing-brand-period {
-  color: var(--signal-coral);
-}
-
 .landing-nav {
   display: flex;
   align-items: center;
@@ -989,8 +985,6 @@
   to { transform: translateX(23px); }
 }
 
-
-
 /* Public pages: navy, teal, coral, mint, and cream from the existing portal. */
 .signal-landing :is(button,a,input,textarea,summary):focus-visible{outline:3px solid #b04a3e;outline-offset:5px}
 .signal-landing button:disabled{opacity:.5;cursor:not-allowed}
@@ -1103,7 +1097,6 @@
 .studio-creative-strip h3{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:500;margin-top:5px}
 .studio-creative-strip p{font-size:12px;color:#667c77;margin-top:5px}
 .creative-strip-action{display:flex;align-items:center;gap:12px;margin-left:auto;font-size:11px;white-space:nowrap;color:#286b70}
-
 
 .studio-progress-pitch{padding-block:95px}
 .studio-progress-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:95px}
@@ -1356,7 +1349,6 @@ html[data-motion='paused'] .studio-reveal,html[data-motion='paused'] .studio-her
 html[data-motion='paused'] .studio-chapter{position:relative;top:auto}
 @media(prefers-reduced-motion:reduce){.studio-chapter{position:relative;top:auto}.studio-reveal{opacity:1!important;transform:none!important}}
 
-
 .studio-dashboard{background:linear-gradient(135deg,#eef6f4,#f7f5ed);padding-block:35px 55px}
 .dashboard-greeting{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:27px}
 .dashboard-greeting h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3vw,36px);letter-spacing:-.045em;font-weight:500;margin-top:9px;line-height:1.2}
@@ -1447,7 +1439,6 @@ html[data-motion='paused'] .studio-chapter{position:relative;top:auto}
 .studio-checklist-progress button { font-size: 10px; text-decoration: underline; text-underline-offset: 4px; color: #54735d; }
 @media (max-width: 520px) { .studio-hero.portal-scene::before { width: 110px; height: 110px; right: -55px; top: 85px; opacity: .3; } .studio-interior .field-rule h3 { font-size: 20px; } }
 
-
 /* Bolder homepage presentation, scoped so the learning studio retains its theme. */
 .studio-home { background: #faf8f0; }
 .studio-home .landing-width { width: min(1240px, calc(100% - 64px)); }
@@ -1502,7 +1493,6 @@ html[data-motion='paused'] .studio-chapter{position:relative;top:auto}
 @media(max-width:800px){.studio-home .studio-hero-grid{grid-template-columns:1fr;gap:35px}.studio-home .studio-hero h1{font-size:78px}.studio-home .studio-hero-copy{max-width:620px}.studio-home .everyday-ai{width:min(100%,560px)}.studio-home .everyday-card h3 strong{font-size:22px}}
 @media(max-width:800px){.challenge-band-links{grid-template-columns:repeat(2,minmax(0,1fr))}.challenge-band-links a:nth-child(2){border-right:0}.challenge-band-links a:nth-child(n+3){border-top:1px solid #b9c8b8}}
 @media(max-width:520px){.studio-home .landing-width{width:calc(100% - 32px)}.studio-home .landing-brand{font-size:22px}.studio-home .studio-hero-grid{padding-block:30px;gap:32px}.studio-home .studio-hero h1{font-size:clamp(43px,11.6vw,60px)}.studio-home .studio-hero h1 em{text-decoration-thickness:6px;text-underline-offset:6px}.studio-home .studio-lede{font-size:14px}.studio-home .studio-hero-copy > .studio-eyebrow{padding:7px 9px;font-size:8px}.studio-home .everyday-heading h2{font-size:28px}.studio-home .everyday-card h3 strong{font-size:18px}.studio-home .everyday-card h3 small{font-size:8px}.studio-home .studio-creative-strip{padding:19px 12px}.studio-home .chapter-story h3{font-size:33px}.studio-home .studio-section-heading h2,.studio-home .studio-progress-grid h2,.studio-home .studio-faq h2{font-size:34px}.studio-home .studio-hero.portal-scene::before{width:110px;height:110px;right:-65px;opacity:.4}.studio-challenge-band{padding-block:24px}.challenge-band-links{grid-template-columns:1fr}.challenge-band-links a,.challenge-band-links a:first-child{min-height:0;padding:13px 0;border-right:0;border-top:1px solid #b9c8b8}.challenge-band-links a:last-child{border-bottom:0}}
-
 
 :root {
   --signal-ink: #2a2a2a;
@@ -1577,9 +1567,6 @@ body {
   box-shadow: none;
   color: var(--signal-paper);
 }
-
-.studio-header .landing-brand-period,
-.landing-footer .landing-brand-period { color: var(--signal-leaf-light); }
 
 .studio-header .landing-signup-small {
   border-radius: 3px;
@@ -2180,20 +2167,10 @@ body {
 .curriculum-finale h2 em { color:#dce5ca; }
 .curriculum-finale .landing-primary { border-color:#e0e8d4; background:#e0e8d4; box-shadow:0 3px 0 #b7c8a6; color:#294935; }
 
-.scroll-progress-ring { position:fixed; z-index:45; top:50%; right:22px; display:grid; width:52px; height:52px; place-items:center; border:1px solid #bac5ad; border-radius:50%; background:#f5f5f0ed; color:var(--signal-forest); box-shadow:0 4px 13px #283d2a1c; transform:translateY(-50%); transition:background .2s, transform .2s; }
-.scroll-progress-ring:hover { background:#fffef7; transform:translateY(-50%) scale(1.06); }
-.scroll-progress-ring svg { position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg); }
-.scroll-ring-track,.scroll-ring-value { fill:none; stroke-width:2; }
-.scroll-ring-track { stroke:#d9decf; }
-.scroll-ring-value { stroke:#3a6f47; stroke-linecap:round; transition:stroke-dashoffset .12s linear; }
-.scroll-progress-ring > span { font:600 10px var(--signal-body); }
-.scroll-progress-ring > span small { margin-left:1px; font-size:7px; }
-
 @media(max-width:1000px) {
   .curriculum-hero-layout { grid-template-columns:1fr .6fr; gap:25px; }
   .curriculum-orbit { scale:.82; }
   .curriculum-module-card { grid-template-columns:minmax(0,1fr) minmax(185px,.55fr); gap:18px; padding:19px; }
-  .scroll-progress-ring { right:12px; width:45px; height:45px; }
 }
 @media(max-width:940px) and (min-width:761px) {
   .studio-header .landing-nav { gap:12px; font-size:10px; }
@@ -2215,12 +2192,9 @@ body {
   .curriculum-lesson-list a strong { font-size:12px; }
   .curriculum-roadmap { padding-block:50px; }
   .curriculum-finale-inner { padding-block:40px; }
-  .scroll-progress-ring { top:auto; right:12px; bottom:16px; width:46px; height:46px; transform:none; }
-  .scroll-progress-ring:hover { transform:scale(1.06); }
 }
 @media(prefers-reduced-motion:reduce) {
   .curriculum-orbit { animation:none; }
-  .scroll-progress-ring,.scroll-ring-value { transition:none; }
   .orbit-label { transition:none; }
 }
 
@@ -2304,7 +2278,6 @@ body {
   .daily-challenge { animation:none; }
 }
 
-
 /* Cart, certificate, and chat actions render outside .signal-landing, so
    define their public-page button colors at the root as well. */
 :root {
@@ -2342,7 +2315,7 @@ body {
   font: 700 9px/1 var(--signal-body);
 }
 
-/* --- Ask Signal ---------------------------------------------------------- */
+/* --- Ask Nuvilo AI ---------------------------------------------------------- */
 .ask-launcher {
   position: fixed;
   right: 22px;
@@ -2619,27 +2592,51 @@ body {
   color: var(--signal-forest);
 }
 .shop-cart-nudge p { flex: 1; min-width: 220px; margin: 0; color: #5c6257; font-size: 12px; }
+.shop-cover-credit { margin: 22px 0 0; color: #6b7164; font-size: 11.5px; line-height: 1.75; }
+.shop-cover-credit a { color: var(--signal-forest); text-decoration: underline; text-underline-offset: 2px; }
 
-/* --- Book covers, set in type -------------------------------------------- */
+/* --- Book covers: a credited photograph, tinted, with the title set over it ---
+   The photograph blends in luminosity mode over the book's own colour, so eight
+   unrelated photos still read as one series. The scrim underneath the type is
+   what keeps the title legible whatever the photo is doing. Credits for every
+   one of these live in src/data/photos.ts and print on /sources. ------------ */
 .book-cover {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  isolation: isolate;
   overflow: hidden;
   aspect-ratio: 2 / 3;
   background: var(--cover-bg);
   color: var(--cover-ink);
   padding: 15% 11% 11%;
 }
-.book-cover-spine { position: absolute; inset: 0 auto 0 0; width: 7%; background: rgba(0, 0, 0, .22); }
-.book-cover-rule { position: absolute; top: 11%; right: 11%; left: 15%; height: 2px; background: var(--cover-accent); }
-.book-cover-title { font: 400 clamp(13px, 2.1vw, 19px)/1.18 var(--signal-display); letter-spacing: .005em; }
-.book-cover-author { margin-top: 9%; color: var(--cover-accent); font: 600 clamp(8px, 1.1vw, 10px) var(--signal-body); letter-spacing: .09em; text-transform: uppercase; }
-.book-cover-mark { position: absolute; right: 11%; bottom: 5%; color: var(--cover-ink); font: 500 7px var(--signal-body); letter-spacing: .16em; opacity: .5; text-transform: uppercase; }
+.book-cover-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: luminosity;
+  opacity: .9;
+}
+.book-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .12) 0%, rgba(0, 0, 0, 0) 24%, rgba(0, 0, 0, .34) 46%, rgba(0, 0, 0, .64) 68%, rgba(0, 0, 0, .86) 100%);
+}
+.book-cover-spine { position: absolute; z-index: 2; inset: 0 auto 0 0; width: 7%; background: rgba(0, 0, 0, .3); }
+.book-cover-rule { position: absolute; z-index: 2; top: 11%; right: 11%; left: 15%; height: 2px; background: var(--cover-accent); }
+.book-cover-title { position: relative; z-index: 2; font: 400 clamp(13px, 2.1vw, 19px)/1.18 var(--signal-display); letter-spacing: .005em; text-shadow: 0 1px 10px rgba(0, 0, 0, .4); }
+.book-cover-author { position: relative; z-index: 2; margin-top: 9%; color: var(--cover-accent); font: 600 clamp(8px, 1.1vw, 10px) var(--signal-body); letter-spacing: .09em; text-shadow: 0 1px 8px rgba(0, 0, 0, .5); text-transform: uppercase; }
+.book-cover-mark { position: absolute; z-index: 2; right: 11%; bottom: 5%; color: var(--cover-ink); font: 500 7px var(--signal-body); letter-spacing: .16em; opacity: .55; text-transform: uppercase; }
 .book-cover--small { width: 54px; flex: 0 0 54px; padding: 13% 9% 9%; }
 .book-cover--small .book-cover-author, .book-cover--small .book-cover-mark { display: none; }
 .book-cover--small .book-cover-title { font-size: 8px; line-height: 1.2; }
+/* At 54px the photo is texture, not an image — darken it so the title still reads. */
+.book-cover--small .book-cover-art { opacity: .7; }
 
 /* --- Cart drawer --------------------------------------------------------- */
 .cart-overlay {
@@ -2846,7 +2843,10 @@ body {
 .studio-photo-credit-grid a:hover { border-color: #8aa47f; box-shadow: 0 10px 20px rgba(40, 56, 40, .1); transform: translateY(-3px); }
 .studio-photo-credit-grid img { display: block; width: 100%; height: 148px; object-fit: cover; }
 .studio-photo-credit-grid > li > a > div { display: grid; gap: 5px; padding: 14px 15px; }
-.studio-photo-credit-grid strong { color: var(--signal-ink); font: 400 15px/1.3 var(--signal-display); }
+/* Pexels publishes a few of these with a paragraph for a title, so the card trims
+   to three lines and the grid stays even. The full title is in the works-cited
+   block at the end of the section. */
+.studio-photo-credit-grid strong { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; color: var(--signal-ink); font: 400 15px/1.3 var(--signal-display); }
 .studio-photo-credit-grid > li span:last-child {
   display: inline-flex;
   align-items: center;
@@ -2967,11 +2967,11 @@ body {
     background: #fff;
     box-shadow: none;
   }
-  .certificate-close, .certificate-actions, .ask-launcher, .ask-panel, .scroll-progress-ring { display: none !important; }
+  .certificate-close, .certificate-actions, .ask-launcher, .ask-panel { display: none !important; }
   .certificate-overlay { position: static; display: block; background: none; padding: 0; backdrop-filter: none; }
 }
 
-/* --- Pointer to Ask Signal from the curriculum --------------------------- */
+/* --- Pointer to Ask Nuvilo AI from the curriculum --------------------------- */
 .curriculum-ask {
   display: flex;
   align-items: flex-start;
@@ -3007,7 +3007,6 @@ body {
   .checkout-row { grid-template-columns: 1fr; }
   .checkout-form fieldset { padding: 18px 16px; }
 }
-
 
 .everyday-ai{min-width:0;padding:5px 6px 8px;animation:studio-arrive .7s .1s both}
 .studio-home .everyday-heading h2{font-size:30px;letter-spacing:-.045em;line-height:1.12;margin:20px 0 10px}

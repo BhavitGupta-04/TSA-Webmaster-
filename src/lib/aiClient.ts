@@ -1,14 +1,14 @@
 /**
- * The AI adapter for "Ask Signal".
+ * The AI adapter for "Ask Nuvilo AI".
  *
  * ──────────────────────────────────────────────────────────────────────────────
  *  THIS IS THE ONE FILE TO EDIT WHEN YOU CONNECT A MODEL.
  *
  *  Nothing else in the app knows how an answer is produced. The chat panel
- *  calls `askSignal()` and renders whatever comes back, so swapping the guide
+ *  calls `askNuviloAI()` and renders whatever comes back, so swapping the guide
  *  below for a live model is a change to this file alone.
  *
- *  Right now `askSignal` answers from `guideResponses` — a hand-written set of
+ *  Right now `askNuviloAI` answers from `guideResponses` — a hand-written set of
  *  replies about this site. Every answer is real, nothing is invented, and the
  *  assistant says plainly when a question is outside what it knows.
  *
@@ -46,7 +46,7 @@ const ENDPOINT = import.meta.env.VITE_ASSISTANT_ENDPOINT ?? '/api/v1/assistant/'
  * Sent with every live request. Written for a school audience: it should not
  * do the assignment, and it should admit what it does not know.
  */
-export const SYSTEM_PROMPT = `You are the study guide for Nuvilo AI, an AI learning portal for students in grades 9-12.
+export const SYSTEM_PROMPT = `You are Nuvilo AI, the study guide for Nuvilo, an AI learning portal for students in grades 9-12.
 
 Explain ideas in plain language and keep answers short — a few sentences, unless asked for more.
 Point students to the part of the site that covers their question: the four chapters at /curriculum
@@ -163,9 +163,9 @@ const guideResponses: GuideRule[] = [
     link: { label: 'Open Chapter 04', to: '/learn?module=creativity' },
   },
   {
-    keywords: ['who made', 'who built', 'about you', 'what are you', 'who are you', 'tsa', 'competition', 'nuvilo ai', 'signal lab'],
+    keywords: ['who made', 'who built', 'about you', 'what are you', 'who are you', 'tsa', 'competition', 'nuvilo', 'nuvilo ai'],
     reply:
-      'Nuvilo AI is a student project built for the TSA Webmaster competition — an AI learning portal for grades 9 to 12.\n\nI am a scripted guide, not an AI model. The responses I give were written by hand so the site works without sending anything to a server. The hook-up point for a real model is ready in the code.',
+      'Nuvilo is a student project built for the TSA Webmaster competition — an AI learning portal for grades 9 to 12. I am Nuvilo AI, the study guide that comes with it.\n\nI am a scripted guide, not an AI model. The responses I give were written by hand so the site works without sending anything to a server. The hook-up point for a real model is ready in the code.',
     link: { label: 'About the project', to: '/about' },
   },
 ];
@@ -202,7 +202,7 @@ export interface AskResult {
   link?: { label: string; to: string };
 }
 
-export async function askSignal(history: ChatMessage[], question: string): Promise<AskResult> {
+export async function askNuviloAI(history: ChatMessage[], question: string): Promise<AskResult> {
   if (MODE === 'live') {
     try {
       const data = await callLiveModel(history, question);

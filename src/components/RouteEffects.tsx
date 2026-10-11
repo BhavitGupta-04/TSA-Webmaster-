@@ -1,10 +1,10 @@
 ﻿import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-const titles: Record<string, string> = { '/': 'Home', '/curriculum': 'Our Curriculum', '/about': 'About Nuvilo AI', '/contact': 'Contact Nuvilo AI', '/reading-list': 'Buy', '/sources': 'Sources & Credits', '/field-guide': 'Student Field Guide', '/signup': 'Create a Profile', '/portal': 'My Learning', '/learn': 'Learning Studio', '/progress': 'Your Progress' };
+const titles: Record<string, string> = { '/': 'Home', '/curriculum': 'Our Curriculum', '/about': 'About Nuvilo', '/contact': 'Contact Nuvilo', '/reading-list': 'Buy', '/sources': 'Sources & Credits', '/field-guide': 'Student Field Guide', '/signup': 'Create a Profile', '/portal': 'My Learning', '/learn': 'Learning Studio', '/progress': 'Your Progress' };
 export default function RouteEffects() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    document.title = `${titles[pathname] ?? (pathname.startsWith('/learn/') && pathname.endsWith('/quiz') ? 'Lesson Quiz' : 'Home')} | Nuvilo AI`;
+    document.title = `${titles[pathname] ?? (pathname.startsWith('/learn/') && pathname.endsWith('/quiz') ? 'Lesson Quiz' : 'Home')} | Nuvilo`;
     const frame = requestAnimationFrame(() => {
       if (hash) {
         const target = document.getElementById(hash.slice(1));

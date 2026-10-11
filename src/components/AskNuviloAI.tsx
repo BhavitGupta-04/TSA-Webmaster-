@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, MessageSquareText, RotateCcw, Sparkles, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { askSignal, MODE, OPENING_MESSAGE, type ChatMessage } from '../lib/aiClient';
+import { askNuviloAI, MODE, OPENING_MESSAGE, type ChatMessage } from '../lib/aiClient';
 
 const HISTORY_KEY = 'signal-lab-chat-history';
 const questionGroups = [
@@ -34,7 +34,7 @@ function readHistory(): ChatMessage[] {
   }
 }
 
-export default function AskSignal() {
+export default function AskNuviloAI() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(readHistory);
   const [thinking, setThinking] = useState(false);
@@ -82,7 +82,7 @@ export default function AskSignal() {
       setThinking(true);
 
       const history = messages;
-      const result = await askSignal(history, trimmed);
+      const result = await askNuviloAI(history, trimmed);
 
       setMessages((current) => [
         ...current,
@@ -100,29 +100,29 @@ export default function AskSignal() {
         type="button"
         className={`ask-launcher ${open ? 'is-open' : ''}`}
         aria-expanded={open}
-        aria-controls="ask-signal-panel"
+        aria-controls="ask-nuvilo-ai-panel"
         onClick={() => setOpen((value) => !value)}
       >
         {open ? <X size={20} /> : <MessageSquareText size={20} />}
-        <span>{open ? 'Close' : 'Ask Signal'}</span>
+        <span>{open ? 'Close' : 'Ask Nuvilo AI'}</span>
       </button>
 
       <div
-        id="ask-signal-panel"
+        id="ask-nuvilo-ai-panel"
         className={`ask-panel ${open ? 'is-open' : ''}`}
         role="dialog"
-        aria-label="Ask Signal, the study guide"
+        aria-label="Ask Nuvilo AI, the study guide"
         aria-modal="false"
         hidden={!open}
       >
         <header className="ask-header">
           <div>
             <span className="ask-badge"><Sparkles size={13} /> STUDY GUIDE</span>
-            <h2>Ask Signal</h2>
+            <h2>Ask Nuvilo AI</h2>
           </div>
           <div className="ask-header-actions">
             {hasConversation && <button type="button" className="ask-icon-button" aria-label="Start a new conversation" onClick={() => setMessages([{ ...OPENING_MESSAGE, id: newId() }])}><RotateCcw size={16} /></button>}
-            <button type="button" className="ask-icon-button" aria-label="Close Ask Signal" onClick={() => setOpen(false)}>
+            <button type="button" className="ask-icon-button" aria-label="Close Ask Nuvilo AI" onClick={() => setOpen(false)}>
               <X size={18} />
             </button>
           </div>
@@ -175,7 +175,7 @@ export default function AskSignal() {
           ))}
           {thinking && (
             <div className="ask-message ask-message--assistant">
-              <div className="ask-bubble ask-typing" aria-label="Signal is typing">
+              <div className="ask-bubble ask-typing" aria-label="Nuvilo AI is typing">
                 <span /><span /><span />
               </div>
             </div>

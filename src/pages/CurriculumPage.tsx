@@ -66,7 +66,7 @@ export default function CurriculumPage() {
 
         <section className="curriculum-finale"><div className="landing-width curriculum-finale-inner"><p className="studio-eyebrow">THE POINT ISN’T TO USE AI FOR EVERYTHING.</p><h2>It’s knowing when, why,<br /><em>and what to question.</em></h2><Link className="landing-primary" to="/learn?module=tools">Explore practical tools <ArrowUpRight size={18} /></Link></div></section>
 
-        <section className="landing-width curriculum-ask"><MessageSquareText size={24} /><div><h2>Stuck on a word before you even start?</h2><p>Ask Signal is in the bottom corner of every page. It can explain a term, point you at the right chapter, or help you shape a question before you take it to a real AI tool.</p></div></section>
+        <section className="landing-width curriculum-ask"><MessageSquareText size={24} /><div><h2>Stuck on a word before you even start?</h2><p>Ask Nuvilo AI is in the bottom corner of every page. It can explain a term, point you at the right chapter, or help you shape a question before you take it to a real AI tool.</p></div></section>
       </main>
       <PublicSiteFooter />
     </div>

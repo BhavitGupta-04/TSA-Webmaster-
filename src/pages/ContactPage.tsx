@@ -12,7 +12,7 @@ const contactTopics = [
 ];
 
 export default function ContactPage() {
-  const [topic, setTopic] = useState('Feedback about Nuvilo AI');
+  const [topic, setTopic] = useState('Feedback about Nuvilo');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [issueUrl, setIssueUrl] = useState('');
@@ -21,7 +21,7 @@ export default function ContactPage() {
     event.preventDefault();
     const issue = new URL('https://github.com/BhavitGupta-04/TSA-Webmaster-/issues/new');
     issue.searchParams.set('title', `[${topic}] ${subject.trim()}`);
-    issue.searchParams.set('body', `## ${topic}\n\n${message.trim()}\n\n---\nSent from the Nuvilo AI contact page.`);
+    issue.searchParams.set('body', `## ${topic}\n\n${message.trim()}\n\n---\nSent from the Nuvilo contact page.`);
     setIssueUrl(issue.toString());
   };
 
@@ -51,7 +51,7 @@ export default function ContactPage() {
             <div className="contact-form-aside"><p className="studio-eyebrow">A NOTE TO THE TEAM</p><h2>Tell us what’s<br /><em>on your mind.</em></h2><p>Keep it about the site or learning experience. You don’t need to include your name, email, school, or any personal details.</p><div className="contact-privacy-note"><ShieldCheck size={19} /><span>Nothing is sent automatically. You’ll review the draft on GitHub before deciding whether to post it.</span></div></div>
             <form className="contact-message-form" onSubmit={prepareMessage}>
               <label htmlFor="contact-topic">What’s this about?</label>
-              <select id="contact-topic" value={topic} onChange={(event) => { setTopic(event.target.value); setIssueUrl(''); }}><option>Feedback about Nuvilo AI</option><option>Something is not working</option><option>Idea for a lesson or activity</option><option>Question about the project</option></select>
+              <select id="contact-topic" value={topic} onChange={(event) => { setTopic(event.target.value); setIssueUrl(''); }}><option>Feedback about Nuvilo</option><option>Something is not working</option><option>Idea for a lesson or activity</option><option>Question about the project</option></select>
               <label htmlFor="contact-subject">Short subject</label>
               <input id="contact-subject" value={subject} onChange={(event) => { setSubject(event.target.value); setIssueUrl(''); }} maxLength={90} placeholder="For example: Loved the pattern activity" required />
               <label htmlFor="contact-message">Your message</label>
@@ -62,7 +62,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="landing-width contact-backlink"><Link to="/about"><ArrowLeft size={16} /> Back to About Nuvilo AI</Link><span>We’re a student project. Thanks for helping us make it better.</span></section>
+        <section className="landing-width contact-backlink"><Link to="/about"><ArrowLeft size={16} /> Back to About Nuvilo</Link><span>We’re a student project. Thanks for helping us make it better.</span></section>
       </main>
       <PublicSiteFooter />
     </div>

@@ -15,7 +15,7 @@ export default function LessonReferences({ lessonId }: { lessonId: string }) {
   return <details className="lesson-reference">
     <summary>Another perspective / optional YouTube reference</summary>
     <h3>{video.title}</h3>
-    <p>By {video.creator}. External reference; this creator is not affiliated with Nuvilo AI.</p>
+    <p>By {video.creator}. External reference; this creator is not affiliated with Nuvilo.</p>
     {loaded
       ? <iframe src={'https://www.youtube-nocookie.com/embed/' + video.id} title={video.title + ' by ' + video.creator} loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
       : <button type="button" className="academy-secondary" onClick={() => setLoaded(true)}>Load reference video</button>}

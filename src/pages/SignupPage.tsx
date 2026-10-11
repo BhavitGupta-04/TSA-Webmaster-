@@ -21,7 +21,7 @@ export default function SignupPage() {
     <main className="signup-page">
       <div className="signup-layout">
         <section className="signup-story">
-          <Link to="/" className="signup-back"><ArrowLeft size={16} /> Back to Nuvilo AI</Link>
+          <Link to="/" className="signup-back"><ArrowLeft size={16} /> Back to Nuvilo</Link>
           <div className="signup-story-content">
             <div className="signup-brand-mark"><BrainCircuit size={23} /></div>
             <p className="landing-kicker">YOUR OWN LEARNING PATH</p>

@@ -2,8 +2,11 @@
 //
 // These are real, published books. Titles, authors, publishers, years, and ISBNs
 // are factual references so you can find a copy at a library or a bookshop — we
-// reproduce no cover art and no text from inside them. Covers on the shop page
-// are typography we set in CSS.
+// reproduce no publisher cover art and no text from inside them. The covers on
+// the shop page are ours: a credited Pexels photograph chosen for the book's
+// subject, tinted in the book's colours and set with the title in type. photoId
+// points at an entry in src/data/photos.ts, so the photographer is credited on
+// /sources wherever a cover appears.
 //
 // Prices are list prices rounded to the usual paperback range, used to make the
 // cart arithmetic real. Nothing on this site takes a payment. See CHECKOUT_MODE
@@ -25,8 +28,10 @@ export interface Book {
   /** Which learning module this book extends. */
   pairsWith: string;
   blurb: string;
-  /** Two-tone cover, drawn in CSS from these. */
+  /** Two-tone treatment the cover photograph is tinted with. */
   cover: { bg: string; ink: string; accent: string };
+  /** Cover photograph, keyed to src/data/photos.ts. */
+  photoId: string;
 }
 
 export const bookCatalog: Book[] = [
@@ -44,6 +49,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'A research scientist feeds neural networks bad ideas on purpose — pickup lines, recipes, paint colors — and the failures teach you more about how models work than most textbooks do.',
     cover: { bg: '#2f5f4a', ink: '#f5f5f0', accent: '#c39c56' },
+    photoId: 'cover-generated-shapes',
   },
   {
     id: 'thinking-humans',
@@ -59,6 +65,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'A computer scientist walks through what AI can actually do, what it only appears to do, and why the gap between the two keeps surprising the people who build it.',
     cover: { bg: '#1f3b4d', ink: '#f2f6f7', accent: '#6fb3c0' },
+    photoId: 'cover-neural-network',
   },
   {
     id: 'hello-world',
@@ -74,6 +81,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'Algorithms already decide sentences, diagnoses, and what you see online. Fry asks the question this site keeps returning to: when should a person overrule the machine?',
     cover: { bg: '#b8452f', ink: '#fff6ec', accent: '#f0c75e' },
+    photoId: 'cover-city-traffic',
   },
   {
     id: 'co-intelligence',
@@ -89,6 +97,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'A professor who makes his students use AI on purpose. The practical half of this book is the closest thing there is to a manual for working beside a model instead of hiding it.',
     cover: { bg: '#3f3a68', ink: '#f4f1ff', accent: '#a79bf0' },
+    photoId: 'cover-human-ai-collaboration',
   },
   {
     id: 'alignment-problem',
@@ -104,6 +113,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'What happens when a system optimizes exactly what you asked for and not at all what you meant. Reads like detective work, and it is the best explanation of why "it did what we told it" is not a defense.',
     cover: { bg: '#20343a', ink: '#eef5f3', accent: '#7fc4a8' },
+    photoId: 'cover-language-model',
   },
   {
     id: 'weapons-math',
@@ -119,6 +129,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'A mathematician takes apart the scoring systems that rank teachers, borrowers, and job applicants. The chapter on school ratings will change how you read a news story about data.',
     cover: { bg: '#8c2f39', ink: '#fdf0ee', accent: '#e8b4a0' },
+    photoId: 'cover-data-printout',
   },
   {
     id: 'race-after-technology',
@@ -134,6 +145,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'A sociologist on how technology that is designed to be neutral can still land unevenly on real people, and what asking "who is missing from this data?" looks like in practice.',
     cover: { bg: '#43306b', ink: '#f6f0ff', accent: '#d7a9e3' },
+    photoId: 'cover-circuitry',
   },
   {
     id: 'atlas-of-ai',
@@ -149,6 +161,7 @@ export const bookCatalog: Book[] = [
     blurb:
       'Follows AI back to the lithium mines, the labeled datasets, and the warehouses. A useful corrective if you have only ever met AI as a text box on a screen.',
     cover: { bg: '#4a4336', ink: '#f8f4e9', accent: '#d9b96a' },
+    photoId: 'cover-open-pit-mine',
   },
 ];
 

@@ -9,7 +9,7 @@ export default function LearningReferencesPage() {
     <header className="lesson-references-header">
       <p className="academy-kicker">MY LEARNING / EXTRA PERSPECTIVES</p>
       <h1>Video references</h1>
-      <p>Explore these optional videos from other educators and organizations. They offer another perspective; the Nuvilo AI lessons and transcripts are enough to complete your learning.</p>
+      <p>Explore these optional videos from other educators and organizations. They offer another perspective; the Nuvilo lessons and transcripts are enough to complete your learning.</p>
     </header>
     <div className="lesson-reference-library">
       {lessonReferences.map(reference => <article className="lesson-reference-card" key={reference.id}>
@@ -33,6 +33,6 @@ export default function LearningReferencesPage() {
         </a>
       </article>)}
     </div>
-    <p className="lesson-reference-disclaimer">These external videos are optional and are not produced or endorsed by Nuvilo AI. Opening one takes you to YouTube.</p>
+    <p className="lesson-reference-disclaimer">These external videos are optional and are not produced or endorsed by Nuvilo. Opening one takes you to YouTube.</p>
   </div>;
 }

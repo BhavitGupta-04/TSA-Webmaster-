@@ -83,7 +83,7 @@ export const originalWork = [
   { title: 'Fruit classifier scatter plot', detail: 'SVG axes, gridlines, data points, and marker drawn from an array of six example fruits we made up.' },
   { title: 'Progress ring', detail: 'Two SVG circles using strokeDasharray to show how much of the learning path is done.' },
   { title: 'Animated background field', detail: 'A motion component we wrote.' },
-  { title: 'Book covers on the Buy page', detail: 'Typographic covers laid out in CSS. No publisher artwork is reproduced.' },
+  { title: 'Book covers on the Buy page', detail: 'Our own covers: a credited Pexels photograph, tinted and set with the title in CSS. No publisher artwork is reproduced.' },
   { title: 'Colors, layout, and type scale', detail: 'Our own design decisions, built from scratch rather than from a template.' },
   { title: 'All written copy, lessons, and quiz questions', detail: 'Written by our team for this competition entry.' },
 ];

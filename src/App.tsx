@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-d
 import PortalShell from './components/PortalShell';
 import SiteMotionProvider from './components/SiteMotionProvider';
 import RouteEffects from './components/RouteEffects';
-import AskSignal from './components/AskSignal';
+import AskNuviloAI from './components/AskNuviloAI';
 import CartDrawer from './components/CartDrawer';
 const LearningHubPage = lazy(() => import('./pages/LearningHubPage'));
 const LessonQuizPage = lazy(() => import('./pages/LessonQuizPage'));
@@ -47,7 +47,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <CartDrawer />
-        <AskSignal />
+        <AskNuviloAI />
       </Router>
     </CartProvider></ProgressProvider></SiteMotionProvider>
   );

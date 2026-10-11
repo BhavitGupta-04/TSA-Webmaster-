@@ -113,6 +113,11 @@ export default function ReadingListPage() {
             ))}
           </div>
 
+          <p className="shop-cover-credit">
+            These covers are ours, not the publishers'. Each one is a photograph from Pexels, picked for what the book is about and
+            printed with the title and author. <Link to="/sources#photos">Every photographer is credited.</Link>
+          </p>
+
           <div className="shop-cart-nudge">
             <ShoppingBag size={20} />
             <p>Everything in your cart stays in this browser. Nothing is sent anywhere.</p>
