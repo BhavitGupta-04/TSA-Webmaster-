@@ -27,6 +27,18 @@ export function EthicsPreview() {
   return <div className="studio-widget ethics-widget"><div className="widget-caption"><span>THE JUDGMENT CALL</span><span>YOUR TURN</span></div><h4>Your teacher allows AI for brainstorming. What comes next?</h4><div className="ethics-options">{['Submit an AI-written paragraph.', 'Explore ideas, then write it myself.'].map((option, index) => <button key={option} type="button" aria-pressed={choice === index} onClick={() => setChoice(index)}><span>{choice === index ? <Check size={14} /> : String(index + 1).padStart(2, '0')}</span>{option}</button>)}</div><p className="widget-explanation" role="status">{choice === null ? 'Choose an approach to explore the reasoning.' : choice === 1 ? 'Keep the thinking yours. Follow your teacher’s rules for disclosing AI assistance, too.' : 'Permission to brainstorm is not permission to submit AI-written work. Revisit the assignment rules.'}</p></div>;
 }
 
+export function CreativePreview() {
+  return <div className="studio-widget creative-widget">
+    <div className="widget-caption"><span>IDEA TO YOUR OWN WORK</span><span>3 SIMPLE STEPS</span></div>
+    <ol className="creative-steps">
+      <li><span>1</span><div><strong>Start with your idea</strong><p>Choose what you want to make or explain.</p></div></li>
+      <li><span>2</span><div><strong>Ask AI for options</strong><p>Use suggestions to explore, not to decide for you.</p></div></li>
+      <li><span>3</span><div><strong>Revise and check</strong><p>Make the result your own and verify the facts.</p></div></li>
+    </ol>
+    <p className="widget-explanation">AI can help you get started. You choose what belongs in the final work.</p>
+  </div>;
+}
+
 const fruitData = [
   { length: 14, width: 3, label: 'Banana' }, { length: 16, width: 4, label: 'Banana' }, { length: 18, width: 4.5, label: 'Banana' },
   { length: 6, width: 6, label: 'Orange' }, { length: 7, width: 6.5, label: 'Orange' }, { length: 8, width: 8, label: 'Orange' },

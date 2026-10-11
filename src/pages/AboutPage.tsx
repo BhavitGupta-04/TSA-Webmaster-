@@ -17,7 +17,7 @@ export default function AboutPage() {
       <section className="studio-page-hero">
         <div className="landing-width studio-about-hero">
           <div>
-            <p className="studio-eyebrow">OUR STORY / WHY SIGNAL EXISTS</p>
+            <p className="studio-eyebrow">OUR STORY / WHY NUVILO AI EXISTS</p>
             <h1>The future needs<br /><em>curious people.</em></h1>
             <p>AI is becoming part of how we learn and create. Understanding it should feel like an invitation to explore.</p>
           </div>
@@ -36,7 +36,7 @@ export default function AboutPage() {
             <h2>What if learning AI<br /><em>started with curiosity?</em></h2>
           </div>
           <div>
-            <p>Signal Lab is an AI learning portal we built for the TSA Webmaster competition. It is aimed at students in grades 9–12, mostly because that is who we are and nobody was explaining this to us in a way that stuck.</p>
+            <p>Nuvilo AI is an AI learning portal we built for the TSA Webmaster competition. It is aimed at students in grades 9–12, mostly because that is who we are and nobody was explaining this to us in a way that stuck.</p>
             <p>Most of what you hear about AI is either a sales pitch or a warning. Neither one tells you how the thing actually works, so neither one helps you decide when to trust it. We wanted the version in between: short lessons, things you can poke at, and straight answers about where it breaks.</p>
             <Link className="studio-text-button" to="/learn?module=fundamentals">See the idea in action <ArrowUpRight size={17} /></Link>
           </div>

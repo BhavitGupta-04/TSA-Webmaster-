@@ -1,4 +1,4 @@
-import { Activity, ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Award, BadgeCheck, BookOpen, BookOpenCheck, BrainCircuit, Bug, Check, CheckCircle2, ChevronRight, Clock3, Compass, Copy, CreditCard, ExternalLink, Eye, Fingerprint, Flame, GraduationCap, Headphones, HeartHandshake, Info, Layers3, LayoutDashboard, Lightbulb, Loader, Lock, Menu, MessageCircle, MessageSquareText, Minus, Pencil, Play, Plus, Printer, Quote, RefreshCw, RotateCcw, ScanFace, Search, ShieldAlert, ShieldCheck, ShoppingBag, Sparkles, Tag, Target, Trash2, Trophy, Users, Wand2, X, type LucideIcon } from 'lucide-react';
 
 export const iconLibrary = {
   name: 'Lucide',
@@ -16,7 +16,6 @@ export const iconLibrary = {
 // our code are from Lucide 0.344 and were renamed upstream later, so the slug and
 // the component name differ for those three.
 export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
-  { name: 'Activity', slug: 'activity', icon: Activity },
   { name: 'ArrowDown', slug: 'arrow-down', icon: ArrowDown },
   { name: 'ArrowLeft', slug: 'arrow-left', icon: ArrowLeft },
   { name: 'ArrowRight', slug: 'arrow-right', icon: ArrowRight },
@@ -54,7 +53,6 @@ export const iconCredits: { name: string; slug: string; icon: LucideIcon }[] = [
   { name: 'Users', slug: 'users', icon: Users },
   { name: 'Wand2', slug: 'wand-sparkles', icon: Wand2 },
   { name: 'Bug', slug: 'bug', icon: Bug },
-  { name: 'ChevronDown', slug: 'chevron-down', icon: ChevronDown },
   { name: 'CreditCard', slug: 'credit-card', icon: CreditCard },
   { name: 'Flame', slug: 'flame', icon: Flame },
   { name: 'Headphones', slug: 'headphones', icon: Headphones },
@@ -85,7 +83,7 @@ export const originalWork = [
   { title: 'Fruit classifier scatter plot', detail: 'SVG axes, gridlines, data points, and marker drawn from an array of six example fruits we made up.' },
   { title: 'Progress ring', detail: 'Two SVG circles using strokeDasharray to show how much of the learning path is done.' },
   { title: 'Animated background field', detail: 'A motion component we wrote.' },
-  { title: 'Book covers in the Reading List', detail: 'Typographic covers laid out in CSS. No publisher artwork is reproduced.' },
+  { title: 'Book covers on the Buy page', detail: 'Typographic covers laid out in CSS. No publisher artwork is reproduced.' },
   { title: 'Colors, layout, and type scale', detail: 'Our own design decisions, built from scratch rather than from a template.' },
   { title: 'All written copy, lessons, and quiz questions', detail: 'Written by our team for this competition entry.' },
 ];
@@ -97,7 +95,10 @@ export const softwareCredits = [
   { name: 'Bootstrap', version: '5.3.8', license: 'MIT', url: 'https://getbootstrap.com' },
   { name: 'Tailwind CSS', version: '3.4.17', license: 'MIT', url: 'https://tailwindcss.com' },
   { name: 'TypeScript', version: '5.6.3', license: 'Apache-2.0', url: 'https://www.typescriptlang.org' },
+  { name: 'Python', version: '3.11+', license: 'PSF-2.0', url: 'https://www.python.org' },
   { name: 'Django', version: '5.2.x', license: 'BSD-3-Clause', url: 'https://www.djangoproject.com' },
+  { name: 'SQLite', version: 'Configured database', license: 'Public domain', url: 'https://sqlite.org' },
+  { name: 'Lucide React', version: '0.344.0', license: 'ISC', url: 'https://lucide.dev' },
   { name: 'WhiteNoise', version: '6.9.x', license: 'MIT', url: 'https://whitenoise.readthedocs.io' },
   { name: 'Gunicorn', version: '23.x', license: 'MIT', url: 'https://gunicorn.org' },
 ];

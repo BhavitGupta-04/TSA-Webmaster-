@@ -1,6 +1,6 @@
-# Signal Lab
+# Nuvilo AI
 
-Signal Lab is an interactive AI learning portal for grades 9–12. The React/Vite frontend contains the public website and learning studio. A Django API serves public, rotating field challenges. Learner names, grades, notes, flashcards, and progress remain in browser `localStorage`; they are not sent to Django.
+Nuvilo AI is an interactive AI learning portal for grades 9–12. The React/Vite frontend contains the public website and learning studio. A Django API serves public, rotating field challenges. Learner names, grades, notes, flashcards, and progress remain in browser `localStorage`; they are not sent to Django.
 
 ## Requirements
 

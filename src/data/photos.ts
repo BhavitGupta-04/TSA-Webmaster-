@@ -101,7 +101,7 @@ export const sitePhotos: SitePhotoCredit[] = [
     photographer: 'Lisa Fotios',
     url: 'https://www.pexels.com/photo/assorted-books-2923463/',
     alt: 'Two crowded shelves of hardback books in warm light, with a palm leaf in the foreground.',
-    usedOn: 'Reading List',
+    usedOn: 'Buy page',
   },
 ];
 

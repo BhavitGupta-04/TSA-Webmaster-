@@ -8,7 +8,7 @@ class FrontendRoutingTests(SimpleTestCase):
     def setUp(self):
         self.temp_dir = tempfile.TemporaryDirectory()
         self.frontend_dir = Path(self.temp_dir.name)
-        (self.frontend_dir / 'index.html').write_text('<main>Signal Lab</main>', encoding='utf-8')
+        (self.frontend_dir / 'index.html').write_text('<main>Nuvilo AI</main>', encoding='utf-8')
         asset_dir = self.frontend_dir / 'assets'
         asset_dir.mkdir()
         (asset_dir / 'app.js').write_text('console.log("ready")', encoding='utf-8')
@@ -25,7 +25,7 @@ class FrontendRoutingTests(SimpleTestCase):
                 response = self.client.get(route)
                 self.assertEqual(response.status_code, 200)
                 self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
-                self.assertContains(response, 'Signal Lab')
+                self.assertContains(response, 'Nuvilo AI')
 
     def test_missing_asset_returns_not_found(self):
         response = self.client.get('/assets/missing.js')

@@ -21,15 +21,15 @@ export default function SignupPage() {
     <main className="signup-page">
       <div className="signup-layout">
         <section className="signup-story">
-          <Link to="/" className="signup-back"><ArrowLeft size={16} /> Back to Signal Lab</Link>
+          <Link to="/" className="signup-back"><ArrowLeft size={16} /> Back to Nuvilo AI</Link>
           <div className="signup-story-content">
             <div className="signup-brand-mark"><BrainCircuit size={23} /></div>
-            <p className="landing-kicker">YOUR OWN SIGNAL PATH</p>
+            <p className="landing-kicker">YOUR OWN LEARNING PATH</p>
             <h1>Make a space<br /><em>for your ideas.</em></h1>
             <p>Set up a learner profile, explore AI at your grade level, and watch your skills grow as you go.</p>
             <ul><li><GraduationCap size={18} /> Built for high school learners</li><li><ShieldCheck size={18} /> Your progress stays in this browser</li></ul>
           </div>
-          <div className="signup-story-index">SIGNAL LAB <span> / </span> START HERE</div>
+          <div className="signup-story-index">NUVILO AI <span> / </span> START HERE</div>
         </section>
 
         <section className="signup-form-wrap">

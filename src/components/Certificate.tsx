@@ -36,12 +36,12 @@ export default function Certificate({ onClose }: { onClose: () => void }) {
         <article className="certificate" id="signal-certificate">
           <div className="certificate-rule" aria-hidden="true" />
           <span className="certificate-seal" aria-hidden="true"><Award size={30} /></span>
-          <p className="certificate-kicker">SIGNAL LAB / AI LEARNING PORTAL</p>
+          <p className="certificate-kicker">NUVILO AI / AI LEARNING PORTAL</p>
           <h2>Certificate of Completion</h2>
           <p className="certificate-presented">This certifies that</p>
           <p className="certificate-name">{displayName}</p>
           <p className="certificate-body">
-            has completed all eight lessons across four units of the Signal Lab learning path{gradeLevel ? ` as a grade ${gradeLevel} student` : ''} —
+            has completed all eight lessons across four units of the Nuvilo AI learning path{gradeLevel ? ` as a grade ${gradeLevel} student` : ''} —
             covering how machine learning works, how to use AI tools deliberately, the ethics of automated decisions, and creative
             work with a human at the centre.
           </p>
@@ -52,7 +52,7 @@ export default function Certificate({ onClose }: { onClose: () => void }) {
             <div><dt>Issued</dt><dd>{issued}</dd></div>
           </dl>
           <p className="certificate-footnote">
-            Awarded by Signal Lab, a student project. This is a record of work finished on this site, not an accredited
+            Awarded by Nuvilo AI, a student project. This is a record of work finished on this site, not an accredited
             qualification.
           </p>
           <div className="certificate-rule certificate-rule--bottom" aria-hidden="true" />

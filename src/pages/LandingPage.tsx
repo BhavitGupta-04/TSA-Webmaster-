@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
 import EverydayAI from '../components/EverydayAI';
 import DailyChallenge from '../components/DailyChallenge';
-import { NetworkSteps, PromptPreview, EthicsPreview } from '../components/StudioExperiments';
+import { NetworkSteps, PromptPreview, EthicsPreview, CreativePreview } from '../components/StudioExperiments';
 import Reveal from '../components/Reveal';
 
 import { useProgress } from '../state/progress-context';
@@ -14,7 +14,7 @@ const chapters = [
   { id: 'fundamentals', topic: '01 / THE FOUNDATIONS', title: <>Meet the<br /><em>pattern finders.</em></>, description: 'Nobody wrote the rule that tells a model what a bottle looks like. It worked that out from examples — which is also the reason it falls apart on a photo it has never seen.', tags: ['Training data', 'Machine learning', 'AI limitations'], preview: NetworkSteps },
   { id: 'tools', topic: '02 / THE TOOLKIT', title: <>Better questions.<br /><em>Better possibilities.</em></>, description: '“Help with biology” gets you a wall of text. A good prompt gets you a study partner that quizzes you and waits while you think. The difference is about four extra words.', tags: ['Prompt design', 'Study techniques', 'Verification'], preview: PromptPreview },
   { id: 'ethics', topic: '03 / THE HUMAN SIDE', title: <>Powerful tools.<br /><em>Thoughtful choices.</em></>, description: 'A tool can be 95% accurate and still fail almost everyone in one group. Learn to ask who the data left out, what should never be typed in, and who answers when it gets someone wrong.', tags: ['Fairness & bias', 'Privacy', 'Academic integrity'], preview: EthicsPreview },
-  { id: 'creativity', topic: '04 / CREATIVE AI', title: <>Make it useful.<br /><em>Make it yours.</em></>, description: 'Use AI to explore ideas, then choose, revise, and verify the result. Keep your purpose and voice at the center of the work.', tags: ['Creative briefs', 'Revision', 'Disclosure'], preview: null },
+  { id: 'creativity', topic: '04 / CREATIVE AI', title: <>Make it useful.<br /><em>Make it yours.</em></>, description: 'Use AI to explore ideas, then choose, revise, and verify the result. Keep your purpose and voice at the center of the work.', tags: ['Creative briefs', 'Revision', 'Disclosure'], preview: CreativePreview },
 ];
 const faqs = [
   ['Do I need to know how to code?', 'No — and you won’t write any here. The lessons start from things you already use, like playlists and face unlock, and work outward from there. If you’re in grades 9–12 and curious, that’s the whole entry requirement.'],
@@ -58,7 +58,7 @@ export default function LandingPage() {
         <Reveal><div className="studio-section-heading"><div><p className="studio-eyebrow">01 — CHOOSE YOUR CURIOSITY</p><h2>From “what is AI?”<br />to <em>“watch what I can do.”</em></h2></div><p>Four chapters cover AI foundations, practical tools, ethical use, and creative work.</p></div></Reveal>
         <div className="studio-card-stack">{chapters.map(({ id, topic, title, description, tags, preview: Preview }, index) => {
           const module = learningModules.find(item => item.id === id)!;
-          return <article key={id} className={`studio-chapter chapter-${id}`} style={{ '--card-index': index } as CSSProperties}><div className="chapter-topline"><span>{topic}</span><span>SIGNAL LAB / FIELD NOTES</span><span>0{index + 1}</span></div><div className={`chapter-layout ${Preview ? '' : 'chapter-layout--text-only'}`}><div className="chapter-story"><h3>{title}</h3><p>{description}</p><div className="chapter-tags">{tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="chapter-actions"><Link className="studio-dark-button" to={`/learn?module=${id}`}>Explore the chapter <ArrowUpRight size={18} /></Link><span><Clock3 size={14} />{module.minutes} min · {module.xp} XP</span></div></div>{Preview && <Preview />}</div></article>;
+          return <article key={id} className={`studio-chapter chapter-${id}`} style={{ '--card-index': index } as CSSProperties}><div className="chapter-topline"><span>{topic}</span><span>NUVILO AI / FIELD NOTES</span><span>0{index + 1}</span></div><div className="chapter-layout"><div className="chapter-story"><h3>{title}</h3><p>{description}</p><div className="chapter-tags">{tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="chapter-actions"><Link className="studio-dark-button" to={`/learn?module=${id}`}>Explore the chapter <ArrowUpRight size={18} /></Link><span><Clock3 size={14} />{module.minutes} min · {module.xp} XP</span></div></div><Preview /></div></article>;
         })}</div>
       </section>
 

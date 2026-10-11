@@ -14,7 +14,7 @@ export const lessonReferences: LessonReference[] = [
     title: 'What is Machine Learning?',
     creator: 'Code.org / CodeAI',
     focus: 'Machine learning and how examples help a system make predictions.',
-    note: 'A short introduction from Code.org. Use it as another explanation, then compare its examples with the school situations in Signal Lab.',
+    note: 'A short introduction from Code.org. Use it as another explanation, then compare its examples with the school situations in Nuvilo AI.',
     prompt: 'What is one example of learning from data, and what would you test before trusting its predictions?',
     lessonIds: ['patterns', 'test-detective'],
   },

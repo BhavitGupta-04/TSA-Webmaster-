@@ -1,4 +1,4 @@
-import { ArrowUpRight, BadgeCheck, ExternalLink, Fingerprint } from 'lucide-react';
+import { ArrowUpRight, BadgeCheck, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PublicSiteFooter, PublicSiteHeader } from '../components/PublicSiteChrome';
 import Reveal from '../components/Reveal';
@@ -10,7 +10,7 @@ import { lessonReferences } from '../data/lessonReferences';
 
 export default function SourcesPage() {
   return <div className="signal-landing studio-interior"><PublicSiteHeader /><main id="main-content" tabIndex={-1}>
-    <section className="studio-page-hero"><div className="landing-width"><p className="studio-eyebrow"><BadgeCheck size={17} /> SOURCES &amp; CREDITS</p><h1>Every borrowed piece,<br /><em>named out loud.</em></h1><p>We ask you to check your sources, so here are ours. Everything on this site that we did not make ourselves is listed below with its creator, its license, and a link you can follow.</p><nav className="studio-anchor-pills" aria-label="Sections on this page"><a href="#photos">01 / Photographs</a><a href="#icons">02 / Icons</a><a href="#fonts">03 / Typefaces</a><a href="#books">04 / Books</a><a href="#references">05 / Learning sources</a><a href="#original">06 / Our own work</a><a href="#software">07 / Software</a><a href="#competition-documents">08 / Competition documents</a></nav></div></section>
+    <section className="studio-page-hero"><div className="landing-width"><p className="studio-eyebrow"><BadgeCheck size={17} /> SOURCES &amp; CREDITS</p><h1>Every borrowed piece,<br /><em>named out loud.</em></h1><p>We ask you to check your sources, so here are ours. Everything on this site that we did not make ourselves is listed below with its creator, its license, and a link you can follow.</p><nav className="studio-anchor-pills" aria-label="Sections on this page"><a href="#photos">01 / Photographs</a><a href="#icons">02 / Icons</a><a href="#fonts">03 / Typefaces</a><a href="#books">04 / Books</a><a href="#references">05 / Learning sources</a><a href="#original">06 / Our own work</a><a href="#software">07 / Frameworks &amp; software</a><a href="#competition-documents">08 / Competition documents</a><a href="#permissions">09 / Permissions</a></nav></div></section>
 
     <section className="landing-width studio-sources-section" id="photos" tabIndex={-1}>
       <Reveal>
@@ -69,9 +69,9 @@ export default function SourcesPage() {
       <Reveal>
         <p className="studio-eyebrow">04 / BOOKS</p>
         <h2>Real books,<br /><em>listed as references.</em></h2>
-        <p className="studio-sources-lede">The Buy page lists {bookCatalog.length} published books you can find at a library or bookshop. Titles, authors, and publication years are facts about those books; we reproduce no cover artwork and no text from inside them. The covers you see on that page are typography we set ourselves. We are not affiliated with these authors or publishers, and checkout is a demonstration: no payment is collected and nothing ships.</p>
+        <p className="studio-sources-lede">The Buy page lists {bookCatalog.length} real published books. We checked each ISBN against Open Library; follow the ISBN link below to verify the listed edition. We reproduce no cover artwork and no text from inside the books. The covers on the Buy page are typography we set ourselves. We are not affiliated with these authors or publishers, and checkout is a demonstration: no payment is collected and nothing ships.</p>
       </Reveal>
-      <ol className="studio-original-list">{bookCatalog.map((book, index) => <li key={book.id}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{book.title}</h3><p>{book.author}. <em>{book.title}</em>. {book.publisher}, {book.year}.</p></div></li>)}</ol>
+      <ol className="studio-original-list">{bookCatalog.map((book, index) => <li key={book.id}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{book.title}</h3><p>{book.author}. <em>{book.title}</em>. {book.publisher}, {book.year}. ISBN {book.isbn}. <a href={`https://openlibrary.org/isbn/${book.isbn}`} target="_blank" rel="noopener noreferrer">Verify this edition in Open Library<ExternalLink size={13} /><span className="sr-only"> (opens in a new tab)</span></a></p></div></li>)}</ol>
     </section>
 
     <section className="landing-width studio-sources-section" id="references" tabIndex={-1}>
@@ -98,7 +98,7 @@ export default function SourcesPage() {
     <section className="landing-width studio-sources-section studio-sources-software" id="software" tabIndex={-1}>
       <p className="studio-eyebrow">07 / FRAMEWORKS &amp; SOFTWARE</p>
       <h2>The tools behind the site.</h2>
-      <p className="studio-sources-lede">Signal Lab uses React and React Router for the front end, Vite to build it, and Django for the API and production serving. TypeScript, Bootstrap, Tailwind CSS, Lucide, WhiteNoise, and Gunicorn are also used. These open-source frameworks and tools are listed with the versions used and their licenses.</p>
+      <p className="studio-sources-lede">The frontend uses React, React Router, TypeScript, Bootstrap, and Tailwind CSS. Vite builds the site. The backend runs on Python with Django and SQLite; WhiteNoise and Gunicorn support serving it in production. Lucide supplies the interface icons. These frameworks and tools are listed with their versions and licenses.</p>
       <ul className="studio-software-list">{softwareCredits.map(tool => <li key={tool.name}><a href={tool.url} target="_blank" rel="noopener noreferrer"><strong>{tool.name}</strong><span>{tool.version}</span><span>{tool.license}</span><ArrowUpRight size={15} /><span className="sr-only"> (opens in a new tab)</span></a></li>)}</ul>
     </section>
 
@@ -109,7 +109,20 @@ export default function SourcesPage() {
       <p className="studio-sources-disclosure">The attached rulebook was reviewed, but it refers to additional TSA General Rules that were not included. Confirm the entry against the current complete rules and your event's instructions.</p>
     </section>
 
-    <section className="landing-width studio-privacy"><Fingerprint size={38} /><div><p className="studio-eyebrow">HOW THIS PAGE STAYS HONEST</p><h2>Written from the code, not from memory.</h2><p>This page reads from the same lists the site builds from, so the icons and photographs shown here are literally the ones in use. If we add one, it appears here too.</p><p>The full written version, including file-by-file usage, lives in SOURCES.md alongside our source code.</p></div></section>
+    <section className="landing-width studio-sources-section" id="permissions" tabIndex={-1}>
+      <Reveal>
+        <p className="studio-eyebrow">09 / PERMISSIONS &amp; LICENSES</p>
+        <h2>What we made, what we licensed,<br /><em>and what we did not copy.</em></h2>
+        <p className="studio-sources-lede">We have not included separate written permission letters. The third-party items used on this site are credited above and used under the linked public licenses or through the original publisher's video player; no permission beyond those terms is claimed.</p>
+      </Reveal>
+      <dl className="studio-credit-facts">
+        <div><dt>Text</dt><dd>Our lesson explanations, prompts, quizzes, and site copy were written for this project. We do not reproduce passages from the linked learning sources or books; those sources are credited above for reference.</dd></div>
+        <div><dt>Photographs</dt><dd>The credited photos are from Pexels and used under the <a href={photoLibrary.licenseUrl} target="_blank" rel="noopener noreferrer">{photoLibrary.license}<ExternalLink size={13} /><span className="sr-only"> (opens in a new tab)</span></a>. Photographer and image links are listed in the Photographs section.</dd></div>
+        <div><dt>Icons and fonts</dt><dd>Lucide icons are used under the license listed in the Icons section. The typefaces are distributed under the SIL Open Font License, linked in the Typefaces section.</dd></div>
+        <div><dt>Video and sound</dt><dd>The credited YouTube videos are embedded from their publishers' channels using YouTube's player; they are not downloaded or re-hosted by this site. Any audio in those videos remains part of the original videos. We do not include a separate soundtrack or standalone sound recordings.</dd></div>
+        <div><dt>Permission status</dt><dd>No separate signed permissions were supplied or obtained for the listed assets; we rely on their stated licenses and the platform's embedding mechanism. If the competition requires written permission beyond those terms, the team must obtain it from the rights holder before submission.</dd></div>
+      </dl>
+    </section>
 
     <section className="studio-inline-cta landing-width"><div><p className="studio-eyebrow">YOUR TURN</p><h2>Checking sources is a skill.</h2><p>Our Field Guide shows you how to do this for anything AI hands you.</p></div><Link className="landing-primary" to="/field-guide">Open the Field Guide <ArrowUpRight size={18} /></Link></section>
   </main><PublicSiteFooter /></div>;

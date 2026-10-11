@@ -1,4 +1,4 @@
-// The Reading List catalogue.
+// The Buy page catalogue.
 //
 // These are real, published books. Titles, authors, publishers, years, and ISBNs
 // are factual references so you can find a copy at a library or a bookshop — we
@@ -33,10 +33,10 @@ export const bookCatalog: Book[] = [
   {
     id: 'thing-love-you',
     title: 'You Look Like a Thing and I Love You',
-    subtitle: 'How AI Works and Why It’s Making the World a Weirder Place',
+    subtitle: 'How Artificial Intelligence Works and Why It’s Making the World a Weirder Place',
     author: 'Janelle Shane',
     publisher: 'Voracious',
-    year: 2019,
+    year: 2021,
     isbn: '9780316525220',
     priceCents: 1799,
     level: 'Start here',

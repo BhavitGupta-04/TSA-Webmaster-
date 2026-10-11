@@ -112,7 +112,7 @@ for video in videos:
                 image = Image.new("RGB", (960, 540), "#f5f5ef")
                 draw = ImageDraw.Draw(image)
                 draw.rectangle((0, 0, 960, 8), fill="#315e48")
-                wrap(draw, "signal. / THE LEARNING LAB", 42, 30, 750, 17, bold=True)
+                wrap(draw, "NUVILO AI / THE LEARNING LAB", 42, 30, 750, 17, bold=True)
                 wrap(draw, f"{index + 1:02} / {len(video['scenes']):02}", 825, 32, 110, 16)
                 wrap(draw, scene["title"], 42, 83, 870, 34, bold=True)
                 for node_index, label in enumerate(scene["nodes"]):

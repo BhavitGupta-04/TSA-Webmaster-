@@ -1,7 +1,7 @@
-# Sources & Works Cited — Signal Lab
+# Sources & Works Cited — Nuvilo AI
 
 Every third-party asset used in this site, with its origin, creator, license, and
-where it appears. Current as of 2026-10-01.
+where it appears. Current as of 2026-10-11.
 
 A visitor-facing version of these credits is published on the site itself at
 **`/sources`**, linked from the footer of every public page. That page is built from
@@ -51,7 +51,7 @@ otherwise — that would breach the Pexels License as well as being untrue.
 
 ## 2. Icons
 
-**All 61 icons in this site come from one open-source library.**
+**All 54 icons in this site come from one open-source library.**
 
 | Field | Detail |
 | --- | --- |
@@ -72,7 +72,6 @@ Each icon is used unmodified, sized in code and recolored only through CSS
 
 | Icon name | Lucide page | Used in |
 | --- | --- | --- |
-| Activity | https://lucide.dev/icons/activity | `src/components/PublicSiteChrome.tsx` |
 | ArrowDown | https://lucide.dev/icons/arrow-down | `src/pages/LandingPage.tsx` |
 | ArrowLeft | https://lucide.dev/icons/arrow-left | `src/pages/CheckoutPage.tsx`, `src/pages/ContactPage.tsx`, `src/pages/LearningHubPage.tsx`, `src/pages/SignupPage.tsx` |
 | ArrowRight | https://lucide.dev/icons/arrow-right | `src/components/CartDrawer.tsx`, `src/components/DailyChallenge.tsx`, `src/components/StudioExperiments.tsx`, `src/pages/CheckoutPage.tsx`, `src/pages/CurriculumPage.tsx`, `src/pages/FieldGuidePage.tsx`, `src/pages/LandingPage.tsx`, `src/pages/LearningHubPage.tsx`, `src/pages/SignupPage.tsx` |
@@ -169,7 +168,7 @@ Not third-party assets. Listed so a judge can tell them apart from sourced mater
 | Fruit classifier scatter plot | SVG axes, gridlines, data points, and marker drawn by our own code from the `fruitData` array | `src/components/StudioExperiments.tsx` lines 43–50 |
 | Progress ring | Two SVG circles using `strokeDasharray` to show percent complete | `src/pages/PortalHomePage.tsx` |
 | Animated background field | Motion component written by our team | `src/components/NeuralField.tsx` |
-| Book covers on the Reading List | Typography laid out in CSS from the title and author. No publisher cover art is reproduced. | `src/components/BookCover.tsx` |
+| Book covers on the Buy page | Typography laid out in CSS from the title and author. No publisher cover art is reproduced. | `src/components/BookCover.tsx` |
 | Certificate of completion | Laid out in CSS and printed by the browser | `src/components/Certificate.tsx` |
 | All colors, layout, and type scale | Original design decisions | `src/styles/*.css` |
 | All written copy, lesson content, and quiz questions | Written by our team | `src/data/*.ts`, `src/pages/*.tsx` |
@@ -177,42 +176,79 @@ Not third-party assets. Listed so a judge can tell them apart from sourced mater
 The only raster images in the project are the eight photographs in section 1. Every
 other graphic is a Lucide icon or vector shapes drawn by our own code.
 
-### Books named on the Reading List
+### Books listed on the Buy page
 
-`/reading-list` names eight published books so visitors can find them at a library.
-Titles, authors, publishers, years, and ISBNs are factual references; no cover art and
-no text from inside the books is reproduced. The data lives in `src/data/books.ts`.
-We are not affiliated with these authors or publishers. The shop takes no payment —
-see section 5 of this file and `src/lib/checkout.ts`.
+`/reading-list` lists eight real published books so visitors can find them at a
+library or bookshop. Each ISBN below was checked against its edition record in
+[Open Library](https://openlibrary.org/). Titles, authors, publishers, years, and
+ISBNs are bibliographic details; no cover art and no text from inside the books is
+reproduced. The data lives in `src/data/books.ts`. We are not affiliated with these
+authors or publishers. The shop takes no payment — see section 6 of this file and
+`src/lib/checkout.ts`.
 
 | Author | Title | Publisher | Year | ISBN |
 | --- | --- | --- | --- | --- |
-| Janelle Shane | You Look Like a Thing and I Love You | Voracious | 2019 | 9780316525220 |
-| Melanie Mitchell | Artificial Intelligence: A Guide for Thinking Humans | Farrar, Straus and Giroux | 2019 | 9780374257835 |
-| Hannah Fry | Hello World: Being Human in the Age of Algorithms | W. W. Norton & Company | 2018 | 9780393634990 |
-| Ethan Mollick | Co-Intelligence: Living and Working with AI | Portfolio / Penguin | 2024 | 9780593716717 |
-| Brian Christian | The Alignment Problem: Machine Learning and Human Values | W. W. Norton & Company | 2020 | 9780393635829 |
-| Cathy O'Neil | Weapons of Math Destruction | Crown | 2016 | 9780553418811 |
-| Ruha Benjamin | Race After Technology | Polity | 2019 | 9781509526406 |
-| Kate Crawford | Atlas of AI | Yale University Press | 2021 | 9780300264630 |
+| Janelle Shane | You Look Like a Thing and I Love You | Voracious | 2021 edition | [9780316525220](https://openlibrary.org/isbn/9780316525220) |
+| Melanie Mitchell | Artificial Intelligence: A Guide for Thinking Humans | Farrar, Straus and Giroux | 2019 | [9780374257835](https://openlibrary.org/isbn/9780374257835) |
+| Hannah Fry | Hello World: Being Human in the Age of Algorithms | W. W. Norton & Company | 2018 | [9780393634990](https://openlibrary.org/isbn/9780393634990) |
+| Ethan Mollick | Co-Intelligence: Living and Working with AI | Portfolio / Penguin | 2024 | [9780593716717](https://openlibrary.org/isbn/9780593716717) |
+| Brian Christian | The Alignment Problem: Machine Learning and Human Values | W. W. Norton & Company | 2020 | [9780393635829](https://openlibrary.org/isbn/9780393635829) |
+| Cathy O'Neil | Weapons of Math Destruction | Crown | 2016 | [9780553418811](https://openlibrary.org/isbn/9780553418811) |
+| Ruha Benjamin | Race After Technology | Polity | 2019 | [9781509526406](https://openlibrary.org/isbn/9781509526406) |
+| Kate Crawford | Atlas of AI | Yale University Press | 2021 | [9780300264630](https://openlibrary.org/isbn/9780300264630) |
 
 ---
 
-## 5. Software and frameworks
+## 5. Learning references and permission status
+
+The lessons, prompts, quizzes, and interface copy were written for this project.
+The following sources informed the educational material; their content is linked
+or embedded, not copied into our lessons:
+
+| Source | Material | Link |
+| --- | --- | --- |
+| Google for Developers | What is machine learning? | https://developers.google.com/machine-learning/intro-to-ml/what-is-ml |
+| UNESCO | Ethics of artificial intelligence | https://www.unesco.org/en/artificial-intelligence/recommendation-ethics |
+| Khan Academy | AI for education | https://www.khanacademy.org/college-careers-more/ai-for-education |
+| Code.org / CodeAI | What is Machine Learning? | https://www.youtube.com/watch?v=KHbwOetbmbs |
+| Common Sense Education | Using AI Wisely for School Success | https://www.youtube.com/watch?v=9x7srNK_i1Q |
+| Google Cloud | Introduction to Responsible AI | https://www.youtube.com/watch?v=w_3L1Bf2P_g |
+
+The YouTube videos are embedded from their publishers' channels using YouTube's
+player. They are not downloaded or re-hosted, and any audio remains part of the
+original video. The project does not include a separate soundtrack or standalone
+sound recordings.
+
+No separate written permission letters were supplied or obtained for third-party
+assets. The photographs, icons, and typefaces are used under the public licenses
+identified in sections 1–3. The project does not claim permission to reproduce
+third-party text or media outside those license terms. If the competition requires
+written permission beyond the published licenses or normal video embedding, the
+team must obtain that permission from the rights holder before submission.
+
+## 6. Software and frameworks
 
 Tools the site was built with, not content shown on it. Included for completeness.
 
 | Tool | Version | License | Source |
 | --- | --- | --- | --- |
 | React | 18.3.1 | MIT | https://react.dev |
-| React Router | 7.8.2 | MIT | https://reactrouter.com |
-| Vite | 5.4.2 | MIT | https://vite.dev |
-| Tailwind CSS | 3.4.1 | MIT | https://tailwindcss.com |
-| TypeScript | 5.5.3 | Apache-2.0 | https://www.typescriptlang.org |
+| React Router | 7.18.4 | MIT | https://reactrouter.com |
+| Vite | 5.4.8 | MIT | https://vite.dev |
+| Bootstrap | 5.3.8 | MIT | https://getbootstrap.com |
+| Tailwind CSS | 3.4.17 | MIT | https://tailwindcss.com |
+| TypeScript | 5.6.3 | Apache-2.0 | https://www.typescriptlang.org |
+| Python | 3.11+ | PSF-2.0 | https://www.python.org |
+| Django | 5.2.x | BSD-3-Clause | https://www.djangoproject.com |
+| SQLite | Configured database | Public domain | https://sqlite.org |
+| WhiteNoise | 6.9.x | MIT | https://whitenoise.readthedocs.io |
+| Gunicorn | 23.x | MIT | https://gunicorn.org |
+
+Lucide React (0.344.0, ISC) is documented in section 2 with its icon credits.
 
 ---
 
-## 6. How to verify this list
+## 7. How to verify this list
 
 ```bash
 # Every icon import in the project

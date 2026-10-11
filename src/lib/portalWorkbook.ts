@@ -54,7 +54,7 @@ export function stepDone(lesson: Lesson, work: Workbook, index: number) {
 }
 export function downloadWorkbook(lesson: Lesson, work: Workbook) {
   const text = [
-    'SIGNAL LAB / LEARNING WORKBOOK', lesson.title,
+    'NUVILO AI / LEARNING WORKBOOK', lesson.title,
     '\nPROJECT: ' + lesson.project.title,
     ...lesson.project.fields.map((field, i) => '\n' + field + '\n' + (work.project[i] || '[Not answered]')),
     '\nSELF-REVIEW (not an instructor grade)',
